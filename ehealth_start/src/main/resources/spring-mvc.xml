@@ -60,11 +60,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 		</bean>      
 		<!-- 在实际开发中通常都需配置 mvc:annotation-driven标签,这个标签是开启注解 -->
 		<mvc:annotation-driven></mvc:annotation-driven>
-		<!-- 拦截器 -->
-		<mvc:interceptors>
-			<!-- 多个拦截器，顺序执行 -->
-            <bean class="com.cn.ehealth.interceptor.LoginInterceptor"></bean>
-		</mvc:interceptors>
+
+
 		<!-- 对静态资源文件的访问 -->
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
