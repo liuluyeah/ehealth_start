@@ -1,9 +1,12 @@
 <%-- 门诊助手页，显示当日门诊情况。--%>
-<%@ page language="java" pageEncoding="utf-8"%> 
+<%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%> 
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page import="java.util.*"%> //获取系统时间必须导入的 
+<%@ page import="java.text.*"%> //获取系统时间必须导入的 
+
 <% 
  request.setCharacterEncoding("UTF-8"); 
  response.setCharacterEncoding("UTF-8"); 
@@ -37,7 +40,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
-
 </head>
 <body>
 	<!--start-header-->
@@ -53,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="doctorIndex.jsp" data-hover="主页">主页</a></li>
 								<li><a  href="doctorAbout.html" data-hover="关于">关于</a></li>
 								<li><a class="active" href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
-								<li><a href="doctorPatient.html" data-hover="我的病人">我的病人</a></li>
+								<li><a href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
 								<li><a href="doctorAppoint.html" data-hover="日程管理">日程管理</a></li>
 								<li><a href="doctorSetting.html" data-hover="设置">设置</a></li>
 								<li style="color: white">|</li>
@@ -87,7 +89,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <h3 class="tittle wel" style="font-size: 1.9em">门诊助手</h3>
 				<div class="about-top send about-top-right">
 				<input type="button" name="" value="刷新" >
-				<h4 style="margin-top: 2%">今日门诊情况：</h4>
+				    <% 
+       String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+       String title="";
+       try{
+    		/** 连接数据库参数 **/ 
+    		String driverName = "com.mysql.jdbc.Driver"; //驱动名称 
+    		String DBUser = "root"; //mysql用户名 
+    		String DBPasswd = "123456"; //mysql密码 
+    		String DBName = "ehealth"; //数据库名 
+    		String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?user=" + DBUser + "&password=" + DBPasswd; 
+    		Class.forName(driverName).newInstance(); 
+    	    Connection con=DriverManager.getConnection(connUrl);
+    	    Statement sql=con.createStatement();
+    	    ResultSet rs=sql.executeQuery("select *from clinic_assistant where time='"+ datetime +"'"); 
+    	     //判断数据库里 是否有今日门诊记录
+    	    if(rs.next()){ 
+    	     title="今日门诊情况：";
+    	   }
+    	  else{
+    		  title="今日无门诊。";
+    	   }
+    	   con.close();
+    	}
+    	catch(SQLException e1){}
+    %>
+				<h4 style="margin-top: 2%"><%=title %></h4>
 				<!-- 连接数据库 -->
 				<c:catch var="ex">
                 <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
@@ -96,26 +123,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     数据库连接失败，请联系管理员！
                 </c:if>
                 <!-- 数据读取 -->
-                <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM clinic_assistant"/>
+                <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM clinic_assistant order by idmenzhen desc"/>
 						<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
               			<thead>
 			                <tr>
 			                  <th>序号</th>
 			                  <th>姓名</th>
+			                  <th>类型</th>
 			                  <th>创建时间</th>
 							  <th>主诉</th>
 			                  <th>操作</th>
 			                </tr>
 			              </thead>
 			              <tbody>
-			               <c:forEach var="row" items="${userlist.rows}">
+			               <c:forEach var="row" items="${userlist.rows}" varStatus="status">
 							<tr>
-							 <td><c:out value="${row.idmenzhen}"/></td>
+							 <td><c:out value="${status.count}"/></td>
 							 <td><c:out value="${row.name}"/></td>
+							 <td><c:out value="${row.classification}"/></td>
 							 <td><c:out value="${row.time}"/></td>
 							 <td><c:out value="${row.mainreason}"/></td>
 							 <td>
-			                  <a href="doctorHelperShow.jsp"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                  <a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
 							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#doctorDivide" data-backdrop="static" ></i>
 							  </td>
@@ -172,10 +201,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 
                 <div class="modal-footer">
-                <!--
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    -->
                 </div>
 
              </div>
@@ -270,78 +295,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-    <!--
-	<div id="doctorDivide" class="modal fade" >
-		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
-			<div class="modal-content"style="width: 300px;margin-left: 160px">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">分组</h4>
-				</div>
-				<div class="modal-body contact-grid" style="height:100px;">
-					<form>
-						<div class="col-md-12">
-
-							<div class="selectbox"style="margin-left:10px;width: 200px">
-								<div class="selemediv">
-									<div class="selemenu " >
-										<span class="sqinput" style="font-weight: bold;">请选择组别</span><span class="csinput"></span></div>
-									<DIV class="citylist">
-										<span>月经组</span>
-										<span>卵巢组</span>
-										<span>更年组</span>
-										<span>乳腺组</span>
-									</div>
-								</div>
-							</div>
-							<br>
-
-						</div>
-				</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<script>
-		$(".selemenu").click(function(){
-			$(this).next().slideToggle();
-			$(this).parents().siblings().find(".citylist,.citylist2").slideUp();
-		})
-		$(".citylist span").click(function(){
-			var text=$(this).text();
-			$(this).parent().prev().html(text);
-			$(this).parent().prev().css("color","#666")
-			$(this).parent().fadeOut();
-
-		})
-		$(".shangquan li").click(function(){
-			$(".shangquan li").removeClass("active")
-			$(this).addClass("active")
-			var text1=$(this).text();
-			$(".sqinput").html(text1)
-		})
-		$(".chengshi li").click(function(){
-			$(".chengshi li").removeClass("active")
-			$(this).addClass("active")
-			var text2=$(this).text();
-			$(".csinput").html("-"+text2)
-			$(".citylist2").slideUp();
-		})
-		$(function(){
-			$(document).not($(".selectbox")).click(function(){
-				$(".citylist,.citylist2").slideUp();
-			})
-			$(".selectbox").click(function(event){
-				event.stopPropagation();
-			})
-		})
-	</script>
-	-->
 </body>
 </html>

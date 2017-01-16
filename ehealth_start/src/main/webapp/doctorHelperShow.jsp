@@ -47,10 +47,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					     <div class="top-menu">
 							<span class="menu"> </span>
 								<ul class="cl-effect-16">
-								<li><a href="doctorIndex.html" data-hover="主页">主页</a></li>
+								<li><a href="doctorIndex.jsp" data-hover="主页">主页</a></li>
 								<li><a  href="doctorAbout.html" data-hover="关于">关于</a></li>
 								<li><a class="active" href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
-								<li><a href="doctorPatient.html" data-hover="我的病人">我的病人</a></li>
+								<li><a href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
 								<li><a href="doctorAppoint.html" data-hover="日程管理">日程管理</a></li>
 								<li><a href="doctorSetting.html" data-hover="设置">设置</a></li>
 								<li style="color: white">|</li>
@@ -98,15 +98,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <c:if test="${ex != null}">
                                                     数据库连接失败，请联系管理员！
                 </c:if>
-                <!-- 数据读取 -->
-                <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM clinic_assistant where idmenzhen=2"/>
-              <!--  	<c:forEach var="row" items="${userlist.rows}">
-							<div id="${row.idmenzhen}" style="display:none">
-							 <span><c:out value="${row.height}"/></span>
-							 <span><c:out value="${row.weigtht}"/></span>
-							 <span><c:out value="${row.bloodpressure}"/></span>
-							 <span><c:out value="${row.waist}"/></span> </div>
-					</c:forEach>   -->  
+                <!-- 数据读取 --><c:set var="idmenzhen" value="${param.id}" />
+                <sql:query var="userlist" dataSource="${dataSour}" >SELECT * FROM clinic_assistant where idmenzhen=?;
+                <sql:param value="${idmenzhen} " />
+                </sql:query>
 					<c:forEach var="row" items="${userlist.rows}">
 					<form id="${row.idmenzhen}" >
 						<div class="col-md-4">
@@ -144,6 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body"> 民族、职业习惯等 
+           
                 </div>
                 
               </div>
