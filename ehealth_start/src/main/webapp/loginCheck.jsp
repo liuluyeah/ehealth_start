@@ -8,7 +8,7 @@
 <!DOCTYPE html >
 <html> 
 <head> 
-<title>check login jsp </TITLE> 
+<title>验证用户登录信息</TITLE> 
 </head> 
 <body>
 <% 
@@ -35,11 +35,11 @@ try{
      if("d".equals(d_p))
      response.sendRedirect("doctorIndex.jsp");
      if("p".equals(d_p))
-     response.sendRedirect("PatientIndex.jsp");	 
+     response.sendRedirect("patientIndex.jsp");	 
    }
   else{
     // response.sendRedirect("register.html");
-     out.print("<script>alert('用户不存在！');window.location.href='login.jsp'</script>");
+     out.print("<script>alert('密码错误或用户不存在！');window.location.href='login.jsp'</script>");
    }
    con.close();
 }

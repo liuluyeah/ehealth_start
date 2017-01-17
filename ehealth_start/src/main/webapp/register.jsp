@@ -23,6 +23,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+
+<script type="text/javascript" src="static/registerUser.js"></script>
 <!--/script-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -68,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
-					<form action="registerCheck.jsp" method="post">
+					<!-- <form action="registerCheck.jsp" method="post"> -->
 
 						<div class="col-md-6">
 						<p class="col-md-3 your-para" style="padding-top: 3%">手机号</p>
@@ -105,13 +107,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<br /><br />
 						<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 1%">
-						<!--  <a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
-								<input type="submit" value="下一步" >
-							</a>-->	
+						<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
+								<input type="submit" onClick="save()" value="下一步" >
+							</a>
+							<!--  	
 							<input type="submit" value="注册" >
+							-->
 						</div>
 					
-					</form>
+					<!-- </form> -->
                 </div>
               </div>
             </div>

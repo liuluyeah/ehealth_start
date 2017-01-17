@@ -8,58 +8,68 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %>  
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type"content="text/html; charset=utf-8"/>
-<title>sql test</title>
-<style type="text/css">
 
-td{
+	<meta charset="utf-8">
+
+	<title>Welcome!</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<!-- stylesheets css -->
+	<link rel="stylesheet" href="css/bootstrapIndex.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+
+  	<link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+  	<link rel="stylesheet" href="css/vegas.min.css">
+	<link rel="stylesheet" href="css/styleIndex.css">
 
 
-font-size:12px;
-
-
-background-color:#C6E9FD;
-
-}
-</style>
 </head>
 <body>
-<h2>Hello World 2017 !</h2>
-${user1.name} ${user1.sex} ${user1.tel} 
-<c:out value="&lt要显示的数据对象（使用转义字符）&gt" escapeXml="false" default="默认值"></c:out><br/>
-<c:catch var="ex">
-<sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
-</c:catch>
-<c:if test="${ex != null}">
-数据库连接失败，请联系管理员！
-</c:if>
-<!-- 数据读取 -->
-<sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM user"/>
-<table width="80%" align="center" cellspacing="1" cellpadding="1" style="border-bottom:0px; background-color:#8080FF">
-<tr>
- <td width="10%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;"height="25">编号</td>
- <td width="14%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">电话</td>
- <td width="11%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">密码</td>
- <td width="11%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">身份</td>
- <td width="12%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">姓名</td>
- <td width="32%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">性别</td>
- <td width="10%" align="center" style="background-color:#8080FF; font-size:14px;color:#FFFFFF; border:1px #FFFFFF solid;">出生日期</td>
-</tr>
- <c:forEach var="row" items="${userlist.rows}">
-<tr>
- <td align="center" style="background-color:#FFFFFF;"height="20"><c:out value="${row.id}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.tel}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.pwd}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.d_p}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.name}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.sex}"/></td>
- <td align="center" style="background-color:#FFFFFF;"><c:out value="${row.birth}"/></td>
-</tr>
-</c:forEach>
-</table>
 
+<!-- home section -->
+<section id="home">
+	<div class="container" style="text-align: center;">
+		<div class="row">
+
+			<div class="col-md-offset-2 col-md-8 col-sm-12">
+				<div class="home-thumb">
+					<h1 class="wow fadeInUp" data-wow-delay="0.4s">E-Health欢迎您</h1>
+          			<h3 class="wow fadeInUp" data-wow-delay="0.6s"><strong>北京大学</strong>第一医院<strong>欢迎您</strong>使用本系统！请<strong>登录</strong>以获得更多资讯。
+          			</h3>
+          			<a href="login.jsp" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s">点击登录</a>
+				</div>
+			</div>
+		</div>
+    <div class="footerIndex0" style="position: fixed; bottom: 0; margin-right: auto;margin-left: auto;">
+				<div class="container">
+					<div class="copy">
+		              <p style="color: white">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
+		            </div>
+				</div>
+			</div>
+	</div>		
+  
+</section>
+
+
+<!-- javscript js -->
+<script src="js/jqueryIndex.js"></script>
+<script src="js/bootstrapIndex.min.js"></script>
+
+<script src="js/vegas.min.js"></script>
+
+<script src="js/wow.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 </html>

@@ -24,7 +24,7 @@ html,body{width:100%;height: 100%;margin: 0}
 	<div class="center" >
 		<form action="" id="formOne" method="post"onsubmit="return submitB()" style="    padding-top: 25px;">
 			<i class="fa fa-user Cone" style="padding-left: 5px; padding-top: 2px; color: white;">  | </i>
-			<input type="phone" name="user" id="user" placeholder="手机号"onblur="checkUser()" style="color: white"/>
+			<input type="phone" name="uer" id="user" placeholder="手机号"onblur="checkUser()" style="color: white"/>
 			<span id="user_pass"></span>
 			<br/>
 			<i class="fa fa-key Cone" style="padding-left: 2px; padding-top: 2px; color: white;"> | </i>
@@ -35,7 +35,7 @@ html,body{width:100%;height: 100%;margin: 0}
 			<input type="text" name="surePwd" id="surePwd" placeholder="手机验证码"onblur="checkUser2()" style="color: white" />
 			<input type="submit" value="发送" id="send" name="submit" style="text-align: center;padding: 0">
 			<span id="surePwd_pass" ></span><br/>
-			<input type="submit" value="登录" id="submit" name="submit" style="text-align: center;padding: 0" onclick="fun_a()"> <!-- location.href='doctorIndex.html' -->
+			<input type="submit" value="登录" id="submit" name="submit" style="text-align: center;padding: 0">
 			<br /><br />
 			 <span style="color: white; padding-left: 23.5%">没有账号？请点击</span><a href="register.html" style="text-decoration: none;"><span style="color:#20CBBE;">注册</span><span style="color: white; ">。</span></a>
 			<!--<br/><br/><br/>-->
@@ -62,18 +62,5 @@ html,body{width:100%;height: 100%;margin: 0}
 
 
 <script type="text/javascript" src="js/loginMy.js"></script>
-<script type="text/javascript">
-//如果用户名不为空，则跳转，为空弹窗提示
-function fun_a(){
-	if (document.getElementById('user').value=='')
-	            {
-	                alert('请输入手机号');
-	                document.getElementById('user').focus();
-	            }else{
-		self.location='doctorIndex.html';
-	}
-	
-}
-</script>
 </body>
 </html>

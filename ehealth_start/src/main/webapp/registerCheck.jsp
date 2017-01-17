@@ -60,7 +60,7 @@ try {
 	if("d".equals(d_p))
     response.sendRedirect("doctorIndex.jsp");
 	if("p".equals(d_p))
-	 response.sendRedirect("PatientIndex.jsp");	
+	 response.sendRedirect("patientIndex.jsp");	
    } else if(!flag ){
 	 out.print("<script>alert('注册信息不能为空！');window.location.href='register.jsp'</script>");
     }
