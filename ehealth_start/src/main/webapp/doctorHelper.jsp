@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ page import="java.util.*"%> //获取系统时间必须导入的 
-<%@ page import="java.text.*"%> //获取系统时间必须导入的 
+<%@ page import="java.util.*"%>  
+<%@ page import="java.text.*"%>
 
 <% 
  request.setCharacterEncoding("UTF-8"); 
@@ -143,11 +143,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							 <td><c:out value="${row.classification}"/></td>
 							 <td><c:out value="${row.time}"/></td>
 							 <td><c:out value="${row.mainreason}"/></td>
-							 <td>
-			                  <a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                 <td><a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
-							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#doctorDivide" data-backdrop="static" ></i>
-							  </td>
+							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#${row.idmenzhen}" data-backdrop="static" ></i>
+							  <!-- 进行分组 -->
+							  <div id="${row.idmenzhen}" class="modal fade" >							            
+								<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">								 	
+						            <div class="modal-content">
+						            <form  method="post" action="clinicGroupAdd.jsp">
+						            <input name="groupid" style="display:none" value="${row.idmenzhen}"  >	
+						                <div class="modal-header">
+						                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						                    <h4 class="modal-title">病人分组</h4>
+						                </div>
+						                <div class="modal-body contact-grid" style="padding-left: 5%"> 
+										<input type="checkbox" name="radio" id="r5" value="月经组" >
+						                <label style="color: #888;">月经组</label>
+						                    &nbsp&nbsp
+						                    &nbsp&nbsp
+										<input type="checkbox" name="radio" id="r5" value="卵巢组" >
+						                <label style="color: #888;">卵巢组</label>
+						                    &nbsp&nbsp
+						                 	&nbsp&nbsp
+						                <input type="checkbox" name="radio" id="r5" value="更年组" >
+						                <label style="color: #888;">更年组</label>
+						                    &nbsp&nbsp
+						                    &nbsp&nbsp
+										<input type="checkbox" name="radio" id="r5" value="乳腺组" >
+						                <label style="color: #888;">乳腺组</label>
+						                </div>
+						                <div class="modal-footer">						                                   
+						                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+						                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						                </div>
+						               </form>
+						             </div>
+						        </div>
+                               </div>
+                               </td>
 							</tr>
 							</c:forEach>			         			               
 			              </tbody>
@@ -264,36 +297,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 
-    <div id="doctorDivide" class="modal fade" >
-		<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
+   <!--   <div id="doctorDivide" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">		
+            <input name="idgroup" id="idgroup"  style="display:none" value="1"  >		
             <div class="modal-content">
+            <form  method="post" action="groupAdd.jsp">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">病人分组</h4>
                 </div>
                 <div class="modal-body contact-grid" style="padding-left: 5%"> 
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="月经组" >
                 <label style="color: #888;">月经组</label>
                     &nbsp&nbsp
                     &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="卵巢组" >
                 <label style="color: #888;">卵巢组</label>
                     &nbsp&nbsp
                  	&nbsp&nbsp
-                <input type="checkbox" name="radio" id="r5" value="">
+                <input type="checkbox" name="radio" id="r5" value="更年组" >
                 <label style="color: #888;">更年组</label>
                     &nbsp&nbsp
                     &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="乳腺组" >
                 <label style="color: #888;">乳腺组</label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                <div class="modal-footer">                    
+                    <input type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE" value="保存">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
-
+               </form>
              </div>
         </div>
     </div>
+-->
+    <script type="text/javascript">
+     $(document).ready(function() {
+    	  $('input[type=checkbox]').click(function() {
+    	   $("input[name='radio']").attr('disabled', true);
+    	   if ($("input[name='radio']:checked").length >= 1) {
+    	    $("input[name='radio']:checked").attr('disabled', false);
+    	   } else {
+    	    $("input[name='radio']").attr('disabled', false);
+    	   }
+    	  });
+    	 })
+    </script>
 </body>
 </html>
