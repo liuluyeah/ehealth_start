@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>我的预约</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Petsy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />	
+<script src="js/jquery.min.js"> </script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+
+
+
+
+<link rel="stylesheet" href="css/documentation.css" type="text/css" />
+<link rel="stylesheet" href="css/jalendarPatient.css" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jalendarPatient.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('#myId').jalendar({
+        customDay: '2017/12/01',  // Format: Year/Month/Day
+        color: '#ed145a', // Unlimited Colors
+        lang: 'EN' // Format: English — 'EN', Türkçe — 'TR'
+    });
+    $('#myId2').jalendar({
+        customDay: '2016/02/29',
+        color: '#023447',
+        lang: 'ES',
+            
+    });
+    $('#myId3').jalendar({
+    });
+});
+</script>
+
+</head>
+<body>
+	<!--start-header-->
+			<div id="home" class="header two">
+					<div class="top-header">
+						<div class="container">
+							<div class="logo">
+							  <a href="patientIndex.html"><h2>北京大学<span>第一医院</span></h2></a>
+						    </div>
+					     <div class="top-menu">
+							<span class="menu"> </span>
+								<ul class="cl-effect-16">
+								<li><a href="patientIndex.html" data-hover="主页">主页</a></li>
+								<li><a  href="patientAbout.html" data-hover="关于">关于</a></li>
+								<li><a href="patientInfo.html" data-hover="我的门诊">我的门诊</a></li>
+								<li><a href="patientRecord.html" data-hover="我的病历">我的病历</a></li>
+								<li><a class="active" href="patientAppoint.html" data-hover="我的预约">我的预约</a></li>
+								<li style="color: white">|</li>
+								<li><span class="glyphicon glyphicon-qrcode"  data-toggle="modal" data-target="#scanQRcode" data-backdrop="static" style="cursor: pointer;color: white"></span></li>
+								<li class="dropdown" style="text-align: left;">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+									<ul class="dropdown-menu" role="menu" id="patient-contents">
+										<li><a href="patientProfile.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+										<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+									</ul>
+			  					</li>		
+								  <div class="clearfix"></div>
+								</ul>
+							</div>
+							<!-- script-for-menu -->
+								<script>
+									$("span.menu").click(function(){
+										$(".top-menu ul").slideToggle("slow" , function(){
+										});
+									});
+								</script>
+								<!-- script-for-menu -->
+							<div class="clearfix"> </div>
+					</div>
+				</div>
+	     </div>
+     </div>
+		<!--start-about-->
+	<div class="about second"  style="padding: 4em 0 1em 0">
+		<div class="container">
+		 <h3 class="tittle wel" style="font-size: 1.9em">我的预约</h3>
+				<div class="about-top">
+					<div class="col-md-12 about-top-right send">
+						<h4>下次随访预约时间：2016.3.1<span style="font-weight: normal;font-size: 0.75em;padding-left: 1.5em; margin-top: 0.1em"><input type="submit" value="修改预约时间" data-toggle="modal" data-target="#timeEdit" data-backdrop="static"></span></h4>
+							
+
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>	 
+	</div>
+
+	<div class="col-md-11 col-md-offset-1">
+	 <div id="myId3" class="jalendar"></div>
+	 </div>
+  <!--footer-->
+			<div class="footer text-center" style="padding-bottom: 0; text-align: center;">
+				<div class="container">
+					<div class="copy">
+		              <p style="color: black">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
+		            </div>
+				</div>
+			</div>
+
+				<!--start-smoth-scrolling-->
+					
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+		<div id="scanQRcode" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">E-Health</h4>
+                </div>
+                <div class="modal-body">
+                	<p>我是一个二维码</p>
+                	<p>扫描二维码，关注E-Health微信公众号。</p>
+                </div>
+                
+                <div class="modal-footer">
+                <!--
+                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    -->
+                </div>
+
+             </div>
+        </div>
+    </div>
+
+     <div id="timeEdit" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改预约时间</h4>
+                </div>
+                <div class="modal-body contact-grid" style="height:30px;">
+               <div class="col-md-10" style="text-align: center;">
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">25号上午</label>
+                    &nbsp&nbsp
+                    &nbsp&nbsp
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">25号下午</label>
+                    &nbsp&nbsp
+                 	&nbsp&nbsp
+                <input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">27号上午</label>
+                    &nbsp&nbsp
+                    &nbsp&nbsp
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">27号下午</label>
+            	</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+
+             </div>
+        </div>
+    </div>
+
+</body>
+</html>

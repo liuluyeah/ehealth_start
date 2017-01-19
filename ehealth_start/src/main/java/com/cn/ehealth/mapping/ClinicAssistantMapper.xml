@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.ehealth.dao.ClinicAssistantMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.ehealth.model.ClinicAssistant" >
+    <id column="idmenzhen" property="idmenzhen" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="mainreason" property="mainreason" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="weigtht" property="weigtht" jdbcType="VARCHAR" />
+    <result column="bloodpressure" property="bloodpressure" jdbcType="VARCHAR" />
+    <result column="waist" property="waist" jdbcType="VARCHAR" />
+    <result column="hip" property="hip" jdbcType="VARCHAR" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
+    <result column="divide" property="divide" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    idmenzhen, name, time, mainreason, height, weigtht, bloodpressure, waist, hip, classification, 
+    divide
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.ehealth.model.ClinicAssistantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clinic_assistant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clinic_assistant
+    where idmenzhen = #{idmenzhen,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clinic_assistant
+    where idmenzhen = #{idmenzhen,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.ehealth.model.ClinicAssistantExample" >
+    delete from clinic_assistant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.ehealth.model.ClinicAssistant" >
+    insert into clinic_assistant (idmenzhen, name, time, 
+      mainreason, height, weigtht, 
+      bloodpressure, waist, hip, 
+      classification, divide)
+    values (#{idmenzhen,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{mainreason,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{weigtht,jdbcType=VARCHAR}, 
+      #{bloodpressure,jdbcType=VARCHAR}, #{waist,jdbcType=VARCHAR}, #{hip,jdbcType=VARCHAR}, 
+      #{classification,jdbcType=VARCHAR}, #{divide,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.ehealth.model.ClinicAssistant" >
+    insert into clinic_assistant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idmenzhen != null" >
+        idmenzhen,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="mainreason != null" >
+        mainreason,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weigtht != null" >
+        weigtht,
+      </if>
+      <if test="bloodpressure != null" >
+        bloodpressure,
+      </if>
+      <if test="waist != null" >
+        waist,
+      </if>
+      <if test="hip != null" >
+        hip,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+      <if test="divide != null" >
+        divide,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idmenzhen != null" >
+        #{idmenzhen,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="mainreason != null" >
+        #{mainreason,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weigtht != null" >
+        #{weigtht,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="waist != null" >
+        #{waist,jdbcType=VARCHAR},
+      </if>
+      <if test="hip != null" >
+        #{hip,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="divide != null" >
+        #{divide,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.ehealth.model.ClinicAssistantExample" resultType="java.lang.Integer" >
+    select count(*) from clinic_assistant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clinic_assistant
+    <set >
+      <if test="record.idmenzhen != null" >
+        idmenzhen = #{record.idmenzhen,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainreason != null" >
+        mainreason = #{record.mainreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weigtht != null" >
+        weigtht = #{record.weigtht,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bloodpressure != null" >
+        bloodpressure = #{record.bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waist != null" >
+        waist = #{record.waist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hip != null" >
+        hip = #{record.hip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classification != null" >
+        classification = #{record.classification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.divide != null" >
+        divide = #{record.divide,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clinic_assistant
+    set idmenzhen = #{record.idmenzhen,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      mainreason = #{record.mainreason,jdbcType=VARCHAR},
+      height = #{record.height,jdbcType=VARCHAR},
+      weigtht = #{record.weigtht,jdbcType=VARCHAR},
+      bloodpressure = #{record.bloodpressure,jdbcType=VARCHAR},
+      waist = #{record.waist,jdbcType=VARCHAR},
+      hip = #{record.hip,jdbcType=VARCHAR},
+      classification = #{record.classification,jdbcType=VARCHAR},
+      divide = #{record.divide,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.ehealth.model.ClinicAssistant" >
+    update clinic_assistant
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="mainreason != null" >
+        mainreason = #{mainreason,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weigtht != null" >
+        weigtht = #{weigtht,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        bloodpressure = #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="waist != null" >
+        waist = #{waist,jdbcType=VARCHAR},
+      </if>
+      <if test="hip != null" >
+        hip = #{hip,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="divide != null" >
+        divide = #{divide,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where idmenzhen = #{idmenzhen,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.ehealth.model.ClinicAssistant" >
+    update clinic_assistant
+    set name = #{name,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      mainreason = #{mainreason,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      weigtht = #{weigtht,jdbcType=VARCHAR},
+      bloodpressure = #{bloodpressure,jdbcType=VARCHAR},
+      waist = #{waist,jdbcType=VARCHAR},
+      hip = #{hip,jdbcType=VARCHAR},
+      classification = #{classification,jdbcType=VARCHAR},
+      divide = #{divide,jdbcType=VARCHAR}
+    where idmenzhen = #{idmenzhen,jdbcType=INTEGER}
+  </update>
+</mapper>

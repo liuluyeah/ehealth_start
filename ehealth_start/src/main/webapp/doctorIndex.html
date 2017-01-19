@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>E-Health</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Petsy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />	
+<script src="js/jquery.min.js"> </script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+
+</head>
+<body>
+	<!--start-header-->
+			<div id="home" class="header">
+					<div class="top-header">
+						<div class="container">
+							<div class="logo">
+							  <a href="doctorIndex.html"><h2>北京大学<span>第一医院</span></h2></a>
+						    </div>
+					     <div class="top-menu">
+							<span class="menu"> </span>
+								<ul class="cl-effect-16">
+								<li><a class="active" href="doctorIndex.html" data-hover="主页">主页</a></li>
+								<li><a  href="doctorAbout.html" data-hover="关于">关于</a></li>
+								<li><a href="doctorHelper.html" data-hover="门诊助手">门诊助手</a></li>
+								<li><a href="doctorPatient.html" data-hover="我的病人">我的病人</a></li>
+								<li><a href="doctorAppoint.html" data-hover="日程管理">日程管理</a></li>
+								<li><a href="doctorSetting.html" data-hover="设置">设置</a></li>
+								<li style="color: white">|</li>
+								<li><span class="glyphicon glyphicon-qrcode"  data-toggle="modal" data-target="#scanQRcode" data-backdrop="static" style="cursor: pointer;color: white"></span></li>
+								<li class="dropdown" style="text-align: left;">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
+									<ul class="dropdown-menu" role="menu" id="doctor-contents">
+										<li><a href="doctorProfile.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+										<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+									</ul>
+			  					</li>		
+								  <div class="clearfix"></div>
+								</ul>
+							</div>
+							<!-- script-for-menu -->
+								<script>
+									$("span.menu").click(function(){
+										$(".top-menu ul").slideToggle("slow" , function(){
+										});
+									});
+								</script>
+								<!-- script-for-menu -->
+							<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="banner">
+				   <div class="container">
+						<div id="top" class="callbacks_container">
+						<ul class="rslides callbacks callbacks1" id="slider4">
+							<li id="callbacks1_s0" class="callbacks1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out;">
+								<div class="banner-info">
+								<h3>E-Health</h3>
+								<h4>everything to keep you healthy!</h4>
+								</div>
+							</li>
+							<li id="callbacks1_s1" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
+								<div class="banner-info">
+								   <h3>Helping you get rid</h3>
+								  <h4>of your health problem!</h4>
+								</div>
+							</li>
+							<li id="callbacks1_s2" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
+								<div class="banner-info">
+								  <h3>Get to know</h3>
+								  <h4>everything about your appointment!</h4>
+								</div>	
+							</li>
+						</ul>
+						</div>
+						<!--banner-Slider-->
+						<script src="js/responsiveslides.min.js"></script>
+						 <script>
+						// You can also use "$(window).load(function() {"
+						$(function () {
+						  // Slideshow 4
+						  $("#slider4").responsiveSlides({
+						auto: true,
+						pager: true,
+						nav:false,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+						  $('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+						  $('.events').append("<li>after event fired.</li>");
+						}
+						  });
+
+						});
+						  </script>
+				</div>
+				<div class="banner-bottom">
+			      <div class="container">
+			         <div class="banner-bot-grids" style="text-align: center;">
+
+				        <a href="doctorHelper.html" style="text-decoration: none;color: white">
+				        <div class="col-md-4 header-bottom-grid1">
+						  <div class="icon">
+					         <i class="glyphicon glyphicon-edit"> </i>
+					      </div>
+					      <div class="icon-text">
+						     <h4>门诊助手</h4>
+					        <p>点击进入门诊助手查看最新病人</p>
+					       </div>
+					        <div class="clearfix"> </div>
+					     </div></a>
+
+						 <a href="doctorPatient.html" style="text-decoration: none;color: white">
+						 <div class="col-md-4 header-bottom-grid2">
+							  <div class="icon">
+						        <i class="glyphicon glyphicon-th-list"> </i>
+						      </div>
+						     <div class=" icon-text">
+							     <h4>我的病人</h4>
+						          <p>点击进入查看所有病人记录</p>
+						     </div>
+						      <div class="clearfix"> </div>
+						 </div></a>
+
+					    <a href="doctorAppoint.html" style="text-decoration: none;color: white">
+					    <div class="col-md-4 header-bottom-grid3">
+						     <div class="icon">
+							    <i class="glyphicon glyphicon-time"> </i>
+							</div>
+							<div class="icon-text">
+								 <h4>日程管理</h4>
+							    <p>点击进入查看个人日程管理</p>
+							 </div>
+							  <div class="clearfix"> </div>
+						</div></a>
+
+					 </div>
+			      <div class="clearfix"> </div>
+		      </div>
+	       </div>
+	     </div>
+     </div>
+
+
+  <!--footer-->
+			<div class="footerIndex text-center" style="background-color: #f8f8f8; padding-bottom: 0; text-align: center;">
+				<div class="container">
+					<div class="copy">
+		              <p style="color: black">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
+		            </div>
+				</div>
+			</div>
+
+				<!--start-smoth-scrolling-->
+						<script type="text/javascript">
+									$(document).ready(function() {	
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+	<div id="scanQRcode" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">E-Health</h4>
+                </div>
+                <div class="modal-body">
+                	<p>我是一个二维码</p>
+                	<p>扫描二维码，关注E-Health微信公众号。</p>
+                </div>
+                
+                <div class="modal-footer">
+                <!--
+                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    -->
+                </div>
+
+             </div>
+        </div>
+    </div>
+
+</body>
+</html>
