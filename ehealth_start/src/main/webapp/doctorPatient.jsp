@@ -1,4 +1,4 @@
-<%-- 我的病人页面，显示所有病人列表。——by liulu --%>
+<%-- 我的病人页面，显示所有病人列表。显示组别、分页。——by liulu --%>
 <%@ page language="java" pageEncoding="utf-8"%> 
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,6 +9,50 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
+<%
+	//变量声明
+	java.sql.Connection sqlCon; //数据库连接对象
+	java.sql.Statement sqlStmt; //SQL语句对象
+	java.sql.ResultSet sqlRst; //结果集对象
+	java.lang.String strCon;//数据库连接字符串
+	java.lang.String strSQL;//SQL语句
+	int intPageSize; //一页显示的记录数
+	int intRowCount;//记录总数
+	int intPageCount;//总页数
+	int intPage;//待显示页码
+	java.lang.String strPage;
+	int i;
+	//设置一页显示的记录数
+	intPageSize=3;
+	//取得待显示页码
+	strPage=request.getParameter("page");
+	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
+	intPage=1;
+	}
+	else{//将字符串转换成整型
+	intPage=java.lang.Integer.parseInt(strPage);
+	if(intPage<1)intPage=1;
+	}
+	//装载JDBC驱动程序
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	//设置数据库连接字符串
+	strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
+	//连接数据库
+	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+	//创建一个可以滚动的只读的SQL语句对象
+	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+	//准备SQL语句
+	strSQL="SELECT * FROM mypatient";
+	//执行SQL语句并获取结果集
+	sqlRst=sqlStmt.executeQuery(strSQL);
+	//获取记录总数
+	sqlRst.last();
+	intRowCount=sqlRst.getRow();
+	//记算总页数
+	intPageCount=(intRowCount+intPageSize-1)/intPageSize;
+	//调整待显示的页码
+	if(intPage>intPageCount)intPage=intPageCount;
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -84,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--start-about-->
 	
 	<div class="about second">
-		<div class="container">
+		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
 		 <div class="selectbox" style="height:50px">
 		 <div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择组别</span></div>
@@ -142,71 +186,104 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<input type="button" value="查询" >
 		</div>
 	</div>
-				<div class="about-top">
-			    <!-- 连接数据库 -->
-				<c:catch var="ex">
-                <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
-                </c:catch>
-                <c:if test="${ex != null}">
-                                                    数据库连接失败，请联系管理员！
-                </c:if>
-                <!-- 数据读取 -->
-                <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM mypatient"/>
-						<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
-              			<thead>
-			                <tr>
-			                  <th>序号</th>
-			                  <th>姓名</th>
-			                  <th>类型</th>
-							  <th>创建时间</th>
-			                  <th>血糖</th>
-			                  <th>血脂</th>
-							  <th>BMI</th>
-							  <th>腰臀比</th>
-							  <th>组别</th>
-							  <th>药品名称</th>
-			                  <th>操作</th>
-			                </tr>
-			              </thead>
-			              <tbody>
-			              <c:forEach var="row" items="${userlist.rows}">
-							<tr>
-							 <td><c:out value="${row.idmypatient}"/></td>
-							 <td><c:out value="${row.name}"/></td>
-							 <td><c:out value="${row.classification}"/></td>
-							 <td><c:out value="${row.time}"/></td>
-							 <td><c:out value="${row.sugar}"/></td>
-							 <td><c:out value="${row.fat}"/></td>
-							 <td><c:out value="${row.bmi}"/></td>
-							 <td><c:out value="${row.waisthipratio}"/></td>
-							 <td><c:out value="${row.divide}"/></td>
-							 <td><c:out value="${row.medicine}"/></td>
-							 <td>
+		<div class="about-top">
+				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
+            			<thead>
+	                <tr>
+	                  <th>序号</th>
+	                  <th>姓名</th>
+	                  <th>类型</th>
+					  <th>创建时间</th>
+	                  <th>血糖</th>
+	                  <th>血脂</th>
+					  <th>BMI</th>
+					  <th>腰臀比</th>
+					  <th>组别</th>
+					  <th>药品名称</th>
+	                  <th>操作</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+		             <%
+						if(intPageCount>0){
+						//将记录指针定位到待显示页的第一条记录上
+						sqlRst.absolute((intPage-1)*intPageSize+1);
+						//显示数据
+						i=0;
+						while(i<intPageSize&&!sqlRst.isAfterLast()){
+					 %>
+						<tr>
+						<td><%=sqlRst.getString(1)%></td>
+						<td><%=sqlRst.getString(2)%></td>
+						<td><%=sqlRst.getString(3)%></td>
+						<td><%=sqlRst.getString(4)%></td>
+						<td><%=sqlRst.getString(5)%></td>
+						<td><%=sqlRst.getString(6)%></td>
+						<td><%=sqlRst.getString(7)%></td>
+						<td><%=sqlRst.getString(8)%></td>
+						<td><%=sqlRst.getString(9)%></td>
+						<td><%=sqlRst.getString(10)%></td>
+						<td>
 			                  <a href="doctorPatientEach.html"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEdit" data-backdrop="static" ></i>
-			                  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#doctorPatientDivide" data-backdrop="static" ></i>
+			                  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
-			                  </td>
-			                </tr>
-			                </c:forEach>	
-			              </tbody>
-			            </table>
-							<div class="page_nation" style="text-align: center;">
-							<nav>
-											   <ul class="pagination pagination-sm">
-												<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-											  </ul>
-											 </nav>		
-							</div>
-					<div class="clearfix"></div>
+			                     <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
+									<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
+							            <div class="modal-content">
+							            <form  method="post" action="doctorPatientGroupAdd.jsp">
+						                <input name="groupid" style="display:none" value="<%=sqlRst.getString(1)%>"  >
+						                 <input name="intpage" style="display:none" value="<%=intPage%>"  >						                	
+							                <div class="modal-header">
+							                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							                    <h4 class="modal-title">病人分组</h4>
+							                </div>
+							                <div class="modal-body contact-grid" style="padding-left: 5%"> 
+											<input type="checkbox" name="radio" id="r5" value="月经组">
+							                <label style="color: #888;">月经组</label>
+							                    &nbsp&nbsp
+							                    &nbsp&nbsp
+											<input type="checkbox" name="radio" id="r5" value="卵巢组">
+							                <label style="color: #888;">卵巢组</label>
+							                    &nbsp&nbsp
+							                 	&nbsp&nbsp
+							                <input type="checkbox" name="radio" id="r5" value="更年组">
+							                <label style="color: #888;">更年组</label>
+							                    &nbsp&nbsp
+							                    &nbsp&nbsp
+											<input type="checkbox" name="radio" id="r5" value="乳腺组">
+							                <label style="color: #888;">乳腺组</label>
+							                </div>
+							                <div class="modal-footer">
+							                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+							                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							                </div>
+							             </form>
+							             </div>
+							        </div>
+							    </div>
+		                </td>
+						</tr>								       
+					<%
+					 sqlRst.next();
+					 i++;
+					 }
+					}
+					%>		
+                   </tbody>
+                   </table>
+				<div class="page_nation" style="text-align: center;">
+				<nav>
+					 第<%=intPage%>页 共<%=intPageCount%>页  
+					<%if(intPage<intPageCount){%>
+					<a href="doctorPatient.jsp?page=<%=intPage+1%>">下一页</a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+					<%if(intPage>1){%>
+					<a href="doctorPatient.jsp?page=<%=intPage-1%>">上一页</a><%}else {%><a href="#">上一页</a><%}%>
+				  </nav>		
 				</div>
-			</div>	 
+			<div class="clearfix"></div>
+		</div>
+	</div>	 
 	</div>
 	  
   <!--footer-->
@@ -305,39 +382,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-
-    <div id="doctorPatientDivide" class="modal fade" >
-		<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">病人分组</h4>
-                </div>
-                <div class="modal-body contact-grid" style="padding-left: 5%"> 
-				<input type="checkbox" name="radio" id="r5" value="">
-                <label style="color: #888;">月经组</label>
-                    &nbsp&nbsp
-                    &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
-                <label style="color: #888;">卵巢组</label>
-                    &nbsp&nbsp
-                 	&nbsp&nbsp
-                <input type="checkbox" name="radio" id="r5" value="">
-                <label style="color: #888;">更年组</label>
-                    &nbsp&nbsp
-                    &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
-                <label style="color: #888;">乳腺组</label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-
-             </div>
-        </div>
-    </div>
-    
+    <script type="text/javascript">
+     $(document).ready(function() {
+    	  $('input[type=checkbox]').click(function() {
+    	   $("input[name='radio']").attr('disabled', true);
+    	   if ($("input[name='radio']:checked").length >= 1) {
+    	    $("input[name='radio']:checked").attr('disabled', false);
+    	   } else {
+    	    $("input[name='radio']").attr('disabled', false);
+    	   }
+    	  });
+    	 })
+    </script> 
 	<script>
 		$(".selemenu").click(function(){
 			$(this).next().slideToggle();
@@ -375,3 +431,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </body>
 </html>
+<%
+//关闭结果集
+sqlRst.close();
+//关闭SQL语句对象
+sqlStmt.close();
+//关闭数据库
+sqlCon.close();
+%> 
