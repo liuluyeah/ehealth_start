@@ -110,9 +110,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 			<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
 								<input type="submit" onClick="saveOne()" value="下一步" >
 							</a>
-							<!-- 	
-							<input type="submit" onClick="save()" value="注册" >
-							-->
 						</div>
 					
 					<!-- </form> -->
@@ -129,17 +126,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="name" placeholder="">
+								<input type="text" class="form-control" id="name" name="name" placeholder="">
 							</div>
 						</div>
 
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
 							<div class="col-md-8" style="padding-top: 3%">
-								<input type="radio" name="radio" id="sex" value="" checked>
+								<input type="radio" name="sex" id="sex" value="" checked>
 								<label style="color: #888;">男</label>
 								&nbsp
-								<input type="radio" name="radio" id="sex" value="">
+								<input type="radio" name="sex" id="sex" value="">
 								<label style="color: #888;">女</label>
 							</div>
 						</div>
@@ -169,7 +166,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">年龄</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="identity" placeholder="" style="padding-top: 2%">
+								<input type="text" class="form-control" id="age" name="age" placeholder="" style="padding-top: 2%">
 							</div>
 						</div>
 
@@ -177,14 +174,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">身份证号</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="identity" placeholder="">
+								<input type="text" class="form-control" id="identity" name="identity" placeholder="">
 							</div>
 						</div>
 
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">医疗卡号</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="recordNumber" placeholder="">
+								<input type="text" class="form-control" id="recordNumber" name="recordNumber" placeholder="">
 							</div>
 						</div>
 
@@ -192,52 +189,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p class="col-md-4 your-para" style="padding-top: 6%">出诊时间</p>
 						<div class="col-md-8" style="padding-top: 5%">
 						<div>
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周一上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周一下午</label>
                       	</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周二上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周二下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周三上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周三下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周四上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周四下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周五上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周六上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周六下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周日上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="docTime" id="docTime" value="">
                       		<label style="color: #888;">周日下午</label>
 						</div>
 						</div>
@@ -245,8 +242,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <br /><br />
 					<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 2%">
-					<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseOne"  style="text-decoration: none;"><input type="submit" value="上一步" ></a>&nbsp&nbsp
-							<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;"><input type="submit" value="下一步" ></a>
+							<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;">
+								<input type="submit" onClick="saveTwo()" value="下一步" >
+							</a>
 						</div>
 					</form>
                 </div>

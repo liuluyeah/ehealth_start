@@ -179,7 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							 <td><c:out value="${row.fat}"/></td>
 							 <td><c:out value="${row.bmi}"/></td>
 							 <td><c:out value="${row.waisthipratio}"/></td>
-							 <td><c:out value="${row.group}"/></td>
+							 <td><c:out value="${row.divide}"/></td>
 							 <td><c:out value="${row.medicine}"/></td>
 							 <td>
 			                  <a href="doctorPatientEach.html"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>

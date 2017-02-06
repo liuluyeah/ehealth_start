@@ -8,6 +8,7 @@ public class Ajax {
 	public static final String ERROR = "-1";
 	public static final String FAILURE = "0";
 	public static final String SUCCESS = "1";
+	public static final String EXIST = "2";
 	
 	private String code;
 	private String msg;

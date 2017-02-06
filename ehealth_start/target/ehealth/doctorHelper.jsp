@@ -132,6 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                  <th>类型</th>
 			                  <th>创建时间</th>
 							  <th>主诉</th>
+							  <th>组别</th>
 			                  <th>操作</th>
 			                </tr>
 			              </thead>
@@ -141,8 +142,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							 <td><c:out value="${status.count}"/></td>
 							 <td><c:out value="${row.name}"/></td>
 							 <td><c:out value="${row.classification}"/></td>
-							 <td><c:out value="${row.time}"/></td>
+							 <td><c:out value="${row.time}"/></td>							
 							 <td><c:out value="${row.mainreason}"/></td>
+							  <td><c:out value="${row.divide}"/></td>
 			                 <td><a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
 							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#${row.idmenzhen}" data-backdrop="static" ></i>

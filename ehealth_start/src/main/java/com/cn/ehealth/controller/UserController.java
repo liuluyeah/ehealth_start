@@ -1,5 +1,8 @@
 package com.cn.ehealth.controller;  
   
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;  
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cn.ehealth.model.User;  
-import com.cn.ehealth.service.UserService;  
+import com.cn.ehealth.model.User;
+import com.cn.ehealth.model.UserExample;
+import com.cn.ehealth.service.UserService;
+
 
 /*
  * 用户注册功能
@@ -46,14 +51,14 @@ public class UserController {
         	user.setTel(tel);
         	user.setPwd(pwd);
         	user.setdP(d_p);
-            boolean res = userService.registerUser(user);
-            if (res) {
-                ajax.setCode(Ajax.SUCCESS);
-                ajax.setMsg("添加成功！");
-            } else {
-                ajax.setCode(Ajax.FAILURE);
-                ajax.setMsg("添加失败！");
-            }
+        	boolean res = userService.registerUser(user);
+        	if (res) {
+        		ajax.setCode(Ajax.SUCCESS);
+        		ajax.setMsg("添加成功！");
+        	} else {
+        		ajax.setCode(Ajax.EXIST);
+        		ajax.setMsg("重复数据！");
+        	}
         } catch (Exception e) {
             ajax.setCode(Ajax.ERROR);
             ajax.setMsg("数据库更新失败！");
