@@ -42,8 +42,8 @@ function saveOne() {
         dataType: 'json',
         data: param,
         success: function (data) {
-        	alert(data["result"]);
-        	document.getElementById("userTel").value =data["result"];
+        	//alert(data["result"]);
+        	document.getElementById("userId").value =data["result"];
         	if (data["code"] == 2) {
         		alert("注册信息已存在，请直接登录或更换手机号！");
         		window.location.href="register.jsp";
@@ -81,7 +81,7 @@ function saveTwo() {
         dataType: 'json',
         data: param,
         success: function (data) {
-        	alert(data["result"]);
+        	//alert(data["result"]);
         	if (data["code"] == 2) {
         		alert("注册信息已存在，请直接登录或更换手机号！");
         		window.location.href="register.jsp";
