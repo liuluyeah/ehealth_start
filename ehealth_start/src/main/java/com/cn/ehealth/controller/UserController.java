@@ -40,24 +40,60 @@ public class UserController {
     //第一步注册
     @RequestMapping(value = "/registerUserOne", method = RequestMethod.POST)
     @ResponseBody
-    public Ajax registerUser(HttpServletRequest request, Model model,
+    public Ajax registerUserOne(HttpServletRequest request, Model model,
             @RequestParam("tel") String tel,
             @RequestParam("pwd") String pwd,
             @RequestParam("d_p") String d_p) {
-    	System.out.println("sdfsd");
         Ajax ajax = new Ajax();
         try {
         	User user = new User();
         	user.setTel(tel);
         	user.setPwd(pwd);
         	user.setdP(d_p);
-        	boolean res = userService.registerUser(user);
+        	boolean res = userService.registerUserOne(user);
         	if (res) {
         		ajax.setCode(Ajax.SUCCESS);
         		ajax.setMsg("添加成功！");
+        		ajax.setResult(user.getId());
         	} else {
         		ajax.setCode(Ajax.EXIST);
         		ajax.setMsg("重复数据！");
+        	}
+        } catch (Exception e) {
+            ajax.setCode(Ajax.ERROR);
+            ajax.setMsg("数据库更新失败！");
+        }
+        return ajax;
+    }
+    
+  //第二步注册
+    @RequestMapping(value = "/registerUserTwo", method = RequestMethod.POST)
+    @ResponseBody
+    public Ajax registerUserTwo(HttpServletRequest request, Model model,
+    		@RequestParam("id") Integer id,
+            @RequestParam("name") String name,
+            @RequestParam("sex") String sex,
+            @RequestParam("birth") String birth,
+            @RequestParam("age") Integer age,
+            @RequestParam("identity") String identity,
+            @RequestParam("recordNumber") String recordNumber) {
+        Ajax ajax = new Ajax();
+        try {
+        	User user = userService.getUserById(id);
+        	user.setName(name);
+        	user.setSex(sex);
+        	user.setBirth(birth);
+        	user.setAge(age);
+        	user.setIdentity(identity);
+        	user.setRecordnumber(recordNumber);
+        	boolean res = userService.updateUser(user);
+        	if (res) {
+        		ajax.setCode(Ajax.SUCCESS);
+        		ajax.setMsg("添加成功！");
+        		ajax.setResult(user.getId());
+        	} else {
+        		ajax.setCode(Ajax.FAILURE);
+        		ajax.setMsg("添加失败！");
         	}
         } catch (Exception e) {
             ajax.setCode(Ajax.ERROR);

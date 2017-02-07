@@ -131,6 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
 					<form>
 						<div class="col-md-5">
+						<input type="hidden" id="userId"/>
 							<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="name" name="name" placeholder="">
@@ -140,10 +141,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
 							<div class="col-md-8" style="padding-top: 3%">
-								<input type="radio" name="sex" id="sex" value="" checked>
+								<input type="radio" name="sex" id="sex" value="male" checked>
 								<label style="color: #888;">男</label>
 								&nbsp
-								<input type="radio" name="sex" id="sex" value="">
+								<input type="radio" name="sex" id="sex" value="female">
 								<label style="color: #888;">女</label>
 							</div>
 						</div>
@@ -152,20 +153,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
 							<div class="col-md-8" style="padding-top: 2%">
-								<select name="YYYY" onchange="YYYYDD(this.value)">
-									<option value="">年</option>
-									<option value="">1950</option>
-									<option value="">1951</option>
+								<select name="year" id="year">
+									<option>年</option>
+									<option>1950</option>
+									<option>1951</option>
 								</select>
-								<select name="MM" onchange="MMDD(this.value)">
-									<option value="">月</option>
-									<option value="">1</option>
-									<option value="">2</option>
+								<select name="month" id="month">
+									<option>月</option>
+									<option>1</option>
+									<option>2</option>
 								</select>
-								<select name="DD">
-									<option value="">日</option>
-									<option value="">10</option>
-									<option value="">11</option>
+								<select name="day" id="day">
+									<option>日</option>
+									<option>10</option>
+									<option>11</option>
 								</select>
 							</div>
 						</div>
@@ -196,52 +197,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p class="col-md-4 your-para" style="padding-top: 6%">出诊时间</p>
 						<div class="col-md-8" style="padding-top: 5%">
 						<div>
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周一上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周一下午</label>
                       	</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周二上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周二下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周三上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周三下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周四上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周四下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周五上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周六上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周六下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周日上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime" value="">
+							<input type="checkbox" name="docTime" id="docTime">
                       		<label style="color: #888;">周日下午</label>
 						</div>
 						</div>
@@ -250,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <br /><br />
 					<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 2%">
 							<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;">
-								<input type="submit" onClick="saveTwo()" value="下一步" >
+								<input type="submit" onClick="saveTwo()" value="保存" >
 							</a>
 						</div>
 					</form>
