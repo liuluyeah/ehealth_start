@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.ehealth.model.User;
-import com.cn.ehealth.model.UserExample;
 import com.cn.ehealth.service.UserService;
+
 
 
 /*

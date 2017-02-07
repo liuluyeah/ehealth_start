@@ -82,7 +82,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-6">
 						<p class="col-md-3 your-para" style="padding-top: 3%">密码</p>
 						<div class="col-md-5">
-						<input type="text" class="form-control" id="pwd" name="pwd" placeholder="">
+						<input type="password" class="form-control" id="pwd" name="pwd" placeholder="">
+						</div>
+						</div>
+						<br /><br />
+						<div class="col-md-6">
+						<p class="col-md-3 your-para" style="padding-top: 3%">确认密码</p>
+						<div class="col-md-5">
+						<input type="password" class="form-control" id="pwdCheck" name="pwdCheck" placeholder="">
 						</div>
 						</div>
 						<br /><br />

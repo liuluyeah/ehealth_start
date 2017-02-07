@@ -5,10 +5,15 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="checkNum" property="checknum" jdbcType="VARCHAR" />
     <result column="d_p" property="dP" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="birth" property="birth" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="recordNumber" property="recordnumber" jdbcType="VARCHAR" />
+    <result column="docTime" property="doctime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, tel, pwd, d_p, name, sex, birth
+    id, tel, pwd, checkNum, d_p, name, sex, birth, age, identity, recordNumber, docTime
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.ehealth.model.UserExample" >
     select
@@ -103,11 +108,13 @@
   </delete>
   <insert id="insert" parameterType="com.cn.ehealth.model.User" >
     insert into user (id, tel, pwd, 
-      d_p, name, sex, birth
-      )
+      checkNum, d_p, name, 
+      sex, birth, age, identity, 
+      recordNumber, docTime)
     values (#{id,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{dP,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}
-      )
+      #{checknum,jdbcType=VARCHAR}, #{dP,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{identity,jdbcType=VARCHAR}, 
+      #{recordnumber,jdbcType=VARCHAR}, #{doctime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.ehealth.model.User" >
     insert into user
@@ -121,6 +128,9 @@
       <if test="pwd != null" >
         pwd,
       </if>
+      <if test="checknum != null" >
+        checkNum,
+      </if>
       <if test="dP != null" >
         d_p,
       </if>
@@ -133,6 +143,18 @@
       <if test="birth != null" >
         birth,
       </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="recordnumber != null" >
+        recordNumber,
+      </if>
+      <if test="doctime != null" >
+        docTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,6 +165,9 @@
       </if>
       <if test="pwd != null" >
         #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="checknum != null" >
+        #{checknum,jdbcType=VARCHAR},
       </if>
       <if test="dP != null" >
         #{dP,jdbcType=VARCHAR},
@@ -155,6 +180,18 @@
       </if>
       <if test="birth != null" >
         #{birth,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="recordnumber != null" >
+        #{recordnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="doctime != null" >
+        #{doctime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -176,6 +213,9 @@
       <if test="record.pwd != null" >
         pwd = #{record.pwd,jdbcType=VARCHAR},
       </if>
+      <if test="record.checknum != null" >
+        checkNum = #{record.checknum,jdbcType=VARCHAR},
+      </if>
       <if test="record.dP != null" >
         d_p = #{record.dP,jdbcType=VARCHAR},
       </if>
@@ -188,6 +228,18 @@
       <if test="record.birth != null" >
         birth = #{record.birth,jdbcType=VARCHAR},
       </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordnumber != null" >
+        recordNumber = #{record.recordnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctime != null" >
+        docTime = #{record.doctime,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,10 +250,15 @@
     set id = #{record.id,jdbcType=INTEGER},
       tel = #{record.tel,jdbcType=VARCHAR},
       pwd = #{record.pwd,jdbcType=VARCHAR},
+      checkNum = #{record.checknum,jdbcType=VARCHAR},
       d_p = #{record.dP,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
-      birth = #{record.birth,jdbcType=VARCHAR}
+      birth = #{record.birth,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      recordNumber = #{record.recordnumber,jdbcType=VARCHAR},
+      docTime = #{record.doctime,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -215,6 +272,9 @@
       <if test="pwd != null" >
         pwd = #{pwd,jdbcType=VARCHAR},
       </if>
+      <if test="checknum != null" >
+        checkNum = #{checknum,jdbcType=VARCHAR},
+      </if>
       <if test="dP != null" >
         d_p = #{dP,jdbcType=VARCHAR},
       </if>
@@ -227,6 +287,18 @@
       <if test="birth != null" >
         birth = #{birth,jdbcType=VARCHAR},
       </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="recordnumber != null" >
+        recordNumber = #{recordnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="doctime != null" >
+        docTime = #{doctime,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -234,10 +306,15 @@
     update user
     set tel = #{tel,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
+      checkNum = #{checknum,jdbcType=VARCHAR},
       d_p = #{dP,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      birth = #{birth,jdbcType=VARCHAR}
+      birth = #{birth,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=VARCHAR},
+      recordNumber = #{recordnumber,jdbcType=VARCHAR},
+      docTime = #{doctime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
