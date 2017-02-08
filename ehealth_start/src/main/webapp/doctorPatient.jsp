@@ -130,8 +130,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="about second">
 		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
+		 <form method="post" action="patientQuery.jsp" id ="patientQuery">
 		 <div class="selectbox" style="height:50px">
-		 <div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择组别</span></div>
+		 <div class="selemediv"> <div class="selemenu" id="patientGroup"><span style="font-weight: bold;">请选择组别</span></div>
 			<DIV class="citylist">
 				<span>月经组</span>
 				<span>卵巢组</span>
@@ -158,20 +159,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择血糖范围</span></div>
-			<DIV class="citylist">
+			<DIV class="citylist"> 
 				<span>小于50</span>
 				<span>50-70</span>
 				<span>70-90</span>
-				<span>90-100</span>
-				<span>大于100</span>
+				<span>大于90</span>
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择血脂范围</span></div>
-			<DIV class="citylist">
-				<span>菜单一</span>
-				<span>菜单二</span>
-				<span>菜单三</span>
-				<span>菜单四</span>
+			<DIV class="citylist fat">
+				<span>小于50</span>
+				<span>50-70</span>
+				<span>70-90</span>
+				<span>大于90</span>
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择BMI范围</span></div>
@@ -183,9 +183,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="pull-right send" style="padding-top: 1%">
-		<input type="button" value="查询" >
+		<input type="submit" value="查询" >
 		</div>
 	</div>
+	<input id='test2' type = 'hidden' name="test2" value="月经组">
+	<input id="fatrange" type='hidden' name="fatrange" value="">
+    </form>
 		<div class="about-top">
 				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
             			<thead>
@@ -392,7 +395,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     	    $("input[name='radio']").attr('disabled', false);
     	   }
     	  });
-    	 })
+    	 })       
     </script> 
 	<script>
 		$(".selemenu").click(function(){
@@ -404,7 +407,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(this).parent().prev().html(text);
 			$(this).parent().prev().css("color","#666")
 			$(this).parent().fadeOut();
-
+			//$("#fatrange").val(text);
+		})
+		$(".fat span").click(function(){
+			var text=$(this).text();
+			$("#fatrange").val(text);
 		})
 		$(".shangquan li").click(function(){
 			$(".shangquan li").removeClass("active")
