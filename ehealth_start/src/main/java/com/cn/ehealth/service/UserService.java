@@ -6,5 +6,6 @@ public interface UserService {
     public User getUserById(int userId);  
     public boolean registerUserOne(User user);
     public boolean updateUser(User user);
+    public int findUser(String tel);
     public boolean registerUserTwo(User user);
 }  

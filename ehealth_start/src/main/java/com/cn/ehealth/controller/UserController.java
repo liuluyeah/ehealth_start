@@ -52,12 +52,15 @@ public class UserController {
         	user.setdP(d_p);
         	boolean res = userService.registerUserOne(user);
         	if (res) {
+        		int userid = userService.findUser(user.getTel());
         		ajax.setCode(Ajax.SUCCESS);
         		ajax.setMsg("添加成功！");
-        		ajax.setResult(user.getId());
+        		ajax.setResult(userid);
         	} else {
+        		int userid = userService.findUser(user.getTel());
         		ajax.setCode(Ajax.EXIST);
         		ajax.setMsg("重复数据！");
+        		ajax.setResult(userid);
         	}
         } catch (Exception e) {
             ajax.setCode(Ajax.ERROR);
@@ -90,7 +93,7 @@ public class UserController {
         	if (res) {
         		ajax.setCode(Ajax.SUCCESS);
         		ajax.setMsg("添加成功！");
-        		ajax.setResult(user.getId());
+        		ajax.setResult(user.getdP());
         	} else {
         		ajax.setCode(Ajax.FAILURE);
         		ajax.setMsg("添加失败！");

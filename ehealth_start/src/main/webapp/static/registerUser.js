@@ -42,7 +42,6 @@ function saveOne() {
         dataType: 'json',
         data: param,
         success: function (data) {
-        	//alert(data["result"]);
         	document.getElementById("userId").value =data["result"];
         	if (data["code"] == 2) {
         		alert("注册信息已存在，请直接登录或更换手机号！");
@@ -65,6 +64,8 @@ function saveTwo() {
     param["age"] = $("#age").val();
     param["identity"] = $("#identity").val();
     param["recordNumber"] = $("#recordNumber").val();
+    param["docTime"] = $("#docTime option:selected").val();
+    alert(param["docTime"]);
     //出诊时间
     
     /*信息拦截
@@ -81,12 +82,12 @@ function saveTwo() {
         dataType: 'json',
         data: param,
         success: function (data) {
-        	//alert(data["result"]);
-        	if (data["code"] == 2) {
-        		alert("注册信息已存在，请直接登录或更换手机号！");
-        		window.location.href="register.jsp";
+        	if (data["result"] == "d") {
+        		setTimeout("javascript:location.href='doctorIndex.jsp'", 1500); 
         	}
-        	
+        	else if (data["result"] == "p") {
+        		setTimeout("javascript:location.href='patientIndex.jsp'", 1500); 
+        	}
         },
         error: function (e) {
         }

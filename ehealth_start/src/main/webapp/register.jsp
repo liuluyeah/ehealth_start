@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
 					<p style="margin: auto;font-size: 23px; text-align: center; font-weight: bold;">恭喜你，完成注册！</p>
-					<a onclick="patientindex()" style="color: #20CBBE; text-decoration: none;"><p style="margin: auto;margin-top:20px; font-size: 15px;text-align: center">准备跳转到主页...</p></a>
+					<a style="color: #20CBBE; text-decoration: none;"><p style="margin: auto;margin-top:20px; font-size: 15px;text-align: center">即将跳转到主页...</p></a>
                <!-- href="patientIndex.html"  -->
                 </div>
                 </div>

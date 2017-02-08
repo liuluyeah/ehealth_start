@@ -52,6 +52,19 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    public int findUser (String tel) {
+    	int userid=0;
+    	UserExample userExample = new UserExample();
+    	UserExample.Criteria criteria = userExample.createCriteria();
+    	criteria.andTelEqualTo(tel);
+    	List<User> list = userDao.selectByExample(userExample);
+    	for (User user0 : list) {
+    		userid = user0.getId();
+    	}
+        return userid;
+    }
+    
+    @Override
     public boolean registerUserTwo (User user) {
     	UserExample userExample = new UserExample();
     	UserExample.Criteria criteria = userExample.createCriteria();
