@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<br /><br />
 						<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 1%">
-			 			<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
+			 			<a id="next1" data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
 								<input type="submit" onClick="saveOne()" value="下一步" >
 							</a>
 						</div>

@@ -2,6 +2,7 @@
 function saveOne() {
     var param = {};
     
+    $("#next1").attr("href", "#collapseTwo");
     param["tel"] = $("#tel").val();
     param["pwd"] = $("#pwd").val();
     param["pwdCheck"] = $("#pwdCheck").val();
@@ -9,8 +10,13 @@ function saveOne() {
 
     if (param["tel"] == '' || param["pwd"] == '' || param["pwdCheck"] == '') {
         alert("请填写完整注册信息！");
-        //$("#tel").val("");
-        window.location.href="register.jsp";
+        //window.location.href="register.jsp";
+        $("#next1").attr("href", "#collapseOne");
+		$("#collapseOne").removeClass();
+		$("#collapseOne").addClass("panel-collapse collapse");
+		$("#tel").val("");
+		$("#pwd").val("");
+		$("#pwdCheck").val("");
         return;
     }
     
@@ -18,20 +24,26 @@ function saveOne() {
     	var mobile=param["tel"];
     	if(!(/^1(3|4|5|7|8)\d{9}$/.test(mobile))){ 
     		alert("请填写有效手机号码！");  
-    		/*$("#tel").val("");
-			$("#collapseTwo").removeClass();
-			$("#collapseTwo").addClass("panel-collapse collapse");
-			$("#collapseOne").removeClass();
-			$("#collapseOne").addClass("panel-collapse collapse in")
-			*/
-    		window.location.href="register.jsp";
+    		//window.location.href="register.jsp";
+    		$("#next1").attr("href", "#collapseOne");
+    		$("#collapseOne").removeClass();
+    		$("#collapseOne").addClass("panel-collapse collapse");
+    		$("#tel").val("");
+    		$("#pwd").val("");
+    		$("#pwdCheck").val("");
     		return;
     	} 
     }
     
     if (param["pwd"] != param["pwdCheck"]) {
         alert("密码不一致，请重新填写！");
-        window.location.href="register.jsp";
+        //window.location.href="register.jsp";
+        $("#next1").attr("href", "#collapseOne");
+		$("#collapseOne").removeClass();
+		$("#collapseOne").addClass("panel-collapse collapse");
+		//$("#tel").val("");
+		$("#pwd").val("");
+		$("#pwdCheck").val("");
         return;
     }
     
@@ -45,7 +57,13 @@ function saveOne() {
         	document.getElementById("userId").value =data["result"];
         	if (data["code"] == 2) {
         		alert("注册信息已存在，请直接登录或更换手机号！");
-        		window.location.href="register.jsp";
+        		//window.location.href="register.jsp";
+        		$("#next1").attr("href", "#collapseOne");
+        		$("#collapseOne").removeClass();
+        		$("#collapseOne").addClass("panel-collapse collapse");
+        		$("#tel").val("");
+        		$("#pwd").val("");
+        		$("#pwdCheck").val("");
         	}
         },
         error: function (e) {
@@ -65,7 +83,7 @@ function saveTwo() {
     param["identity"] = $("#identity").val();
     param["recordNumber"] = $("#recordNumber").val();
     param["docTime"] = $("#docTime option:selected").val();
-    alert(param["docTime"]);
+    //alert(param["docTime"]);
     //出诊时间
     
     /*信息拦截
