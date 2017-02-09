@@ -133,7 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <form method="post" action="patientQuery.jsp" id ="patientQuery">
 		 <div class="selectbox" style="height:50px">
 		 <div class="selemediv"> <div class="selemenu" id="patientGroup"><span style="font-weight: bold;">请选择组别</span></div>
-			<DIV class="citylist">
+			<DIV class="citylist group">
 				<span>月经组</span>
 				<span>卵巢组</span>
 				<span>更年组</span>
@@ -159,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择血糖范围</span></div>
-			<DIV class="citylist"> 
+			<DIV class="citylist sugar"> 
 				<span>小于50</span>
 				<span>50-70</span>
 				<span>70-90</span>
@@ -186,8 +186,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<input type="submit" value="查询" >
 		</div>
 	</div>
-	<input id='test2' type = 'hidden' name="test2" value="月经组">
+	<input id="group" type='hidden' name="group" value="">
 	<input id="fatrange" type='hidden' name="fatrange" value="">
+	<input id="sugarrange" type='hidden' name="sugarrange" value="">
     </form>
 		<div class="about-top">
 				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
@@ -412,6 +413,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$(".fat span").click(function(){
 			var text=$(this).text();
 			$("#fatrange").val(text);
+		})
+		$(".sugar span").click(function(){
+			var text=$(this).text();
+			$("#sugarrange").val(text);
+		})
+		$(".group span").click(function(){
+			var text=$(this).text();
+			$("#group").val(text);
 		})
 		$(".shangquan li").click(function(){
 			$(".shangquan li").removeClass("active")

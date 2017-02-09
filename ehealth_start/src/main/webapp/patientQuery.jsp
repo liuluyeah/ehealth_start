@@ -20,7 +20,9 @@
 	int intPage;//待显示页码
 	java.lang.String strPage;
 	int i;
-	String fatrange = request.getParameter("fatrange");
+	String fatrange = request.getParameter("fatrange");//血脂范围
+	String sugarrange = request.getParameter("sugarrange");//血糖范围
+	String group = request.getParameter("group");//组别
 	//设置一页显示的记录数
 	intPageSize=3;
 	//取得待显示页码
@@ -41,18 +43,44 @@
 	//创建一个可以滚动的只读的SQL语句对象
 	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
 	//准备SQL语句
+	strSQL="SELECT * FROM mypatient";
+	if(fatrange!=null || sugarrange!=null || group!=null){
+		strSQL+=" where";
+	}
+    //血脂范围
 	if(fatrange.equals("大于90")){
-		strSQL="SELECT * FROM mypatient where fat>90";
+		strSQL+=" fat>90";
 	}else if(fatrange.equals("70-90")){
-		strSQL="SELECT * FROM mypatient where fat>70 && fat<90";
+		strSQL+=" fat>70 && fat<90";
 	}else if(fatrange.equals("50-70")){
-		strSQL="SELECT * FROM mypatient where fat>50 && fat<70";
+		strSQL+=" fat>50 && fat<70";
 	}else if(fatrange.equals("小于50")){
-		strSQL="SELECT * FROM mypatient where fat<50";
+		strSQL+=" fat<50";
+	}else{
+		strSQL+=" fat>50";
 	}
-	else{
-		strSQL="SELECT * FROM mypatient";
+    //血糖范围
+    if(sugarrange.equals("大于90")){
+		strSQL+="&& sugar>90";
+	}else if(sugarrange.equals("70-90")){
+		strSQL+="&& sugar>70 && sugar<90";
+	}else if(sugarrange.equals("50-70")){
+		strSQL+="&& sugar>50 && sugar<70";
+	}else{
+		strSQL+="&& sugar>50";
 	}
+    //组别
+    if(group.equals("月经组")){
+		strSQL+="&& divide="+"'月经组'";
+	}else if(group.equals("卵巢组")){
+		strSQL+="&& divide="+"'卵巢组'";
+	}else if(group.equals("更年组")){
+		strSQL+="&& divide="+"'更年组'";
+	}else if(group.equals("乳腺组")){
+		strSQL+="&& divide="+"'乳腺组'";
+	}
+	
+
 	//执行SQL语句并获取结果集
 	sqlRst=sqlStmt.executeQuery(strSQL);
 	//获取记录总数
@@ -232,10 +260,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%if(intPage<intPageCount){%>
 					 <form action="patientQuery.jsp?page=<%=intPage+1%>" method="post" style="display:inline">
 					 <input id="fatrange" type='hidden' name="fatrange" value="<%=fatrange %>">
+					 <input id="sugarrange" type='hidden' name="sugarrange" value="<%=sugarrange %>">
+					 <input id="group" type='hidden' name="group" value="<%=group %>">
 					<a href="patientQuery.jsp?page=<%=intPage+1%>"><input style="border:0px;background-color:white" type="submit" value="下一页"></a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
 					<%if(intPage>1){%>
 					 <form action="patientQuery.jsp?page=<%=intPage-1%>" method="post" style="display:inline">
 					 <input id="fatrange" type='hidden' name="fatrange" value="<%=fatrange %>">
+					 <input id="sugarrange" type='hidden' name="sugarrange" value="<%=sugarrange %>">
+					 <input id="group" type='hidden' name="group" value="<%=group %>">
 					<a href="patientQuery.jsp?page=<%=intPage-1%>"><input style="border:0px;background-color:white" type="submit" value="上一页"></a><%}else {%><a href="#">上一页</a><%}%>
 					</form>
 				  </nav>		
