@@ -71,7 +71,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
 					<!-- <form action="registerCheck.jsp" method="post"> -->
-
 						<div class="col-md-6">
 						<p class="col-md-3 your-para" style="padding-top: 3%">手机号</p>
 						<div class="col-md-5">
@@ -150,50 +149,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						
 						<br/><br/>
-						<div class="col-md-5">
-							<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
-							<div class="col-md-8" style="padding-top: 2%">
-								<select name="year" id="year">
-									<option>年</option>
-									<option>1950</option>
-									<option>1951</option>
-								</select>
-								<select name="month" id="month">
-									<option>月</option>
-									<option>1</option>
-									<option>2</option>
-								</select>
-								<select name="day" id="day">
-									<option>日</option>
-									<option>10</option>
-									<option>11</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="col-md-5">
+						<div class="col-md-5" style="padding-top: 0.5%">
 							<p class="col-md-4 your-para" style="padding-top: 3%">年龄</p>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="age" name="age" placeholder="" style="padding-top: 2%">
 							</div>
 						</div>
+						<div class="col-md-5" style="padding-top: 0.5%">
+							<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
+							<div class="col-md-8" >
+							<input type="date" name="birth" id="birth">
+							</div>
+						</div>
 
 						<br/><br/>
-						<div class="col-md-5">
+						<div class="col-md-5" style="padding-top: 1%">
 							<p class="col-md-4 your-para" style="padding-top: 3%">身份证号</p>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="identity" name="identity" placeholder="">
 							</div>
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-5" style="padding-top: 1%">
 							<p class="col-md-4 your-para" style="padding-top: 3%">医疗卡号</p>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="recordNumber" name="recordNumber" placeholder="">
 							</div>
 						</div>
 
-						<div class="col-md-5">
+						<div class="col-md-5" style="padding-top: 1%">
 						<p class="col-md-4 your-para" style="padding-top: 6%">出诊时间</p>
 						<div class="col-md-8" style="padding-top: 5%">
 						<div>
@@ -250,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <br /><br />
 					<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 2%">
-							<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;">
+							<a id="next2" data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;">
 								<input type="submit" onClick="saveTwo()" value="保存" >
 							</a>
 						</div>

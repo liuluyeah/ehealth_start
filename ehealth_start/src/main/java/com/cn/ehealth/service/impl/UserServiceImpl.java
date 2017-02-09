@@ -23,6 +23,22 @@ public class UserServiceImpl implements UserService {
     }  
     
     @Override
+    public boolean deleteUnfinishedUser () {
+    	int result = 1;
+    	UserExample userExample = new UserExample();
+    	List<User> list = userDao.selectByExample(userExample);
+    	for (User user0 : list) {
+    		if (user0.getBirth() == null) {
+    			result = userDao.deleteByPrimaryKey(user0.getId());
+    		}
+    	}
+    	if (result > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
     public boolean registerUserOne (User user) {
     	UserExample userExample = new UserExample();
     	UserExample.Criteria criteria = userExample.createCriteria();

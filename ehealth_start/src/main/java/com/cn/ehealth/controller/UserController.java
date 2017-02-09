@@ -37,6 +37,28 @@ public class UserController {
         return "login";  
     }  
 
+    //注册准备，删除未注册完整的用户
+    @RequestMapping(value = "/registerDelete", method = RequestMethod.POST)
+    @ResponseBody
+    public Ajax registerDelete(HttpServletRequest request, Model model) {
+        Ajax ajax = new Ajax();
+        try {
+        	//User user = new User();
+        	boolean res = userService.deleteUnfinishedUser();
+        	if (res) {
+        		ajax.setCode(Ajax.SUCCESS);
+        		ajax.setMsg("删除成功！");
+        	} else {
+        		ajax.setCode(Ajax.FAILURE);
+        		ajax.setMsg("删除失败！");
+        	}
+        } catch (Exception e) {
+            ajax.setCode(Ajax.ERROR);
+            ajax.setMsg("数据库更新失败！");
+        }
+        return ajax;
+    }
+    
     //第一步注册
     @RequestMapping(value = "/registerUserOne", method = RequestMethod.POST)
     @ResponseBody
@@ -60,7 +82,6 @@ public class UserController {
         		int userid = userService.findUser(user.getTel());
         		ajax.setCode(Ajax.EXIST);
         		ajax.setMsg("重复数据！");
-        		ajax.setResult(userid);
         	}
         } catch (Exception e) {
             ajax.setCode(Ajax.ERROR);
