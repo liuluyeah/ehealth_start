@@ -2,6 +2,8 @@
 <%@ page language="java" pageEncoding="utf-8"%> 
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.*"%>  
+<%@ page import="java.text.*"%>
 <% 
  request.setCharacterEncoding("UTF-8"); 
  response.setCharacterEncoding("UTF-8"); 
@@ -22,7 +24,27 @@
 	int i;
 	String fatrange = request.getParameter("fatrange");//血脂范围
 	String sugarrange = request.getParameter("sugarrange");//血糖范围
+	String bmirange = request.getParameter("bmirange");//bmi范围
 	String group = request.getParameter("group");//组别
+	String classification = request.getParameter("classification");//类型
+	String time = request.getParameter("time");//时间
+	String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+	//向前追溯一周
+	Calendar curr = Calendar.getInstance();
+	curr.set(Calendar.DAY_OF_MONTH,curr.get(Calendar.DAY_OF_MONTH)-7);
+	Date date=curr.getTime();
+	String datetime7=new SimpleDateFormat("yyyy-MM-dd").format(date);
+	//向前追溯一个月
+	Calendar curr1 = Calendar.getInstance();
+	curr1.set(Calendar.MONTH,curr1.get(Calendar.MONTH)-1);
+	Date date1=curr1.getTime();
+	String datetime1=new SimpleDateFormat("yyyy-MM-dd").format(date1);
+	//向前追溯6个月
+	Calendar curr6 = Calendar.getInstance();
+	curr6.set(Calendar.MONTH,curr6.get(Calendar.MONTH)-6);
+	Date date6=curr6.getTime();
+	String datetime6=new SimpleDateFormat("yyyy-MM-dd").format(date6);
+	
 	//设置一页显示的记录数
 	intPageSize=3;
 	//取得待显示页码
@@ -57,7 +79,7 @@
 	}else if(fatrange.equals("小于50")){
 		strSQL+=" fat<50";
 	}else{
-		strSQL+=" fat>50";
+		strSQL+=" fat>0";
 	}
     //血糖范围
     if(sugarrange.equals("大于90")){
@@ -66,8 +88,22 @@
 		strSQL+="&& sugar>70 && sugar<90";
 	}else if(sugarrange.equals("50-70")){
 		strSQL+="&& sugar>50 && sugar<70";
+	}else if(sugarrange.equals("小于50")){
+		strSQL+="&& sugar<50";
 	}else{
-		strSQL+="&& sugar>50";
+		strSQL+="&& sugar>0";
+	}
+    //bmi范围
+    if(bmirange.equals("大于30")){
+		strSQL+="&& bmi>30";
+	}else if(bmirange.equals("25-30")){
+		strSQL+="&& bmi>25 && bmi<30";
+	}else if(bmirange.equals("18.5-25")){
+		strSQL+="&& bmi>18.5 && bmi<=25";
+	}else if(bmirange.equals("小于18.5")){
+		strSQL+="&& bmi<18.5";
+	}else{
+		strSQL+="&& bmi>0";
 	}
     //组别
     if(group.equals("月经组")){
@@ -79,8 +115,24 @@
 	}else if(group.equals("乳腺组")){
 		strSQL+="&& divide="+"'乳腺组'";
 	}
-	
-
+	//类型
+	if(classification.equals("首诊")){
+		strSQL+="&& classification="+"'首诊'";
+	}else if(classification.equals("复诊")){
+		strSQL+="&& classification="+"'复诊'";
+	}else if(classification.equals("一日门诊")){
+		strSQL+="&& classification="+"'一日门诊'";
+	}
+    //时间
+    if(time.equals("今天")){
+		strSQL+="&& time='"+ datetime +"'";
+	}else if(time.equals("一星期以内")){
+		strSQL+="&& time<='"+ datetime +"'"+"and time>'"+ datetime7 +"'";
+	}else if(time.equals("一个月以内")){
+		strSQL+="&& time<='"+ datetime +"'"+"and time>'"+ datetime1 +"'";
+	}else if(time.equals("半年以内")){
+		strSQL+="&& time<='"+ datetime +"'"+"and time>'"+ datetime6 +"'";
+	}
 	//执行SQL语句并获取结果集
 	sqlRst=sqlStmt.executeQuery(strSQL);
 	//获取记录总数
@@ -262,12 +314,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <input id="fatrange" type='hidden' name="fatrange" value="<%=fatrange %>">
 					 <input id="sugarrange" type='hidden' name="sugarrange" value="<%=sugarrange %>">
 					 <input id="group" type='hidden' name="group" value="<%=group %>">
+					 <input id="bmirange" type='hidden' name="bmirange" value="<%=bmirange %>">
+					 <input id="classification" type='hidden' name="classification" value="<%=classification %>">
+					 <input id="time" type='hidden' name="time" value="<%=time %>">
 					<a href="patientQuery.jsp?page=<%=intPage+1%>"><input style="border:0px;background-color:white" type="submit" value="下一页"></a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
 					<%if(intPage>1){%>
 					 <form action="patientQuery.jsp?page=<%=intPage-1%>" method="post" style="display:inline">
 					 <input id="fatrange" type='hidden' name="fatrange" value="<%=fatrange %>">
 					 <input id="sugarrange" type='hidden' name="sugarrange" value="<%=sugarrange %>">
 					 <input id="group" type='hidden' name="group" value="<%=group %>">
+					 <input id="bmirange" type='hidden' name="bmirange" value="<%=bmirange %>">
+					 <input id="classification" type='hidden' name="classification" value="<%=classification %>">
+					 <input id="time" type='hidden' name="time" value="<%=time %>">
 					<a href="patientQuery.jsp?page=<%=intPage-1%>"><input style="border:0px;background-color:white" type="submit" value="上一页"></a><%}else {%><a href="#">上一页</a><%}%>
 					</form>
 				  </nav>		

@@ -143,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="selemediv">
 			<div class="selemenu " >
 				<span class="sqinput" style="font-weight: bold;">请选择类型</span><span class="csinput"></span></div>
-			<DIV class="citylist">
+			<DIV class="citylist classification">
 				<span>首诊</span>
 				<span>复诊</span>
 				<span>一日门诊</span>
@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择时间</span></div>
-			<DIV class="citylist">
+			<DIV class="citylist time">
 				<span>今天</span>
 				<span>一星期以内</span>
 				<span>一个月以内</span>
@@ -175,11 +175,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择BMI范围</span></div>
-			<DIV class="citylist">
-				<span>菜单一</span>
-				<span>菜单二</span>
-				<span>菜单三</span>
-				<span>菜单四</span>
+			<DIV class="citylist bmi">
+				<span>小于18.5</span>
+				<span>18.5-25</span>
+				<span>25-30</span>
+				<span>大于30</span>
 			</div>
 		</div>
 		<div class="pull-right send" style="padding-top: 1%">
@@ -189,6 +189,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<input id="group" type='hidden' name="group" value="">
 	<input id="fatrange" type='hidden' name="fatrange" value="">
 	<input id="sugarrange" type='hidden' name="sugarrange" value="">
+	<input id="bmirange" type='hidden' name="bmirange" value="">
+	<input id="classification" type='hidden' name="classification" value="">
+	<input id="time" type='hidden' name="time" value="">
     </form>
 		<div class="about-top">
 				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
@@ -421,6 +424,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$(".group span").click(function(){
 			var text=$(this).text();
 			$("#group").val(text);
+		})
+		$(".bmi span").click(function(){
+			var text=$(this).text();
+			$("#bmirange").val(text);
+		})
+		$(".classification span").click(function(){
+			var text=$(this).text();
+			$("#classification").val(text);
+		})
+		$(".time span").click(function(){
+			var text=$(this).text();
+			$("#time").val(text);
 		})
 		$(".shangquan li").click(function(){
 			$(".shangquan li").removeClass("active")
