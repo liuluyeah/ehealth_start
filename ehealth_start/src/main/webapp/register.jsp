@@ -141,10 +141,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
 							<div class="col-md-8" style="padding-top: 3%">
-								<input type="radio" name="sex" id="sex" value="male" checked>
+								<input type="radio" name="sex" id="sex" value="男" checked>
 								<label style="color: #888;">男</label>
 								&nbsp
-								<input type="radio" name="sex" id="sex" value="female">
+								<input type="radio" name="sex" id="sex" value="女">
 								<label style="color: #888;">女</label>
 							</div>
 						</div>

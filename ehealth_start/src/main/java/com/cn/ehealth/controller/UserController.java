@@ -100,7 +100,8 @@ public class UserController {
             @RequestParam("birth") String birth,
             @RequestParam("age") Integer age,
             @RequestParam("identity") String identity,
-            @RequestParam("recordNumber") String recordNumber) {
+            @RequestParam("recordNumber") String recordNumber,
+            @RequestParam("docTime") String docTime) {
         Ajax ajax = new Ajax();
         try {
         	User user = userService.getUserById(id);
@@ -110,6 +111,7 @@ public class UserController {
         	user.setAge(age);
         	user.setIdentity(identity);
         	user.setRecordnumber(recordNumber);
+        	user.setDoctime(docTime);
         	boolean res = userService.updateUser(user);
         	if (res) {
         		ajax.setCode(Ajax.SUCCESS);
