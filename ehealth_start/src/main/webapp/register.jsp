@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--start-header-->
-			<div id="home" class="header two">
+			<div id="home" class="header two" style="margin-top:-2%">
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
