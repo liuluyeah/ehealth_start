@@ -58,7 +58,8 @@ function saveOne() {
         dataType: 'json',
         data: param,
         success: function (data) {
-        	document.getElementById("userId").value =data["result"];
+        	document.getElementById("userId").value = data["result"];
+        	document.getElementById("userRole").value = data["role"];
         	if (data["code"] == 2) {
         		alert("注册信息已存在，请直接登录或更换手机号！");
         		$("#next1").attr("href", "#collapseOne");
@@ -67,6 +68,12 @@ function saveOne() {
         		$("#tel").val("");
         		$("#pwd").val("");
         		$("#pwdCheck").val("");
+        	}
+        	if (data["role"] == 'd') {
+        		document.getElementById('docTimeDiv').style.display = "";
+        	}
+        	else if (data["role"] == 'p') {
+        		document.getElementById('docTimeDiv').style.display = "none";
         	}
         },
         error: function (e) {

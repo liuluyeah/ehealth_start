@@ -78,8 +78,8 @@ public class UserController {
         		ajax.setCode(Ajax.SUCCESS);
         		ajax.setMsg("添加成功！");
         		ajax.setResult(userid);
+        		ajax.setRole(d_p);
         	} else {
-        		int userid = userService.findUser(user.getTel());
         		ajax.setCode(Ajax.EXIST);
         		ajax.setMsg("重复数据！");
         	}

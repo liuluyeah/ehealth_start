@@ -131,6 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<form>
 						<div class="col-md-5">
 						<input type="hidden" id="userId"/>
+						<input type="hidden" id="userRole"/>
 							<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
 							<div class="col-md-8">
 								<input type="text" class="form-control" id="name" name="name" placeholder="">
@@ -177,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 
-						<div class="col-md-5" style="padding-top: 1%">
+						<div id="docTimeDiv" class="col-md-5" style="padding-top: 1%">
 						<p class="col-md-4 your-para" style="padding-top: 6%">出诊时间</p>
 						<div class="col-md-8" style="padding-top: 5%">
 						<div>
