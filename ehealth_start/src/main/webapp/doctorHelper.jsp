@@ -192,11 +192,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<tr>
 						<td><%=sqlRst.getString(1)%></td>
 						<td><%=sqlRst.getString(2)%></td>
+						<td><%=sqlRst.getString(10)%></td>
 						<td><%=sqlRst.getString(3)%></td>
 						<td><%=sqlRst.getString(4)%></td>
-						<td><%=sqlRst.getString(5)%></td>
-						<td><%=sqlRst.getString(6)%></td>
-			                 <td><a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+						<td><%=sqlRst.getString(11)%></td>
+			                 <td><a href="doctorHelperShow.jsp?id=<%=sqlRst.getString(1)%>" value="<%=sqlRst.getString(1)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
 							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 							  <!-- 进行分组 -->
@@ -204,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">								 	
 						            <div class="modal-content">
 						            <form  method="post" action="clinicGroupAdd.jsp">
-						            <input name="groupid" style="display:none" value="${row.idmenzhen}"  >	
+						            <input name="groupid" style="display:none" value="<%=sqlRst.getString(1)%>"  >	
 						                <div class="modal-header">
 						                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						                    <h4 class="modal-title">病人分组</h4>

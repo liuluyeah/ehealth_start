@@ -1,4 +1,4 @@
-<%-- 我的病人页面，显示所有病人列表。显示组别、分页。——by liulu --%>
+<%-- 病人详情页面，显示病人随访记录。——by liulu --%>
 <%@ page language="java" pageEncoding="utf-8"%> 
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,50 +9,6 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
-<%
-	//变量声明
-	java.sql.Connection sqlCon; //数据库连接对象
-	java.sql.Statement sqlStmt; //SQL语句对象
-	java.sql.ResultSet sqlRst; //结果集对象
-	java.lang.String strCon;//数据库连接字符串
-	java.lang.String strSQL;//SQL语句
-	int intPageSize; //一页显示的记录数
-	int intRowCount;//记录总数
-	int intPageCount;//总页数
-	int intPage;//待显示页码
-	java.lang.String strPage;
-	int i;
-	//设置一页显示的记录数
-	intPageSize=3;
-	//取得待显示页码
-	strPage=request.getParameter("page");
-	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
-	intPage=1;
-	}
-	else{//将字符串转换成整型
-	intPage=java.lang.Integer.parseInt(strPage);
-	if(intPage<1)intPage=1;
-	}
-	//装载JDBC驱动程序
-	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	//设置数据库连接字符串
-	strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
-	//连接数据库
-	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
-	//创建一个可以滚动的只读的SQL语句对象
-	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
-	//准备SQL语句
-	strSQL="SELECT * FROM mypatient";
-	//执行SQL语句并获取结果集
-	sqlRst=sqlStmt.executeQuery(strSQL);
-	//获取记录总数
-	sqlRst.last();
-	intRowCount=sqlRst.getRow();
-	//记算总页数
-	intPageCount=(intRowCount+intPageSize-1)/intPageSize;
-	//调整待显示的页码
-	if(intPage>intPageCount)intPage=intPageCount;
-%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -63,8 +19,8 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-<link href="css/searchPatient.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/searchPatient.css" rel="stylesheet" type="text/css">
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />	
 <script src="js/jquery.min.js"> </script>
@@ -84,8 +40,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
+
 	<!--start-header-->
-			<div id="home" style="margin-top:-20px" class="header two">
+			<div id="home" class="header two" style="margin-top:-20px">
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
@@ -126,14 +83,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     </div>
      </div>
 		<!--start-about-->
-	
 	<div class="about second">
-		<div class="container" style="margin-top:-40px">
+		<div class="container">
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
-		 <form method="post" action="patientQuery.jsp" id ="patientQuery">
+		 <div class="col-md-12 about-top about-top-right">
+				<h4>患者姓名：张三 &nbsp&nbsp 组别：月经 &nbsp&nbsp 联系方式：1234567890</h4>
 		 <div class="selectbox" style="height:50px">
-		 <div class="selemediv"> <div class="selemenu" id="patientGroup"><span style="font-weight: bold;">请选择组别</span></div>
-			<DIV class="citylist group">
+		 <div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择组别</span></div>
+			<DIV class="citylist">
 				<span>月经组</span>
 				<span>卵巢组</span>
 				<span>更年组</span>
@@ -143,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="selemediv">
 			<div class="selemenu " >
 				<span class="sqinput" style="font-weight: bold;">请选择类型</span><span class="csinput"></span></div>
-			<DIV class="citylist classification">
+			<DIV class="citylist">
 				<span>首诊</span>
 				<span>复诊</span>
 				<span>一日门诊</span>
@@ -151,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择时间</span></div>
-			<DIV class="citylist time">
+			<DIV class="citylist">
 				<span>今天</span>
 				<span>一星期以内</span>
 				<span>一个月以内</span>
@@ -159,138 +116,94 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择血糖范围</span></div>
-			<DIV class="citylist sugar"> 
+			<DIV class="citylist">
 				<span>小于50</span>
 				<span>50-70</span>
 				<span>70-90</span>
-				<span>大于90</span>
+				<span>90-100</span>
+				<span>大于100</span>
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择血脂范围</span></div>
-			<DIV class="citylist fat">
-				<span>小于50</span>
-				<span>50-70</span>
-				<span>70-90</span>
-				<span>大于90</span>
+			<DIV class="citylist">
+				<span>菜单一</span>
+				<span>菜单二</span>
+				<span>菜单三</span>
+				<span>菜单四</span>
 			</div>
 		</div>
 		<div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择BMI范围</span></div>
-			<DIV class="citylist bmi">
-				<span>小于18.5</span>
-				<span>18.5-25</span>
-				<span>25-30</span>
-				<span>大于30</span>
+			<DIV class="citylist">
+				<span>菜单一</span>
+				<span>菜单二</span>
+				<span>菜单三</span>
+				<span>菜单四</span>
 			</div>
 		</div>
 		<div class="pull-right send" style="padding-top: 1%">
-		<input type="submit" value="查询" >
+		<input type="button" value="查询" >
 		</div>
 	</div>
-	<input id="group" type='hidden' name="group" value="">
-	<input id="fatrange" type='hidden' name="fatrange" value="">
-	<input id="sugarrange" type='hidden' name="sugarrange" value="">
-	<input id="bmirange" type='hidden' name="bmirange" value="">
-	<input id="classification" type='hidden' name="classification" value="">
-	<input id="time" type='hidden' name="time" value="">
-    </form>
-		<div class="about-top">
-				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
-            			<thead>
-	                <tr>
-	                  <th>序号</th>
-	                  <th>姓名</th>
-	                  <th>类型</th>
-					  <th>创建时间</th>
-	                  <th>血糖</th>
-	                  <th>血脂</th>
-					  <th>BMI</th>
-					  <th>腰臀比</th>
-					  <th>组别</th>
-					  <th>药品名称</th>
-	                  <th>操作</th>
-	                </tr>
-	              </thead>
-	              <tbody>
-		             <%
-						if(intPageCount>0){
-						//将记录指针定位到待显示页的第一条记录上
-						sqlRst.absolute((intPage-1)*intPageSize+1);
-						//显示数据
-						i=0;
-						while(i<intPageSize&&!sqlRst.isAfterLast()){
-					 %>
-						<tr>
-						<td><%=sqlRst.getString(1)%></td>
-						<td><%=sqlRst.getString(2)%></td>
-						<td><%=sqlRst.getString(3)%></td>
-						<td><%=sqlRst.getString(4)%></td>
-						<td><%=sqlRst.getString(5)%></td>
-						<td><%=sqlRst.getString(6)%></td>
-						<td><%=sqlRst.getString(7)%></td>
-						<td><%=sqlRst.getString(8)%></td>
-						<td><%=sqlRst.getString(9)%></td>
-						<td><%=sqlRst.getString(10)%></td>
-						<td>
-			                  <a href="doctorPatientEach.jsp"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
-			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEdit" data-backdrop="static" ></i>
-			                  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
+						<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
+              			<thead>
+			                <tr>
+			                <th>序号</th>
+			                  <th>时间</th>
+							  <th>血糖(mg/dl)</th>
+							  <th>血脂(mg/dl)</th>
+							  <th>BMI</th>
+							  <th>腰臀比</th>
+							  <th>药品名称</th>
+			                  <th>操作</th>
+			                </tr>
+			              </thead>
+			              <tbody>
+			                <tr>
+			                <td>1</td>
+			                  <td>2016.1.1</td>
+							  <td>100</td>
+							  <td>70</td>
+							  <td>21</td>
+							  <td>0.8</td>
+							  <td>益母草颗粒</td>
+			                  <td>
+			                  <a href="doctorPatientShow.html"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEachEdit" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
-			                     <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
-									<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
-							            <div class="modal-content">
-							            <form  method="post" action="doctorPatientGroupAdd.jsp">
-						                <input name="groupid" style="display:none" value="<%=sqlRst.getString(1)%>"  >
-						                 <input name="intpage" style="display:none" value="<%=intPage%>"  >						                	
-							                <div class="modal-header">
-							                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							                    <h4 class="modal-title">病人分组</h4>
-							                </div>
-							                <div class="modal-body contact-grid" style="padding-left: 5%"> 
-											<input type="checkbox" name="radio" id="r5" value="月经组">
-							                <label style="color: #888;">月经组</label>
-							                    &nbsp&nbsp
-							                    &nbsp&nbsp
-											<input type="checkbox" name="radio" id="r5" value="卵巢组">
-							                <label style="color: #888;">卵巢组</label>
-							                    &nbsp&nbsp
-							                 	&nbsp&nbsp
-							                <input type="checkbox" name="radio" id="r5" value="更年组">
-							                <label style="color: #888;">更年组</label>
-							                    &nbsp&nbsp
-							                    &nbsp&nbsp
-											<input type="checkbox" name="radio" id="r5" value="乳腺组">
-							                <label style="color: #888;">乳腺组</label>
-							                </div>
-							                <div class="modal-footer">
-							                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
-							                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							                </div>
-							             </form>
-							             </div>
-							        </div>
-							    </div>
-		                </td>
-						</tr>								       
-					<%
-					 sqlRst.next();
-					 i++;
-					 }
-					}
-					%>		
-                   </tbody>
-                   </table>
-				<div class="page_nation" style="text-align: center;">
-				<nav>
-					 第<%=intPage%>页 共<%=intPageCount%>页  
-					<%if(intPage<intPageCount){%>
-					<a href="doctorPatient.jsp?page=<%=intPage+1%>">下一页</a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
-					<%if(intPage>1){%>
-					<a href="doctorPatient.jsp?page=<%=intPage-1%>">上一页</a><%}else {%><a href="#">上一页</a><%}%>
-				  </nav>		
+			                  </td>
+			                </tr>
+			                <tr>
+			                <td>2</td>
+			                  <td>2016.2.1</td>
+							  <td>110</td>
+							  <td>75</td>
+							  <td>21</td>
+							  <td>0.8</td>
+							  <td>益母草颗粒</td>
+			                  <td>
+			                  <a href=""><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEachEdit" data-backdrop="static" ></i>
+			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
+			                  </td>
+			                </tr>
+			              </tbody>
+			            </table>
+							<div class="page_nation" style="text-align: center;">
+							<nav>
+											   <ul class="pagination pagination-sm">
+												<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+												<li><a href="#">1</a></li>
+												<li><a href="#">2</a></li>
+												<li><a href="#">3</a></li>
+												<li><a href="#">4</a></li>
+												<li><a href="#">5</a></li>
+												<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+											  </ul>
+											 </nav>		
+							</div>
+					<div class="clearfix"></div>
 				</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>	 
+			</div>	 
 	</div>
 	  
   <!--footer-->
@@ -333,7 +246,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-    <div id="doctorPatientEdit" class="modal fade" >
+
+<div id="doctorPatientEachEdit" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
             <div class="modal-content">
                 <div class="modal-header">
@@ -389,18 +303,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-    <script type="text/javascript">
-     $(document).ready(function() {
-    	  $('input[type=checkbox]').click(function() {
-    	   $("input[name='radio']").attr('disabled', true);
-    	   if ($("input[name='radio']:checked").length >= 1) {
-    	    $("input[name='radio']:checked").attr('disabled', false);
-    	   } else {
-    	    $("input[name='radio']").attr('disabled', false);
-    	   }
-    	  });
-    	 })       
-    </script> 
+    
 	<script>
 		$(".selemenu").click(function(){
 			$(this).next().slideToggle();
@@ -411,31 +314,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(this).parent().prev().html(text);
 			$(this).parent().prev().css("color","#666")
 			$(this).parent().fadeOut();
-			//$("#fatrange").val(text);
-		})
-		$(".fat span").click(function(){
-			var text=$(this).text();
-			$("#fatrange").val(text);
-		})
-		$(".sugar span").click(function(){
-			var text=$(this).text();
-			$("#sugarrange").val(text);
-		})
-		$(".group span").click(function(){
-			var text=$(this).text();
-			$("#group").val(text);
-		})
-		$(".bmi span").click(function(){
-			var text=$(this).text();
-			$("#bmirange").val(text);
-		})
-		$(".classification span").click(function(){
-			var text=$(this).text();
-			$("#classification").val(text);
-		})
-		$(".time span").click(function(){
-			var text=$(this).text();
-			$("#time").val(text);
+
 		})
 		$(".shangquan li").click(function(){
 			$(".shangquan li").removeClass("active")
@@ -462,11 +341,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </body>
 </html>
-<%
-//关闭结果集
-sqlRst.close();
-//关闭SQL语句对象
-sqlStmt.close();
-//关闭数据库
-sqlCon.close();
-%> 
