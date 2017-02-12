@@ -12,6 +12,50 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
+<%
+	//变量声明
+	java.sql.Connection sqlCon; //数据库连接对象
+	java.sql.Statement sqlStmt; //SQL语句对象
+	java.sql.ResultSet sqlRst; //结果集对象
+	java.lang.String strCon;//数据库连接字符串
+	java.lang.String strSQL;//SQL语句
+	int intPageSize; //一页显示的记录数
+	int intRowCount;//记录总数
+	int intPageCount;//总页数
+	int intPage;//待显示页码
+	java.lang.String strPage;
+	int i;
+	//设置一页显示的记录数
+	intPageSize=3;
+	//取得待显示页码
+	strPage=request.getParameter("page");
+	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
+	intPage=1;
+	}
+	else{//将字符串转换成整型
+	intPage=java.lang.Integer.parseInt(strPage);
+	if(intPage<1)intPage=1;
+	}
+	//装载JDBC驱动程序
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	//设置数据库连接字符串
+	strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
+	//连接数据库
+	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+	//创建一个可以滚动的只读的SQL语句对象
+	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+	//准备SQL语句
+	strSQL="SELECT * FROM clinic_assistant order by idmenzhen desc";
+	//执行SQL语句并获取结果集
+	sqlRst=sqlStmt.executeQuery(strSQL);
+	//获取记录总数
+	sqlRst.last();
+	intRowCount=sqlRst.getRow();
+	//记算总页数
+	intPageCount=(intRowCount+intPageSize-1)/intPageSize;
+	//调整待显示的页码
+	if(intPage>intPageCount)intPage=intPageCount;
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -22,7 +66,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-	<link href="css/searchHelper.css" rel="stylesheet" type="text/css">
+<link href="css/searchHelper.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />	
@@ -86,34 +130,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--start-about-->
 	<div class="about second">
 		<div class="container">
-		 <h3 class="tittle wel" style="font-size: 1.9em">门诊助手</h3>
+		 <h3 class="tittle wel" style="font-size: 1.9em;margin-top:-40px">门诊助手</h3>
 				<div class="about-top send about-top-right">
 				<input type="button" name="" value="刷新" >
 				    <% 
-       String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
-       String title="";
-       try{
-    		/** 连接数据库参数 **/ 
-    		String driverName = "com.mysql.jdbc.Driver"; //驱动名称 
-    		String DBUser = "root"; //mysql用户名 
-    		String DBPasswd = "123456"; //mysql密码 
-    		String DBName = "ehealth"; //数据库名 
-    		String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?user=" + DBUser + "&password=" + DBPasswd; 
-    		Class.forName(driverName).newInstance(); 
-    	    Connection con=DriverManager.getConnection(connUrl);
-    	    Statement sql=con.createStatement();
-    	    ResultSet rs=sql.executeQuery("select *from clinic_assistant where time='"+ datetime +"'"); 
-    	     //判断数据库里 是否有今日门诊记录
-    	    if(rs.next()){ 
-    	     title="今日门诊情况：";
-    	   }
-    	  else{
-    		  title="今日无门诊。";
-    	   }
-    	   con.close();
-    	}
-    	catch(SQLException e1){}
-    %>
+				       String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+				       String title="";
+				       try{
+				    		/** 连接数据库参数 **/ 
+				    		String driverName = "com.mysql.jdbc.Driver"; //驱动名称 
+				    		String DBUser = "root"; //mysql用户名 
+				    		String DBPasswd = "123456"; //mysql密码 
+				    		String DBName = "ehealth"; //数据库名 
+				    		String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?user=" + DBUser + "&password=" + DBPasswd; 
+				    		Class.forName(driverName).newInstance(); 
+				    	    Connection con=DriverManager.getConnection(connUrl);
+				    	    Statement sql=con.createStatement();
+				    	    ResultSet rs=sql.executeQuery("select *from clinic_assistant where time='"+ datetime +"'"); 
+				    	     //判断数据库里 是否有今日门诊记录
+				    	    if(rs.next()){ 
+				    	     title="今日门诊情况：";
+				    	   }
+				    	  else{
+				    		  title="今日无门诊。";
+				    	   }
+				    	   con.close();
+				    	}
+				    	catch(SQLException e1){}
+   					 %>
 				<h4 style="margin-top: 2%"><%=title %></h4>
 				<!-- 连接数据库 -->
 				<c:catch var="ex">
@@ -137,19 +181,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                </tr>
 			              </thead>
 			              <tbody>
-			               <c:forEach var="row" items="${userlist.rows}" varStatus="status">
-							<tr>
-							 <td><c:out value="${status.count}"/></td>
-							 <td><c:out value="${row.name}"/></td>
-							 <td><c:out value="${row.classification}"/></td>
-							 <td><c:out value="${row.time}"/></td>							
-							 <td><c:out value="${row.mainreason}"/></td>
-							  <td><c:out value="${row.divide}"/></td>
+			              <%
+						if(intPageCount>0){
+						//将记录指针定位到待显示页的第一条记录上
+						sqlRst.absolute((intPage-1)*intPageSize+1);
+						//显示数据
+						i=0;
+						while(i<intPageSize&&!sqlRst.isAfterLast()){
+					 %>
+						<tr>
+						<td><%=sqlRst.getString(1)%></td>
+						<td><%=sqlRst.getString(2)%></td>
+						<td><%=sqlRst.getString(3)%></td>
+						<td><%=sqlRst.getString(4)%></td>
+						<td><%=sqlRst.getString(5)%></td>
+						<td><%=sqlRst.getString(6)%></td>
 			                 <td><a href="doctorHelperShow.jsp?id=${row.idmenzhen}" value="${row.idmenzhen}"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
-							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#${row.idmenzhen}" data-backdrop="static" ></i>
+							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 							  <!-- 进行分组 -->
-							  <div id="${row.idmenzhen}" class="modal fade" >							            
+							  <div id="<%=sqlRst.getString(1)%>" class="modal fade" >							            
 								<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">								 	
 						            <div class="modal-content">
 						            <form  method="post" action="clinicGroupAdd.jsp">
@@ -184,21 +235,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                </div>
                                </td>
 							</tr>
-							</c:forEach>			         			               
+							<%
+							 sqlRst.next();
+							 i++;
+							  }
+							 }
+							%>				         			               
 			              </tbody>
 			            </table>
 							<div class="page_nation" style="text-align: center;">
 							<nav>
-											   <ul class="pagination pagination-sm">
-												<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-											  </ul>
-											 </nav>		
+							 第<%=intPage%>页 共<%=intPageCount%>页  
+							<%if(intPage<intPageCount){%>
+							<a href="doctorHelper.jsp?page=<%=intPage+1%>">下一页</a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+							<%if(intPage>1){%>
+							<a href="doctorHelper.jsp?page=<%=intPage-1%>">上一页</a><%}else {%><a href="#">上一页</a><%}%>
+							</nav>		
 							</div>
 					<div class="clearfix"></div>
 				</div>
