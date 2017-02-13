@@ -84,10 +84,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      </div>
 		<!--start-about-->
 	<div class="about second">
-		<div class="container">
+		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
 		 <div class="col-md-12 about-top about-top-right">
-				<h4>患者姓名：张三 &nbsp&nbsp 组别：月经 &nbsp&nbsp 联系方式：1234567890</h4>
+				<h4>患者姓名：<c:out value="${param.name}"/> &nbsp&nbsp 组别：<c:out value="${param.divide}"/> &nbsp&nbsp 联系方式：<c:out value="${param.tell}"/></h4>
 		 <div class="selectbox" style="height:50px">
 		 <div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择组别</span></div>
 			<DIV class="citylist">
