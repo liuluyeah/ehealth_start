@@ -9,6 +9,52 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
+<%
+	//变量声明
+	java.sql.Connection sqlCon; //数据库连接对象
+	java.sql.Statement sqlStmt; //SQL语句对象
+	java.sql.ResultSet sqlRst; //结果集对象
+	java.lang.String strCon;//数据库连接字符串
+	java.lang.String strSQL;//SQL语句
+	int intPageSize; //一页显示的记录数
+	int intRowCount;//记录总数
+	int intPageCount;//总页数
+	int intPage;//待显示页码
+	java.lang.String strPage;
+	int i;
+	//设置一页显示的记录数
+	intPageSize=3;
+	//取得待显示页码
+	strPage=request.getParameter("page");
+	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
+	intPage=1;
+	}
+	else{//将字符串转换成整型
+	intPage=java.lang.Integer.parseInt(strPage);
+	if(intPage<1)intPage=1;
+	}
+	//装载JDBC驱动程序
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	//设置数据库连接字符串
+	strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
+	//连接数据库
+	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+	//创建一个可以滚动的只读的SQL语句对象
+	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+	//准备SQL语句
+	String tell = request.getParameter("tell");
+	strSQL="SELECT * FROM patient_detail where tel='"+tell+"'";
+	
+	//执行SQL语句并获取结果集
+	sqlRst=sqlStmt.executeQuery(strSQL);
+	//获取记录总数
+	sqlRst.last();
+	intRowCount=sqlRst.getRow();
+	//记算总页数
+	intPageCount=(intRowCount+intPageSize-1)/intPageSize;
+	//调整待显示的页码
+	if(intPage>intPageCount)intPage=intPageCount;
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -158,14 +204,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                </tr>
 			              </thead>
 			              <tbody>
-			                <tr>
-			                <td>1</td>
-			                  <td>2016.1.1</td>
-							  <td>100</td>
-							  <td>70</td>
-							  <td>21</td>
-							  <td>0.8</td>
-							  <td>益母草颗粒</td>
+			               <%
+						if(intPageCount>0){
+						//将记录指针定位到待显示页的第一条记录上
+						sqlRst.absolute((intPage-1)*intPageSize+1);
+						//显示数据
+						i=0;
+						while(i<intPageSize&&!sqlRst.isAfterLast()){
+					 %>
+						<tr>
+						<td><%=i+1%></td>
+						<td><%=sqlRst.getString(2)%></td>
+						<td><%=sqlRst.getString(3)%></td>
+						<td><%=sqlRst.getString(4)%></td>
+						<td><%=sqlRst.getString(5)%></td>
+						<td><%=sqlRst.getString(6)%></td>
+						<td><%=sqlRst.getString(7)%></td>
 			                  <td>
 			                  <a href="doctorPatientShow.html"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEachEdit" data-backdrop="static" ></i>
@@ -173,33 +227,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                  </td>
 			                </tr>
 			                <tr>
-			                <td>2</td>
-			                  <td>2016.2.1</td>
-							  <td>110</td>
-							  <td>75</td>
-							  <td>21</td>
-							  <td>0.8</td>
-							  <td>益母草颗粒</td>
-			                  <td>
-			                  <a href=""><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
-			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEachEdit" data-backdrop="static" ></i>
-			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
-			                  </td>
-			                </tr>
+						      <%
+								 sqlRst.next();
+								 i++;
+								 }
+								}
+								%>	
 			              </tbody>
 			            </table>
 							<div class="page_nation" style="text-align: center;">
 							<nav>
-											   <ul class="pagination pagination-sm">
-												<li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-											  </ul>
-											 </nav>		
+							 第<%=intPage%>页 共<%=intPageCount%>页  
+							<%if(intPage<intPageCount){%>
+							<a href="doctorPatientEach.jsp?page=<%=intPage+1%>">下一页</a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+							<%if(intPage>1){%>
+							<a href="doctorPatientEach.jsp?page=<%=intPage-1%>">上一页</a><%}else {%><a href="#">上一页</a><%}%>
+							</nav>		
 							</div>
 					<div class="clearfix"></div>
 				</div>

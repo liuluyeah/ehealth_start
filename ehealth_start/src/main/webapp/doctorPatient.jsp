@@ -231,7 +231,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td><%=sqlRst.getString(9)%></td>
 						<td><%=sqlRst.getString(10)%></td>
 						<td>
-			                  <a href="doctorPatientEach.jsp?name=<%=sqlRst.getString(2)%>&divide=<%=sqlRst.getString(9)%>&tell=<%=sqlRst.getString(11)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                  <a href="doctorPatientEach.jsp?name=<%=sqlRst.getString(2)%>&divide=<%=sqlRst.getString(9)%>&tell=<%=sqlRst.getString(11)%>">
+			                  <form style="display:inline" action="doctorPatientEach.jsp" method="post"><input name="tell" style="display:none" value="<%=sqlRst.getString(11)%>">
+			                  <input style="display:none" type="submit"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></form></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEdit" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
