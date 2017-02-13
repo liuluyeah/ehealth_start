@@ -239,9 +239,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<nav>
 							 第<%=intPage%>页 共<%=intPageCount%>页  
 							<%if(intPage<intPageCount){%>
-							<a href="doctorPatientEach.jsp?page=<%=intPage+1%>">下一页</a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+							 <form action="doctorPatientEach.jsp?page=<%=intPage+1%>" method="post" style="display:inline">
+							 <input type='hidden' name="tell" value="<%=tell %>">
+							<a href="doctorPatientEach.jsp?page=<%=intPage+1%>"><input style="border:0px;background-color:white" type="submit" value="下一页"></a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+							</form>
 							<%if(intPage>1){%>
-							<a href="doctorPatientEach.jsp?page=<%=intPage-1%>">上一页</a><%}else {%><a href="#">上一页</a><%}%>
+							 <form action="doctorPatientEach.jsp?page=<%=intPage-1%>" method="post" style="display:inline">
+							 <input type='hidden' name="tell" value="<%=tell %>">
+							<a href="doctorPatientEach.jsp?page=<%=intPage-1%>"><input style="border:0px;background-color:white" type="submit" value="上一页"></a><%}else {%><a href="#">上一页</a><%}%>
+							</form>
 							</nav>		
 							</div>
 					<div class="clearfix"></div>

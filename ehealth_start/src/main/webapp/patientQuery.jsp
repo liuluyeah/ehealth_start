@@ -318,6 +318,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <input id="classification" type='hidden' name="classification" value="<%=classification %>">
 					 <input id="time" type='hidden' name="time" value="<%=time %>">
 					<a href="patientQuery.jsp?page=<%=intPage+1%>"><input style="border:0px;background-color:white" type="submit" value="下一页"></a><%}else if(intPage==intPageCount) {%><a href="#">下一页</a><%}%>
+					</form>
 					<%if(intPage>1){%>
 					 <form action="patientQuery.jsp?page=<%=intPage-1%>" method="post" style="display:inline">
 					 <input id="fatrange" type='hidden' name="fatrange" value="<%=fatrange %>">
