@@ -222,8 +222,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td><%=sqlRst.getString(7)%></td>
 			                  <td>
 			                  <a href="doctorPatientShow.html"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
-			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorPatientEachEdit" data-backdrop="static" ></i>
+			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
+			                  <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
+								<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
+						            <div class="modal-content">
+						                <div class="modal-header">
+						                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						                    <h4 class="modal-title">维护诊疗计划</h4>
+						                </div>
+						                <div class="modal-body contact-grid" style="height:470px;">
+						                	<form  method="post" action="doctorPatientMedicineAdd.jsp">
+						                	<input name="medicineid" style="display:none" value="<%=sqlRst.getString(1)%>">
+						                	<input name="name" style="display:none" value="${param.name}">
+						                	<input name="divide" style="display:none" value="${param.divide}">
+						                	<input name="tell" style="display:none" value="${param.tell}">
+											<input name="intpage" style="display:none" value="<%=intPage%>">	
+												<div class="col-md-12">
+												<p class="col-md-3 your-para" >用药</p>
+													<div class="col-md-9">
+														<select name="YYYY" >
+						    							<option value="">药品名称</option>
+						    							<option value="益母草颗粒">益母草颗粒</option>
+						    							<option value="感冒胶囊">感冒胶囊</option>
+						    							<option value="延更丹">延更丹</option>
+						  							</select>
+						  							<select name="MM" >
+						    							<option value="">药品用量</option>
+						    							<option value="">一次1粒</option>
+						    							<option value="">一次2粒</option>
+						    							<option value="">一次3粒</option>
+						  							</select>
+						 							<select name="DD">
+						 								<option value="">用药频率</option>
+						    							<option value="">一日一次</option>
+						    							<option value="">一日两次</option>
+						    							<option value="">一日三次</option>
+						  							</select>
+													</div>			
+												</div>
+						
+												<div class="col-md-12">
+														<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
+														<div class="col-md-9" style="padding-top: 1%" >
+														<textarea  value=" "  onfocus="this.value='';" ></textarea>
+														</div>
+													</div>
+												<div class="col-md-12" >
+													<p class="col-md-3 your-para" style="padding-top: 2%">下次随访要求</p>
+													<div class="col-md-9" style="padding-top: 1%" >
+													<textarea  value=" "  onfocus="this.value='';" ></textarea>
+													</div>
+												</div>
+						
+											
+						                </div>
+						                <div class="modal-footer">
+						                    <button type="submit" class="btn btn-success"  style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+						                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						                </div>
+										</form>
+						             </div>
+						        </div>
+						    </div>
+  
 			                  </td>
 			                </tr>
 			                <tr>
@@ -296,63 +358,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 
-<div id="doctorPatientEachEdit" class="modal fade" >
-		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">维护诊疗计划</h4>
-                </div>
-                <div class="modal-body contact-grid" style="height:470px;">
-                	<form>
-						<div class="col-md-12">
-						<p class="col-md-3 your-para" >用药</p>
-							<div class="col-md-9">
-								<select name="YYYY" onchange="YYYYDD(this.value)">
-    							<option value="">药品名称</option>
-    							<option value="">益母草颗粒</option>
-    							<option value="">感冒胶囊</option>
-    							<option value="">延更丹</option>
-  							</select>
-  							<select name="MM" onchange="MMDD(this.value)">
-    							<option value="">药品用量</option>
-    							<option value="">一次1粒</option>
-    							<option value="">一次2粒</option>
-    							<option value="">一次3粒</option>
-  							</select>
- 							<select name="DD">
- 								<option value="">用药频率</option>
-    							<option value="">一日一次</option>
-    							<option value="">一日两次</option>
-    							<option value="">一日三次</option>
-  							</select>
-							</div>			
-						</div>
-
-						<div class="col-md-12">
-								<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
-								<div class="col-md-9" style="padding-top: 1%" >
-								<textarea  value=" "  onfocus="this.value='';" ></textarea>
-								</div>
-							</div>
-						<div class="col-md-12" >
-							<p class="col-md-3 your-para" style="padding-top: 2%">下次随访要求</p>
-							<div class="col-md-9" style="padding-top: 1%" >
-							<textarea  value=" "  onfocus="this.value='';" ></textarea>
-							</div>
-						</div>
-
-					</form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-
-             </div>
-        </div>
-    </div>
-    
+  
 	<script>
 		$(".selemenu").click(function(){
 			$(this).next().slideToggle();
