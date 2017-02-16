@@ -226,13 +226,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="col-md-12">
 									<p class="col-md-2 your-para" >备注：</p>
 									<div class="col-md-8" >
-									<textarea cols="50" rows="4" value=" " onfocus="this.value='';"></textarea>
+									<textarea cols="50" rows="4"><c:out value="${row.remark}"/></textarea>
 									</div>
 									</div>			
 									<div class="col-md-12">
 									<p class="col-md-2 your-para">下次随访要求：</p>
 									<div class="col-md-8" >
-									<textarea cols="50" rows="4" value=" " onfocus="this.value='';"></textarea>
+									<textarea cols="50" rows="4" ><c:out value="${row.demand}"/></textarea>
 									</div>
 									</div>
 									<br/><br/>
