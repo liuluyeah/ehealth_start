@@ -23,7 +23,7 @@
 	java.lang.String strPage;
 	int i;
 	//设置一页显示的记录数
-	intPageSize=3;
+	intPageSize=5;
 	//取得待显示页码
 	strPage=request.getParameter("page");
 	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
@@ -242,19 +242,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<p class="col-md-3 your-para" >用药</p>
 														<div class="col-md-9">
 															<select name="YYYY" >
-							    							<option value="">药品名称</option>
+							    							<option value="药品名称" selected = "selected">药品名称</option>
 							    							<option value="益母草颗粒">益母草颗粒</option>
 							    							<option value="感冒胶囊">感冒胶囊</option>
 							    							<option value="延更丹">延更丹</option>
 							  							</select>
 							  							<select name="MM" >
-							    							<option value="">药品用量</option>
+							    							<option value="药品用量" selected = "selected">药品用量</option>
 							    							<option value="一次1粒">一次1粒</option>
 							    							<option value="一次2粒">一次2粒</option>
 							    							<option value="一次3粒">一次3粒</option>
 							  							</select>
 							 							<select name="DD">
-							 								<option value="">用药频率</option>
+							 								<option value="用药频率" selected = "selected">用药频率</option>
 							    							<option value="一日一次">一日一次</option>
 							    							<option value="一日两次">一日两次</option>
 							    							<option value="一日三次">一日三次</option>
