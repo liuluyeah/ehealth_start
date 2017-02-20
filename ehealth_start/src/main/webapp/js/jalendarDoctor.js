@@ -68,7 +68,7 @@ $(function () {
                             div('a', 'nxt-m'),
                             div('div', 'day-names')
                         ),
-                        div('div', 'total-bar').html( lTotalEvents[settings.lang] + '<b id="appointnum" style="color: '+settings.color+'"></b>'),
+                        div('div', 'total-bar').html( lTotalEvents[settings.lang] + '<span id="appointnum" style="color: '+settings.color+'"></span>'),
                         div('div', 'days clearfix')
                     ),
                     div('div', 'add-event').append(
@@ -83,7 +83,8 @@ $(function () {
                     )
                 )
             );
-            
+           
+                
             // Adding day boxes
             for (var i = 0; i < 42; i++) {
                 $this.find('.days').append(div('div', 'day'));
@@ -303,11 +304,8 @@ $(function () {
                     calcTotalDayAgain();
                     calcScroll();
                 });
-            });
-
+            });      
         };
-
     }(jQuery));
-
 });
 

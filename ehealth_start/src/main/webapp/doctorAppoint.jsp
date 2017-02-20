@@ -3,10 +3,39 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page import="java.util.*"%>  
+<%@ page import="java.text.*"%>
 <% 
 request.setCharacterEncoding("UTF-8"); 
 response.setCharacterEncoding("UTF-8"); 
 response.setContentType("text/html; charset=utf-8"); 
+%>
+<%
+	//变量声明
+	java.sql.Connection sqlCon; //数据库连接对象
+	java.sql.Statement sqlStmt; //SQL语句对象
+	java.sql.ResultSet sqlRst; //结果集对象
+	java.lang.String strCon;//数据库连接字符串
+	java.lang.String strSQL;//SQL语句
+	int intRowCount;//记录总数
+	int intPageCount;//总页数
+	int intPage;//待显示页码
+	//装载JDBC驱动程序
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	//设置数据库连接字符串
+	strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
+	//连接数据库
+	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+	//创建一个可以滚动的只读的SQL语句对象
+	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+	String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+	//准备SQL语句
+	strSQL="SELECT * FROM doctor_appoint where time='"+ datetime +"'";
+	//执行SQL语句并获取结果集
+	sqlRst=sqlStmt.executeQuery(strSQL);
+	//获取记录总数
+	sqlRst.last();
+	intRowCount=sqlRst.getRow();
 %>
 <html>
 <head>
@@ -34,8 +63,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
-
-
 <link rel="stylesheet" href="css/documentation.css" type="text/css" />
 <link rel="stylesheet" href="css/jalendarDoctor.css" type="text/css" />
 
@@ -54,11 +81,14 @@ $(function () {
         lang: 'ES',
             
     });
+    
     $('#myId3').jalendar({
+    	
     });
+    $('#myId3').find("#appointnum").text(<%=intRowCount %>);//显示预约人数
 });
-</script>
 
+</script>
 </head>
 <body>
 	<!--start-header-->
@@ -104,7 +134,7 @@ $(function () {
      </div>
 		<!--start-about-->
 	<div class="about second"  style="padding: 4em 0 1em 0">
-		<div class="container">
+		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">日程管理</h3>
 				<div class="about-top about-top-right">
 						<h4>出诊时间：周一上午 周三上午</h4>
@@ -114,7 +144,8 @@ $(function () {
 	</div>
 
 	<div class="col-md-11 col-md-offset-1">
-	 <div id="myId3" class="jalendar"></div>
+	 <div id="myId3" class="jalendar">
+	 </div>
 	 </div>
 
 	  
