@@ -1,14 +1,16 @@
-<%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%> 
-<%@ page contentType="text/html;charset=utf-8"%> 
+<!-- 医生日程管理页面--byliulu -->
+<%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <% 
- request.setCharacterEncoding("UTF-8"); 
- response.setCharacterEncoding("UTF-8"); 
- response.setContentType("text/html; charset=UTF-8"); 
-%>  
-<!DOCTYPE HTML>
+request.setCharacterEncoding("UTF-8"); 
+response.setCharacterEncoding("UTF-8"); 
+response.setContentType("text/html; charset=utf-8"); 
+%>
 <html>
 <head>
-<title>E-Health</title>
+<title>日程管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Petsy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -33,10 +35,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 </script>
 
+
+<link rel="stylesheet" href="css/documentation.css" type="text/css" />
+<link rel="stylesheet" href="css/jalendarDoctor.css" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jalendarDoctor.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('#myId').jalendar({
+        customDay: '2017/12/01',  // Format: Year/Month/Day
+        color: '#ed145a', // Unlimited Colors
+        lang: 'EN' // Format: English — 'EN', Türkçe — 'TR'
+    });
+    $('#myId2').jalendar({
+        customDay: '2016/02/29',
+        color: '#023447',
+        lang: 'ES',
+            
+    });
+    $('#myId3').jalendar({
+    });
+});
+</script>
+
 </head>
 <body>
 	<!--start-header-->
-			<div id="home" class="header">
+			<div id="home" class="header two">
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
@@ -45,11 +71,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					     <div class="top-menu">
 							<span class="menu"> </span>
 								<ul class="cl-effect-16">
-								<li><a class="active" href="doctorIndex.jsp" data-hover="主页">主页</a></li>
+								<li><a href="doctorIndex.jsp" data-hover="主页">主页</a></li>
 								<li><a  href="doctorAbout.html" data-hover="关于">关于</a></li>
 								<li><a href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
 								<li><a href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
-								<li><a href="doctorAppoint.html" data-hover="日程管理">日程管理</a></li>
+								<li><a class="active" href="doctorAppoint.jsp" data-hover="日程管理">日程管理</a></li>
 								<li><a href="doctorSetting.html" data-hover="设置">设置</a></li>
 								<li style="color: white">|</li>
 								<li><span class="glyphicon glyphicon-qrcode"  data-toggle="modal" data-target="#scanQRcode" data-backdrop="static" style="cursor: pointer;color: white"></span></li>
@@ -74,103 +100,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"> </div>
 					</div>
 				</div>
-				<div class="banner">
-				   <div class="container">
-						<div id="top" class="callbacks_container">
-						<ul class="rslides callbacks callbacks1" id="slider4">
-							<li id="callbacks1_s0" class="callbacks1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								<h3>E-Health</h3>
-								<h4>everything to keep you healthy!</h4>
-								</div>
-							</li>
-							<li id="callbacks1_s1" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								   <h3>Helping you get rid</h3>
-								  <h4>of your health problem!</h4>
-								</div>
-							</li>
-							<li id="callbacks1_s2" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								  <h3>Get to know</h3>
-								  <h4>everything about your appointment!</h4>
-								</div>	
-							</li>
-						</ul>
-						</div>
-						<!--banner-Slider-->
-						<script src="js/responsiveslides.min.js"></script>
-						 <script>
-						// You can also use "$(window).load(function() {"
-						$(function () {
-						  // Slideshow 4
-						  $("#slider4").responsiveSlides({
-						auto: true,
-						pager: true,
-						nav:false,
-						speed: 500,
-						namespace: "callbacks",
-						before: function () {
-						  $('.events').append("<li>before event fired.</li>");
-						},
-						after: function () {
-						  $('.events').append("<li>after event fired.</li>");
-						}
-						  });
-
-						});
-						  </script>
-				</div>
-				<div class="banner-bottom">
-			      <div class="container">
-			         <div class="banner-bot-grids" style="text-align: center;">
-
-				        <a href="doctorHelper.jsp" style="text-decoration: none;color: white">
-				        <div class="col-md-4 header-bottom-grid1">
-						  <div class="icon">
-					         <i class="glyphicon glyphicon-edit"> </i>
-					      </div>
-					      <div class="icon-text">
-						     <h4>门诊助手</h4>
-					        <p>点击进入门诊助手查看最新病人</p>
-					       </div>
-					        <div class="clearfix"> </div>
-					     </div></a>
-
-						 <a href="doctorPatient.jsp" style="text-decoration: none;color: white">
-						 <div class="col-md-4 header-bottom-grid2">
-							  <div class="icon">
-						        <i class="glyphicon glyphicon-th-list"> </i>
-						      </div>
-						     <div class=" icon-text">
-							     <h4>我的病人</h4>
-						          <p>点击进入查看所有病人记录</p>
-						     </div>
-						      <div class="clearfix"> </div>
-						 </div></a>
-
-					    <a href="doctorAppoint.jsp" style="text-decoration: none;color: white">
-					    <div class="col-md-4 header-bottom-grid3">
-						     <div class="icon">
-							    <i class="glyphicon glyphicon-time"> </i>
-							</div>
-							<div class="icon-text">
-								 <h4>日程管理</h4>
-							    <p>点击进入查看个人日程管理</p>
-							 </div>
-							  <div class="clearfix"> </div>
-						</div></a>
-
-					 </div>
-			      <div class="clearfix"> </div>
-		      </div>
-	       </div>
 	     </div>
      </div>
+		<!--start-about-->
+	<div class="about second"  style="padding: 4em 0 1em 0">
+		<div class="container">
+		 <h3 class="tittle wel" style="font-size: 1.9em">日程管理</h3>
+				<div class="about-top about-top-right">
+						<h4>出诊时间：周一上午 周三上午</h4>
+					<div class="clearfix"></div>
+				</div>
+			</div>	 
+	</div>
 
+	<div class="col-md-11 col-md-offset-1">
+	 <div id="myId3" class="jalendar"></div>
+	 </div>
 
+	  
   <!--footer-->
-			<div class="footerIndex text-center" style="background-color: #f8f8f8; padding-bottom: 0; text-align: center;">
+			<div class="footer text-center" style="padding-bottom: 0; text-align: center;">
 				<div class="container">
 					<div class="copy">
 		              <p style="color: black">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
@@ -187,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-	<div id="scanQRcode" class="modal fade" >
+		<div id="scanQRcode" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -204,6 +153,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <button type="button" class="btn btn-success" onclick="deleteNSgroup()">确定</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     -->
+                </div>
+
+             </div>
+        </div>
+    </div>
+<div id="doctorAppointEdit" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">预约随访调查项目</h4>
+                </div>
+                <div class="modal-body contact-grid" style="height:30px;">
+               <div class="col-md-10" style="text-align: center;">
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">运动习惯</label>
+                    &nbsp&nbsp
+                    &nbsp&nbsp
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">饮食习惯</label>
+                    &nbsp&nbsp
+                 	&nbsp&nbsp
+                <input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">睡眠情况调查</label>
+                    &nbsp&nbsp
+                    &nbsp&nbsp
+				<input type="checkbox" name="radio" id="r5" value="">
+                <label style="color: #888;">病情</label>
+            	</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
 
              </div>
