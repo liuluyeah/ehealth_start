@@ -68,7 +68,7 @@ $(function () {
                             div('a', 'nxt-m'),
                             div('div', 'day-names')
                         ),
-                        div('div', 'total-bar').html( lTotalEvents[settings.lang] + '<b style="color: '+settings.color+'"></b>'),
+                        div('div', 'total-bar').html( lTotalEvents[settings.lang] + '<b id="appointnum" style="color: '+settings.color+'"></b>'),
                         div('div', 'days clearfix')
                     ),
                     div('div', 'add-event').append(
