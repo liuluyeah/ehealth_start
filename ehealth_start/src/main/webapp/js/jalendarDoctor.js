@@ -74,7 +74,7 @@ $(function () {
                     div('div', 'add-event').append(
                         div('div', 'events').append(
                             div('h4','').append(
-                                div('span', '').html('<b>·今日预约随访病人·</b> '+'<br />'+'<br />'+'<p>1     张三  月经组   1312222222   <i class="glyphicon glyphicon-edit" title="维护诊疗计划" data-toggle="modal" data-target="#doctorAppointEdit" data-backdrop="static" ></i></p>')
+                                div('span', '').html('<b>·今日预约随访病人·</b> '+'<br />'+'<br />'+'<p id="person">1     张三  月经组   1312222222   <i class="glyphicon glyphicon-edit" title="维护诊疗计划" data-toggle="modal" data-target="#doctorAppointEdit" data-backdrop="static" ></i></p>')
                             ),
                             
                             div('div', 'gradient-wood'),
