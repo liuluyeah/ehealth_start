@@ -86,6 +86,19 @@ $(function () {
     	
     });
     $('#myId3').find("#appointnum").text(<%=intRowCount %>);//显示预约人数
+    $('#myId3').find("#person").text("");//显示预约人
+    <%
+    sqlRst.absolute(1);
+	while(!sqlRst.isAfterLast()){
+    %>
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("name")%>&nbsp"+'</td>');
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("divide")%>&nbsp"+'</td>');
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("tel")%>&nbsp"+'</td>'+'<br />');
+	    $('#myId3').find("#person").append('<br />');  
+	<%
+	 sqlRst.next();
+	  }
+	%>	
 });
 
 </script>
