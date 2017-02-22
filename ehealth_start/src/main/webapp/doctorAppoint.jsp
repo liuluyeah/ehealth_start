@@ -17,9 +17,23 @@ response.setContentType("text/html; charset=utf-8");
 	java.sql.ResultSet sqlRst; //结果集对象
 	java.lang.String strCon;//数据库连接字符串
 	java.lang.String strSQL;//SQL语句
+	int intPageSize; //一页显示的记录数
 	int intRowCount;//记录总数
 	int intPageCount;//总页数
 	int intPage;//待显示页码
+	java.lang.String strPage;
+	int i;
+	//设置一页显示的记录数
+	intPageSize=8;
+	//取得待显示页码
+	strPage=request.getParameter("page");
+	if(strPage==null){//表明在QueryString中没有page这一个参数，此时显示第一页数据
+	intPage=1;
+	}
+	else{//将字符串转换成整型
+	intPage=java.lang.Integer.parseInt(strPage);
+	if(intPage<1)intPage=1;
+	}
 	//装载JDBC驱动程序
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	//设置数据库连接字符串
@@ -36,6 +50,10 @@ response.setContentType("text/html; charset=utf-8");
 	//获取记录总数
 	sqlRst.last();
 	intRowCount=sqlRst.getRow();
+	//记算总页数
+	intPageCount=(intRowCount+intPageSize-1)/intPageSize;
+	//调整待显示的页码
+	if(intPage>intPageCount)intPage=intPageCount;
 %>
 <html>
 <head>
@@ -88,16 +106,21 @@ $(function () {
     $('#myId3').find("#appointnum").text(<%=intRowCount %>);//显示预约人数
     $('#myId3').find("#person").text("");//显示预约人
     <%
-    sqlRst.absolute(1);
-	while(!sqlRst.isAfterLast()){
+	if(intPageCount>0){
+	//将记录指针定位到待显示页的第一条记录上
+	sqlRst.absolute((intPage-1)*intPageSize+1);
+	//显示数据
+	i=0;
+	while(i<intPageSize&&!sqlRst.isAfterLast()){
     %>
-	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("name")%>&nbsp"+'</td>');
-	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("divide")%>&nbsp"+'</td>');
-	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString("tel")%>&nbsp"+'</td>'+'<br />');
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(2)%>&nbsp"+'</td>');
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(5)%>&nbsp"+'</td>');
+	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(4)%>&nbsp"+'</td>'+'<br />');
 	    $('#myId3').find("#person").append('<br />');  
 	<%
 	 sqlRst.next();
-	  }
+	 i++;}
+	  } 
 	%>	
 });
 
