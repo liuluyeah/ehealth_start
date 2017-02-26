@@ -134,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
 		 <div class="col-md-12 about-top about-top-right">
 				<h4>患者姓名：<c:out value="${param.name}"/> &nbsp&nbsp 组别：<c:out value="${param.divide}"/> &nbsp&nbsp 联系方式：<c:out value="${param.tell}"/></h4>
-		 <div class="selectbox" style="height:50px">
+		 <div class="selectbox" style="height:50px;display:none">
 		 <div class="selemediv"> <div class="selemenu"><span style="font-weight: bold;">请选择组别</span></div>
 			<DIV class="citylist">
 				<span>月经组</span>
