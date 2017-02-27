@@ -83,25 +83,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="about-top">
 					<div class="contact-grid about-top-right">
 					<h4>修改密码</h4>
-					<form>
+					<form method="post" action="changeProfile.jsp">
+						<div class="col-md-12">
+						<p class="col-md-2 your-para" style="padding-top: 1%">请输入用户名</p>
+						<div class="col-md-4">
+						<input type="text" class="form-control" id="userName" name="userName" placeholder="">
+						</div>
+						</div>
 						<div class="col-md-12">
 						<p class="col-md-2 your-para" style="padding-top: 1%">请输入原密码</p>
 						<div class="col-md-4">
-						<input type="text" class="form-control" id="oldPass" placeholder="">
+						<input type="text" class="form-control" id="oldPass" name="oldPass" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-12">
 						<p class="col-md-2 your-para" style="padding-top: 1%">请输入新密码</p>
 						<div class="col-md-4">
-						<input type="text" class="form-control" id="newPass" placeholder="">
+						<input type="text" class="form-control" id="newPass" name="newPass" placeholder="">
 						</div>
 						</div>
-
 						<div class="col-md-12">
 						<p class="col-md-2 your-para" style="padding-top: 1%">请再次输入新密码</p>
 						<div class="col-md-4">
-						<input type="text" class="form-control" id="newPassAgain" placeholder="">
+						<input type="text" class="form-control" id="newPassAgain" name="newPassAgain" placeholder="">
 						</div>
 						</div>
 						&nbsp
