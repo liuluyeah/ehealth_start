@@ -116,6 +116,7 @@ $(function () {
 	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(2)%>&nbsp"+'</td>');
 	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(5)%>&nbsp"+'</td>');
 	    $('#myId3').find("#person").append('<td>'+"<%=sqlRst.getString(4)%>&nbsp"+'</td>'+'<br />');
+	    $('#myId3').find("#person").append('<td><i class="glyphicon glyphicon-edit" title="维护诊疗计划" data-toggle="modal" data-target="#doctorAppointEdit" data-backdrop="static" ></i></td>');
 	    $('#myId3').find("#person").append('<br />');  
 	<%
 	 sqlRst.next();
@@ -148,8 +149,8 @@ $(function () {
 								<li class="dropdown" style="text-align: left;">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
 									<ul class="dropdown-menu" role="menu" id="doctor-contents">
-										<li><a href="doctorProfile.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
-										<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+										<li><a href="doctorProfile.jsp"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+										<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
 									</ul>
 			  					</li>		
 								  <div class="clearfix"></div>
@@ -228,36 +229,48 @@ $(function () {
 <div id="doctorAppointEdit" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
             <div class="modal-content">
+            <form  method="post" action="doctorAppointItem.jsp">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">预约随访调查项目</h4>
                 </div>
                 <div class="modal-body contact-grid" style="height:30px;">
                <div class="col-md-10" style="text-align: center;">
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="运动习惯">
                 <label style="color: #888;">运动习惯</label>
                     &nbsp&nbsp
                     &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="饮食习惯">
                 <label style="color: #888;">饮食习惯</label>
                     &nbsp&nbsp
                  	&nbsp&nbsp
-                <input type="checkbox" name="radio" id="r5" value="">
+                <input type="checkbox" name="radio" id="r5" value="睡眠情况调查">
                 <label style="color: #888;">睡眠情况调查</label>
                     &nbsp&nbsp
                     &nbsp&nbsp
-				<input type="checkbox" name="radio" id="r5" value="">
+				<input type="checkbox" name="radio" id="r5" value="病情">
                 <label style="color: #888;">病情</label>
             	</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
-
+              </form>
              </div>
         </div>
     </div>
-
+    <script type="text/javascript">
+     $(document).ready(function() {
+    	  $('input[type=checkbox]').click(function() {
+    	   $("input[name='radio']").attr('disabled', true);
+    	   if ($("input[name='radio']:checked").length >= 1) {
+    	    $("input[name='radio']:checked").attr('disabled', false);
+    	   } else {
+    	    $("input[name='radio']").attr('disabled', false);
+    	   }
+    	  });
+    	 })       
+    </script> 
 </body>
 </html>
