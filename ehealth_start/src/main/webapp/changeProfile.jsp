@@ -12,6 +12,12 @@
 <% 
 	String newpass=request.getParameter("newPass"); //从表单获得 
 	String newpassagain=request.getParameter("newPassAgain");
+	String name=request.getParameter("name");
+	String sex=request.getParameter("radio");
+	String age=request.getParameter("age");
+	String identity=request.getParameter("identity");
+	String recordNumber=request.getParameter("recordNumber");
+	String worktime=request.getParameter("worktime");
 %>
 <html>
 <head>
@@ -27,25 +33,45 @@ try{
 	String DBUser = "root"; //mysql用户名 
 	String DBPasswd = "123456"; //mysql密码 
 	String DBName = "ehealth"; //数据库名 
-	String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?user=" + DBUser + "&password=" + DBPasswd; 
+	String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?useUnicode=true&characterEncoding=gbk"; 
 	Class.forName(driverName).newInstance(); 
-    Connection con=DriverManager.getConnection(connUrl);
+    Connection con=DriverManager.getConnection(connUrl,DBUser,DBPasswd);
     Statement sql=con.createStatement();
     Statement stmt=con.createStatement();
     ResultSet rs=sql.executeQuery("select *from user where tel='"+ user +"'and pwd='"+password+"'"); 
      //登录信息判断，判断身份，进行主页选择
     if(rs.next()){ 
-     if(newpass.equals(newpassagain)){
-      boolean hasResultSet = stmt.execute("update user set pwd='"+ newpass +"'where tel='"+user+"'");
-     // sql.executeUpdate("update user where pwd='"+ newpass +"'where tel='"+user+"'");  
-      if (hasResultSet) {
-    	  out.print("<script>alert('对不起，修改失败！');window.location.href='doctorProfile.jsp'</script>");
-      }else{
-    	  out.print("<script>alert('恭喜修改成功！');window.location.href='login.jsp'</script>");   	  
-      }       
-     }else{
-    	 out.print("<script>alert('新密码两次输入不相同，请重新输入！');window.location.href='doctorProfile.jsp'</script>");
-     }
+      if(newpass.equals(newpassagain) && !newpass.equals(""))
+	     {
+	      boolean hasResultSet = stmt.execute("update user set pwd='"+ newpass +"'where tel='"+user+"'");
+	      if (hasResultSet) {
+	    	  out.print("<script>alert('对不起，修改失败！');window.location.href='doctorProfile.jsp'</script>");
+	      }else{
+	    	  out.print("<script>alert('恭喜修改成功！');window.location.href='login.jsp'</script>");   	  
+	      }       
+	     }else if(newpass.equals("")){
+	    	 out.print("<script>alert('新密码不能为空！');window.location.href='doctorProfile.jsp'</script>");
+	        }else{
+	        	out.print("<script>alert('新密码两次输入不相同，请重新输入！');window.location.href='doctorProfile.jsp'</script>");
+	        }
+      if(!name.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set name='"+ name +"'where tel='"+user+"'");
+       }
+      if(!sex.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set sex='"+ sex +"'where tel='"+user+"'");
+       }
+      if(!age.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set age='"+ age +"'where tel='"+user+"'");
+       }
+      if(!identity.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set identity='"+ identity +"'where tel='"+user+"'");
+       }
+      if(!recordNumber.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set recordNumber='"+ recordNumber +"'where tel='"+user+"'");
+       }
+      if(!worktime.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set docTime='"+ worktime +"'where tel='"+user+"'");
+       }
     }
    else{
     // response.sendRedirect("register.html");

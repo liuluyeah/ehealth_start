@@ -110,12 +110,126 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</div>
 						&nbsp
+						<h4>修改基本资料</h4>
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="name" name="name" placeholder="">
+						</div>
+						</div>
+
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
+						<div class="col-md-8" style="padding-top: 3%">
+						<input type="radio" name="radio" id="r5" value="男" >
+                        <label style="color: #888;">男</label>
+                        &nbsp
+						<input type="radio" name="radio" id="r5" value="女">
+                        <label style="color: #888;">女</label>
+						</div>
+						</div>
+
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">年龄</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="age" name="age" placeholder="">
+						</div>
+						</div>
+
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
+						<div class="col-md-8" style="padding-top: 4%">
+							<select name="YYYY" onchange="YYYYDD(this.value)">
+    							<option value="">年</option>
+    							<option value="">1950</option>
+    							<option value="">1951</option>
+  							</select>
+  							<select name="MM" onchange="MMDD(this.value)">
+    							<option value="">月</option>
+    							<option value="">1</option>
+    							<option value="">2</option>
+  							</select>
+ 							<select name="DD">
+ 								<option value="">日</option>
+    							<option value="">10</option>
+    							<option value="">11</option>
+  							</select>
+						</div>
+						</div>
+												<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">身份证号</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="identity" name="identity" placeholder="">
+						</div>
+						</div>
+
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">医疗卡号</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="recordNumber" name="recordNumber"placeholder="">
+						</div>
+						</div>
+
+						<div class="col-md-8">
+						<p class="col-md-2 your-para" style="padding-top: 1%">出诊时间</p>
+						<div class="col-md-10" style="padding-top: 1%">
+						<div>
+							<input type="checkbox" name="worktime" id="r5" value="10">
+                      		<label style="color: #888;">周一上午</label>
+                      		&nbsp
+							<input type="checkbox" name="worktime" id="r5" value="11">
+                      		<label style="color: #888;">周一下午</label>
+                      	</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周二上午</label>
+                      		&nbsp
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周二下午</label>
+						</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周三上午</label>
+                      		&nbsp
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周三下午</label>
+						</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周四上午</label>
+                      		&nbsp
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周四下午</label>
+						</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="worktime" id="r5" value="">
+                      		<label style="color: #888;">周五上午</label>
+                      		&nbsp
+							<input type="checkbox" name="radio" id="r5" value="">
+                      		<label style="color: #888;">周五下午</label>
+						</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="radio" id="r5" value="">
+                      		<label style="color: #888;">周六上午</label>
+                      		&nbsp
+							<input type="checkbox" name="radio" id="r5" value="">
+                      		<label style="color: #888;">周六下午</label>
+						</div>
+						<div style="padding-top: 1%">
+							<input type="checkbox" name="radio" id="r5" value="">
+                      		<label style="color: #888;">周日上午</label>
+                      		&nbsp
+							<input type="checkbox" name="radio" id="r5" value="">
+                      		<label style="color: #888;">周日下午</label>
+						</div>
+						</div>
+						</div>
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 							<input type="submit" value="保存" >
 						</div>
 					</form>
 					&nbsp
-					<h4>修改基本资料</h4>
+			<!--  	<h4>修改基本资料</h4>
 					<form>
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
@@ -238,7 +352,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</form>
 				</div>
-				
+				-->	
 				<div class="clearfix"> </div>
 			   </div>
 
