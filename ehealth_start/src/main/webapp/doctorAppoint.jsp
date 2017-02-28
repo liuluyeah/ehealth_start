@@ -174,7 +174,79 @@ $(function () {
 		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">日程管理</h3>
 				<div class="about-top about-top-right">
-						<h4>出诊时间：周一上午 周三上午</h4>
+					<% 
+				       int id=1; //获取医生id 
+				       String doctime="";
+				       String worktime="";
+				       try{
+				    		/** 连接数据库参数 **/ 
+				    		String driverName = "com.mysql.jdbc.Driver"; //驱动名称 
+				    		String DBUser = "root"; //mysql用户名 
+				    		String DBPasswd = "123456"; //mysql密码 
+				    		String DBName = "ehealth"; //数据库名 
+				    		String connUrl = "jdbc:mysql://101.201.40.158/" + DBName + "?user=" + DBUser + "&password=" + DBPasswd; 
+				    		Class.forName(driverName).newInstance(); 
+				    	    Connection con=DriverManager.getConnection(connUrl);
+				    	    Statement sql=con.createStatement();
+				    	    ResultSet rs=sql.executeQuery("select docTime from user where id='"+ id +"'"); 
+				    	     //判断数据库里 是否有今日门诊记录
+				    	    if(rs.next()){ 
+				    	    	doctime=rs.getString(1);
+					    	    String[] strs = new String[doctime.length()-1];
+				    	    	for(int n=0;n<doctime.length()-1;n+=2){
+				    	    		strs[n] = doctime.substring(n,n+2);	
+				    	    		//System.out.print(strs[n]);
+				    	    	 }
+			    	    	    StringBuffer sb = new StringBuffer();
+			    	    	    for(int ii = 0; ii< strs.length; ii+=2){
+			    	    	    	//String a=strs[ii];
+	                            	//int b=Integer.parseInt(a);
+			    	    	    	switch(strs[ii]) {
+			    	    			case "10": 
+			    	    			      sb.append("星期一上午\t");
+			    	    			      break;
+			    	    			case "11":
+			    	    				  sb.append("星期一下午\t");
+			    	    			      break;
+			    	    			case "20": 
+		    	    				       sb.append("星期二上午\t");
+		    	    			           break;
+		    	    			    case "21":
+		    	    					  sb.append("星期二下午\t");
+		    	    				      break;
+			    	    			case "30": 
+		    	    				       sb.append("星期三上午\t");
+		    	    			           break;
+		    	    			    case "31":
+		    	    					  sb.append("星期三下午\t");
+		    	    				      break;
+			    	    			case "40": 
+		    	    				       sb.append("星期四上午\t");
+		    	    			           break;
+		    	    				case "41":
+		    	    					  sb.append("星期四下午\t");
+		    	    				      break;
+			    	    			case "50": 
+		    	    				       sb.append("星期五上午\t");
+		    	    			           break;
+		    	    				case "51":
+		    	    					  sb.append("星期五下午\t");
+		    	    				      break;
+		    	    				default: break;
+			    	    		  }
+			    	    	    }
+			    	    	    worktime=sb.toString();
+			    	    	    System.out.println(worktime);
+				    	   }
+				    	  else{
+				    		  doctime="今日无门诊。";
+				    	   }
+
+				    	   con.close();
+				    	}
+				    	catch(SQLException e1){}
+   					 %>
+						<h4>出诊时间：<%=worktime %></h4>
 					<div class="clearfix"></div>
 				</div>
 			</div>	 
