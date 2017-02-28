@@ -181,31 +181,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       		<label style="color: #888;">周一下午</label>
                       	</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="20">
                       		<label style="color: #888;">周二上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="21">
                       		<label style="color: #888;">周二下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="30">
                       		<label style="color: #888;">周三上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="31">
                       		<label style="color: #888;">周三下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="40">
                       		<label style="color: #888;">周四上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="41">
                       		<label style="color: #888;">周四下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="">
+							<input type="checkbox" name="worktime" id="r5" value="50">
                       		<label style="color: #888;">周五上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="radio" id="r5" value="51">
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">

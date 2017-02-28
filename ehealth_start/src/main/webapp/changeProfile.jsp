@@ -17,7 +17,7 @@
 	String age=request.getParameter("age");
 	String identity=request.getParameter("identity");
 	String recordNumber=request.getParameter("recordNumber");
-	String worktime=request.getParameter("worktime");
+	String[] worktime=request.getParameterValues("worktime");
 %>
 <html>
 <head>
@@ -70,7 +70,13 @@ try{
     	  boolean hasResultSet = stmt.execute("update user set recordNumber='"+ recordNumber +"'where tel='"+user+"'");
        }
       if(!worktime.equals("")){
-    	  boolean hasResultSet = stmt.execute("update user set docTime='"+ worktime +"'where tel='"+user+"'");
+    	  StringBuffer sb = new StringBuffer();
+    	  for(int i = 0; i < worktime.length; i++){
+    	   sb.append(worktime[i]);
+    	  }
+    	  String s = sb.toString();
+    	  int doctime= Integer.parseInt(s);
+    	  boolean hasResultSet = stmt.execute("update user set docTime='"+ doctime +"'where tel='"+user+"'");
        }
     }
    else{
