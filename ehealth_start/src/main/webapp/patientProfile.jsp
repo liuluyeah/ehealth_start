@@ -1,3 +1,11 @@
+<%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%> 
+<%@ page contentType="text/html;charset=utf-8"%> 
+<% 
+ request.setCharacterEncoding("UTF-8"); 
+ response.setCharacterEncoding("UTF-8"); 
+ response.setContentType("text/html; charset=UTF-8"); 
+%> 
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="static/patientProfile.js"></script>
 <!--/script-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -33,23 +42,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
-							  <a href="patientIndex.html"><h2>北京大学<span>第一医院</span></h2></a>
+							  <a href="patientIndex.jsp"><h2>北京大学<span>第一医院</span></h2></a>
 						    </div>
 					     <div class="top-menu">
 							<span class="menu"> </span>
 								<ul class="cl-effect-16">
-								<li><a href="patientIndex.html" data-hover="主页">主页</a></li>
-								<li><a href="patientAbout.html" data-hover="关于">关于</a></li>
-								<li><a href="patientInfo.html" data-hover="我的门诊">我的门诊</a></li>
-								<li><a href="patientRecord.html" data-hover="我的病历">我的病历</a></li>
-								<li><a href="patientAppoint.html" data-hover="我的预约">我的预约</a></li>
+								<li><a href="patientIndex.jsp" data-hover="主页">主页</a></li>
+								<li><a href="patientAbout.jsp" data-hover="关于">关于</a></li>
+								<li><a href="patientInfo.jsp" data-hover="我的门诊">我的门诊</a></li>
+								<li><a href="patientRecord.jsp" data-hover="我的病历">我的病历</a></li>
+								<li><a href="patientAppoint.jsp" data-hover="我的预约">我的预约</a></li>
 								<li style="color: white">|</li>
 								<li><span class="glyphicon glyphicon-qrcode"  data-toggle="modal" data-target="#scanQRcode" data-backdrop="static" style="cursor: pointer;color: white"></span></li>
 								<li class="dropdown" style="text-align: left;">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
 									<ul class="dropdown-menu" role="menu" id="patient-contents">
-										<li><a  class="active" href="patientProfile.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
-										<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+										<li><a  class="active" href="patientProfile.jsp"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+										<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
 									</ul>
 			  					</li>		
 								  <div class="clearfix"></div>
@@ -95,10 +104,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-4">
 						<input type="text" class="form-control" id="newPassAgain" placeholder="">
 						</div>
-						</div>
-						&nbsp
-						<div class="col-md-12 send" style="margin-left: 1.5%">
-							<input type="submit" value="保存" >
 						</div>
 					</form>
 					&nbsp

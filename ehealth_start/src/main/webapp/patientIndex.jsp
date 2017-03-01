@@ -23,6 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="static/patientProfile.js"></script>
 <!--/script-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -40,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
-							  <a href="patientIndex.html"><h2>北京大学<span>第一医院</span></h2></a>
+							  <a href="patientIndex.jsp"><h2>北京大学<span>第一医院</span></h2></a>
 						    </div>
 					     <div class="top-menu">
 							<span class="menu"> </span>
@@ -55,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="dropdown" style="text-align: left;">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></a>
 									<ul class="dropdown-menu" role="menu" id="patient-contents">
-										<li><a href="patientProfile.html"><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
+										<li onClick="preparePatientProfile()"><a><span class="glyphicon glyphicon-cog"></span> 修改资料</a></li>
 										<li><a href="login.jsp"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
 									</ul>
 			  					</li>		
