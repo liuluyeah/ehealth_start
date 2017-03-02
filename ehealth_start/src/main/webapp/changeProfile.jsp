@@ -18,6 +18,9 @@
 	String identity=request.getParameter("identity");
 	String recordNumber=request.getParameter("recordNumber");
 	String[] worktime=request.getParameterValues("worktime");
+	String sel_year=request.getParameter("sel_year");
+	String sel_month=request.getParameter("sel_month");
+	String sel_day=request.getParameter("sel_day");
 %>
 <html>
 <head>
@@ -57,8 +60,10 @@ try{
       if(!name.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set name='"+ name +"'where tel='"+user+"'");
        }
-      if(!sex.equals("")){
+      if(sex.equals("男")||sex.equals("女")){
     	  boolean hasResultSet = stmt.execute("update user set sex='"+ sex +"'where tel='"+user+"'");
+       }else{
+    	   out.print("<script>alert('请选择性别！');window.location.href='doctorProfile.jsp'</script>");
        }
       if(!age.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set age='"+ age +"'where tel='"+user+"'");
@@ -69,6 +74,10 @@ try{
       if(!recordNumber.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set recordNumber='"+ recordNumber +"'where tel='"+user+"'");
        }
+      String birth=sel_year+sel_month+sel_day;
+      if(!birth.equals("")){
+    	  boolean hasResultSet = stmt.execute("update user set birth='"+ birth +"'where tel='"+user+"'");
+       }
       if(!worktime.equals("")){
     	  StringBuffer sb = new StringBuffer();
     	  for(int i = 0; i < worktime.length; i++){
@@ -77,6 +86,8 @@ try{
     	  String s = sb.toString();
     	  int doctime= Integer.parseInt(s);
     	  boolean hasResultSet = stmt.execute("update user set docTime='"+ doctime +"'where tel='"+user+"'");
+       }else{
+    	   out.print("<script>alert('请选择出诊时间！');window.location.href='doctorProfile.jsp'</script>");
        }
     }
    else{

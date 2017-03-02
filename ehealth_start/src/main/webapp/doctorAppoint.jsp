@@ -232,6 +232,18 @@ $(function () {
 		    	    				case "51":
 		    	    					  sb.append("星期五下午\t");
 		    	    				      break;
+		    	    				case "60":
+		    	    					  sb.append("星期六下午\t");
+		    	    				      break;
+		    	    				case "61":
+		    	    					  sb.append("星期六下午\t");
+		    	    				      break;
+		    	    				case "70":
+		    	    					  sb.append("星期日下午\t");
+		    	    				      break;
+		    	    				case "71":
+		    	    					  sb.append("星期日下午\t");
+		    	    				      break;
 		    	    				default: break;
 			    	    		  }
 			    	    	    }

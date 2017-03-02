@@ -20,7 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' />	
 <script src="js/jquery.min.js"> </script>
 <script src="js/bootstrap.min.js"></script>
-
+<script src="js/birthday.js"> </script>
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <!--/script-->
@@ -31,6 +31,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
 			});
+			//生日
+			$(function () {
+				$.ms_DatePicker({
+			            YearSelector: ".sel_year",
+			            MonthSelector: ".sel_month",
+			            DaySelector: ".sel_day"
+			    });
+				$.ms_DatePicker();
+			}); 
 </script>
 
 </head>
@@ -139,21 +148,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
 						<div class="col-md-8" style="padding-top: 4%">
-							<select name="YYYY" onchange="YYYYDD(this.value)">
-    							<option value="">年</option>
-    							<option value="">1950</option>
-    							<option value="">1951</option>
-  							</select>
-  							<select name="MM" onchange="MMDD(this.value)">
-    							<option value="">月</option>
-    							<option value="">1</option>
-    							<option value="">2</option>
-  							</select>
- 							<select name="DD">
- 								<option value="">日</option>
-    							<option value="">10</option>
-    							<option value="">11</option>
-  							</select>
+				        <select id="sel_year" name="sel_year"></select>年
+				        <select id="sel_month" name="sel_month"></select>月
+				        <select id="sel_day" name="sel_day"></select>日
 						</div>
 						</div>
 												<div class="col-md-4">
@@ -209,17 +206,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="radio" id="r5" value="60">
                       		<label style="color: #888;">周六上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="radio" id="r5" value="61">
                       		<label style="color: #888;">周六下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="radio" id="r5" value="70">
                       		<label style="color: #888;">周日上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="">
+							<input type="checkbox" name="radio" id="r5" value="71">
                       		<label style="color: #888;">周日下午</label>
 						</div>
 						</div>
