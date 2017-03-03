@@ -248,7 +248,7 @@ $(function () {
 			    	    		  }
 			    	    	    }
 			    	    	    worktime=sb.toString();
-			    	    	    System.out.println(worktime);
+			    	    	   // System.out.println(worktime);
 				    	   }
 				    	  else{
 				    		  doctime="今日无门诊。";

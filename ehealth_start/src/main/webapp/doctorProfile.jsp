@@ -40,6 +40,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    });
 				$.ms_DatePicker();
 			}); 
+			//监听所有要修改的input输入框，全都为必填项目
+			function checksubmit()
+			  {
+			   //var doctime= $("input[name='worktime']:checkbox[checked=true]");
+			   if(!document.getElementById("r1").checked && !document.getElementById("r2").checked && !document.getElementById("r3").checked  && !document.getElementById("r4").checked 
+					&& !document.getElementById("r5").checked && !document.getElementById("r6").checked && !document.getElementById("r7").checked
+					&& !document.getElementById("r8").checked && !document.getElementById("r9").checked && !document.getElementById("r10").checked
+					&& !document.getElementById("r11").checked && !document.getElementById("r12").checked && !document.getElementById("r13").checked && !document.getElementById("r14").checked){
+				    alert("请选择出诊时间");
+			        return false;
+			   }else if(!document.getElementById("rsex").checked && !document.getElementById("rsex2").checked){
+				alert("请选择性别");
+				return false;
+		    	}
+			   return true;
+			  }
 </script>
 
 </head>
@@ -130,10 +146,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
 						<div class="col-md-8" style="padding-top: 3%">
-						<input type="radio" name="radio" id="r5" value="男" >
+						<input type="radio" name="radio" id="rsex" value="男" >
                         <label style="color: #888;">男</label>
                         &nbsp
-						<input type="radio" name="radio" id="r5" value="女">
+						<input type="radio" name="radio" id="rsex2" value="女">
                         <label style="color: #888;">女</label>
 						</div>
 						</div>
@@ -171,58 +187,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p class="col-md-2 your-para" style="padding-top: 1%">出诊时间</p>
 						<div class="col-md-10" style="padding-top: 1%">
 						<div>
-							<input type="checkbox" name="worktime" id="r5" value="10">
+							<input type="checkbox" name="worktime" id="r1" value="10">
                       		<label style="color: #888;">周一上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="11">
+							<input type="checkbox" name="worktime" id="r2" value="11">
                       		<label style="color: #888;">周一下午</label>
                       	</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="20">
+							<input type="checkbox" name="worktime" id="r3" value="20">
                       		<label style="color: #888;">周二上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="21">
+							<input type="checkbox" name="worktime" id="r4" value="21">
                       		<label style="color: #888;">周二下午</label>
 						</div>
 						<div style="padding-top: 1%">
 							<input type="checkbox" name="worktime" id="r5" value="30">
                       		<label style="color: #888;">周三上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="31">
+							<input type="checkbox" name="worktime" id="r6" value="31">
                       		<label style="color: #888;">周三下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="40">
+							<input type="checkbox" name="worktime" id="r7" value="40">
                       		<label style="color: #888;">周四上午</label>
                       		&nbsp
-							<input type="checkbox" name="worktime" id="r5" value="41">
+							<input type="checkbox" name="worktime" id="r8" value="41">
                       		<label style="color: #888;">周四下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="worktime" id="r5" value="50">
+							<input type="checkbox" name="worktime" id="r9" value="50">
                       		<label style="color: #888;">周五上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="51">
+							<input type="checkbox" name="worktime" id="r10" value="51">
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="60">
+							<input type="checkbox" name="worktime" id="r11" value="60">
                       		<label style="color: #888;">周六上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="61">
+							<input type="checkbox" name="worktime" id="r12" value="61">
                       		<label style="color: #888;">周六下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="radio" id="r5" value="70">
+							<input type="checkbox" name="worktime" id="r13" value="70">
                       		<label style="color: #888;">周日上午</label>
                       		&nbsp
-							<input type="checkbox" name="radio" id="r5" value="71">
+							<input type="checkbox" name="worktime" id="r14" value="71">
                       		<label style="color: #888;">周日下午</label>
 						</div>
 						</div>
 						</div>
 						<div class="col-md-12 send" style="margin-left: 1.5%">
-							<input type="submit" value="保存" >
+							<input type="submit" value="保存" onclick="JavaScript:return checksubmit();"/>
 						</div>
 					</form>
 					&nbsp

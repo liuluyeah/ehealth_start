@@ -60,10 +60,8 @@ try{
       if(!name.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set name='"+ name +"'where tel='"+user+"'");
        }
-      if(sex.equals("男")||sex.equals("女")){
+      if(!sex.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set sex='"+ sex +"'where tel='"+user+"'");
-       }else{
-    	   out.print("<script>alert('请选择性别！');window.location.href='doctorProfile.jsp'</script>");
        }
       if(!age.equals("")){
     	  boolean hasResultSet = stmt.execute("update user set age='"+ age +"'where tel='"+user+"'");
@@ -86,8 +84,6 @@ try{
     	  String s = sb.toString();
     	  int doctime= Integer.parseInt(s);
     	  boolean hasResultSet = stmt.execute("update user set docTime='"+ doctime +"'where tel='"+user+"'");
-       }else{
-    	   out.print("<script>alert('请选择出诊时间！');window.location.href='doctorProfile.jsp'</script>");
        }
     }
    else{
