@@ -31,6 +31,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
 			});
+			function addclinicBasicItem(){
+				$("#clinicbasiclast").append(
+						'<div class="col-md-4" >'+
+						'<p class="col-md-4 your-para" style="padding-top: 5%">'+$("#newclinicitem").val() +'</p>'+
+						'<div class="col-md-8" style="padding-top: 4%">'+
+						'<input type="text" class="form-control" id="identity" placeholder="">'+
+						'</div></div>'	+'<input style="display:none" type="text" class="form-control" id="newclinicitem" name="newitem" value=" '+$("#newclinicitem").val()+'">'							
+				);	
+			}
 </script>
 
 </head>
@@ -99,12 +108,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body"> 
 					<form>
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
-						<div class="col-md-8">
-						<input type="text" class="form-control" id="name" placeholder="">
+						   <p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
+						   <div class="col-md-8">
+						   <input type="text" class="form-control" id="name" placeholder="">
+						   </div>
 						</div>
-						</div>
-
+						
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
 						<div class="col-md-8">
@@ -269,7 +278,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                </div>
 			  </div>
 			  
-			  <!--                                                            更年期一日门诊                                                                                                                                                                      -->
+			  
+			  <!--******************************************    更年期一日门诊            ******************************************-->
+			  
 			  <div role="tabpanel" class="tab-pane fade" id="long" aria-labelledby="long-tab">
 				<div class="panel-group" id="infoLong">
                 <div class="panel panel-default">
@@ -278,7 +289,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  </div>
                 <div id="collapseOne2" class="panel-collapse collapse in">
                 <div class="panel-body"> 
-					<form>
+               <%
+					//变量声明
+					java.sql.Connection sqlCon; //数据库连接对象
+					java.sql.Statement sqlStmt; //SQL语句对象
+					java.sql.ResultSet sqlRst; //结果集对象
+					java.lang.String strCon;//数据库连接字符串
+					java.lang.String strSQL;//SQL语句
+					//装载JDBC驱动程序
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+					//设置数据库连接字符串
+					strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
+					//连接数据库
+					sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+					//创建一个可以滚动的只读的SQL语句对象
+					sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+					//准备SQL语句
+					strSQL="show columns from clinic_assistant";
+					//执行SQL语句并获取结果集
+					sqlRst=sqlStmt.executeQuery(strSQL);
+					//获取记录总数
+					sqlRst.last();
+				%>
+					<form method="post" action="doctorClinicBasicAdd.jsp">
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
 						<div class="col-md-8">
@@ -306,14 +339,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
-
-						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
-						<div class="col-md-8" style="padding-top: 4%">
-						<input type="text" class="form-control" id="identity" placeholder="">
-						</div>
-						</div>
 						
+                        <div id="clinicbasiclast">
+							<div class="col-md-4" >
+							<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
+							<div class="col-md-8" style="padding-top: 4%">
+							<input type="text" class="form-control" id="identity" placeholder="">
+							</div>
+							</div>
+						</div>
+				    <%
+						while(!sqlRst.isAfterLast()){
+					 %>
+						<div class="col-md-4">
+						   <p class="col-md-4 your-para" style="padding-top: 3%"><%=sqlRst.getString(1)%></p>
+						   <div class="col-md-8">
+						   <input type="text" class="form-control" id="name" placeholder="">
+						   </div>
+						</div>
+           			<%
+					 sqlRst.next();			
+					 }
+					%>	
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
 							<input type="button" data-toggle="modal" data-target="#addclinicBasic" data-backdrop="static" value="新增">
@@ -537,11 +584,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-    <!--                           更年期一日门诊------------- 新增基本信息                                                                                                         -->
+    <!-- *************************** 更年期一日门诊-新增基本信息 ****************************** -->
     <div id="addclinicBasic" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
             <div class="modal-content">
-            <form  method="post" action="doctorClinicBasicAdd.jsp">
+            <form >  <!--  -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">新增诊疗信息</h4>
@@ -551,13 +598,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-12">
 						<p class="col-md-4 your-para" style="padding-top: 1%">新增名称</p>
 						<div class="col-md-8">
-						<input type="text" class="form-control" id="oldPass" name="newitem" value="">
+						<input type="text" class="form-control" id="newclinicitem" name="newitem" value="">
 						</div>
 						</div>
 					
                 </div>                
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addclinicBasicItem()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
 			</form>
