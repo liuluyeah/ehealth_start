@@ -268,13 +268,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
                </div>
 			  </div>
+			  
+			  <!--                                                            更年期一日门诊                                                                                                                                                                      -->
 			  <div role="tabpanel" class="tab-pane fade" id="long" aria-labelledby="long-tab">
 				<div class="panel-group" id="infoLong">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title" style="font-size: 1.4em; "> <a data-toggle="collapse" class="panel-toggle" data-parent="#infoLong" href="#collapseOne2" style="text-decoration: none;">1. 诊疗信息 </a></h4>
-              </div>
-              <div id="collapseOne2" class="panel-collapse collapse in">
+                <div class="panel panel-default">
+                 <div class="panel-heading">
+                  <h4 class="panel-title" style="font-size: 1.4em; "> <a data-toggle="collapse" class="panel-toggle" data-parent="#infoLong" href="#collapseOne2" style="text-decoration: none;">1. 诊疗信息 </a></h4>
+                 </div>
+                <div id="collapseOne2" class="panel-collapse collapse in">
                 <div class="panel-body"> 
 					<form>
 						<div class="col-md-4">
@@ -314,28 +316,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
-							<input type="button" data-toggle="modal" data-target="#addBasic" data-backdrop="static" value="新增">
+							<input type="button" data-toggle="modal" data-target="#addclinicBasic" data-backdrop="static" value="新增">
 							&nbsp&nbsp<input type="submit" value="保存" >
 						</div>
 					</form>
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title" style="font-size: 1.4em; "> <a data-toggle="collapse" class="panel-toggle" data-parent="#infoLong" href="#collapseTwo2" style="text-decoration: none;">2. 调查问卷</a> </h4>
-              </div>
-              <div id="collapseTwo2" class="panel-collapse collapse">
-                <div class="panel-body"> 民族、职业习惯等 
-                <div class="col-md-12 send" style="margin-left: 1.5%">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                 <h4 class="panel-title" style="font-size: 1.4em; "> <a data-toggle="collapse" class="panel-toggle" data-parent="#infoLong" href="#collapseTwo2" style="text-decoration: none;">2. 调查问卷</a> </h4>
+                </div>
+                <div id="collapseTwo2" class="panel-collapse collapse">
+                     <div class="panel-body"> 民族、职业习惯等 
+                        <div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
 							<input type="button" data-toggle="modal" data-target="#addInvest" data-backdrop="static" value="新增">
 							&nbsp&nbsp<input type="submit" value="保存" >
 						</div>
+                    </div>                
                 </div>
-                
-              </div>
-            </div>
+                </div>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title" style="font-size: 1.4em; "> <a data-toggle="collapse" class="panel-toggle" data-parent="#infoLong" href="#collapseThree2" style="text-decoration: none;"> 3. 超声学检查结果 </a></h4>
@@ -405,6 +406,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
                </div>
 			  </div>
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			  <div role="tabpanel" class="tab-pane fade" id="medicine" aria-labelledby="medicine-tab">
 				<div class="panel-group" id="infoMedicine">
            <div class="panel panel-default">
@@ -525,6 +534,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
 
+             </div>
+        </div>
+    </div>
+    <!--                           更年期一日门诊------------- 新增基本信息                                                                                                         -->
+    <div id="addclinicBasic" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
+            <div class="modal-content">
+            <form  method="post" action="doctorClinicBasicAdd.jsp">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新增诊疗信息</h4>
+                </div>
+                <div class="modal-body" style="margin-bottom: 8%">
+                	
+						<div class="col-md-12">
+						<p class="col-md-4 your-para" style="padding-top: 1%">新增名称</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="oldPass" name="newitem" value="">
+						</div>
+						</div>
+					
+                </div>                
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+			</form>
              </div>
         </div>
     </div>
