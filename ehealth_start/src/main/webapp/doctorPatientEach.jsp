@@ -102,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
 								<li><a class="active" href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
 								<li><a href="doctorAppoint.jsp" data-hover="日程管理">日程管理</a></li>
-								<li><a href="doctorSetting.html" data-hover="设置">设置</a></li>
+								<li><a href="doctorSetting.jsp" data-hover="设置">设置</a></li>
 								<li style="color: white">|</li>
 								<li><span class="glyphicon glyphicon-qrcode"  data-toggle="modal" data-target="#scanQRcode" data-backdrop="static" style="cursor: pointer;color: white"></span></li>
 								<li class="dropdown" style="text-align: left;">
