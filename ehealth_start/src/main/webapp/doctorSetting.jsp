@@ -5,6 +5,29 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
+<%
+	//变量声明
+	java.sql.Connection sqlCon1; //数据库连接对象
+	java.sql.Statement sqlStmt1; //SQL语句对象
+	java.sql.ResultSet sqlRst1; //结果集对象
+	java.lang.String strCon1;//数据库连接字符串
+	java.lang.String strSQL1;//SQL语句
+	//装载JDBC驱动程序
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+	//设置数据库连接字符串
+	strCon1="jdbc:mysql://101.201.40.158:3306/ehealth";
+	//连接数据库
+	sqlCon1=java.sql.DriverManager.getConnection(strCon1,"root","123456");
+	//创建一个可以滚动的只读的SQL语句对象
+	sqlStmt1=sqlCon1.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+	//准备SQL语句
+	strSQL1="select * from first_basic_add";
+	//执行SQL语句并获取结果集
+	sqlRst1=sqlStmt1.executeQuery(strSQL1);
+	//获取记录总数
+	sqlRst1.last();
+	int i;
+	%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -39,6 +62,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						'<input type="text" class="form-control" id="identity" placeholder="">'+
 						'</div></div>'	+'<input style="display:none" type="text" class="form-control" id="newclinicitem" name="newitem" value=" '+$("#newclinicitem").val()+'">'							
 				);	
+			}
+			var i=0;
+			function addfirstBasicItem(){
+				var newval=$("#newfirstitem").val();
+				var newdiv=$('#height').clone();
+				newdiv.find("p").text(newval);	
+				++i;
+				newdiv.append('<input style="display:none" type="text"  name="1"  value=" '+newval+'">');
+				//newdiv.find("input").val(newval);
+				//newdiv.find("input").attr("name",++i)
+				$("#firstnew").append(newdiv) 
 			}
 </script>
 
@@ -98,6 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 			<br />
 			<div id="myTabContent" class="tab-content">
+<!-- **********************************************首诊*************************************************************************** -->
 			  <div role="tabpanel" class="tab-pane fade active in" id="first" aria-labelledby="first-tab">
 				<div class="panel-group" id="infoFirst">
             <div class="panel panel-default">
@@ -106,8 +141,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
-					<form>
-						<div class="col-md-4">
+					<form method="post" action="doctorFirstBasicAdd.jsp">
+
+					<div id="firstnew">
+						<div class="col-md-4" id="height">
 						   <p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
 						   <div class="col-md-8">
 						   <input type="text" class="form-control" id="name" placeholder="">
@@ -127,7 +164,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="age" placeholder="">
 						</div>
 						</div>
-
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">血脂</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+						</div>
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">腰围</p>
 						<div class="col-md-8" style="padding-top: 4%">
@@ -140,8 +182,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
+				 		</div>
 						</div>
-						
 						<br /><br /><br /><br />
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
@@ -206,6 +248,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
                </div>
 			  </div>
+<!-- **********************************************首诊结束、复诊开始 *****************************************************************-->
 			  <div role="tabpanel" class="tab-pane fade" id="next" aria-labelledby="next-tab">
 				<div class="panel-group" id="infoNext">
             <div class="panel panel-default">
@@ -279,7 +322,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </div>
 			  
 			  
-			  <!--******************************************    更年期一日门诊            ******************************************-->
+<!--******************************************复诊结束      更年期 一日门诊 *****************************************************************-->
 			  
 			  <div role="tabpanel" class="tab-pane fade" id="long" aria-labelledby="long-tab">
 				<div class="panel-group" id="infoLong">
@@ -348,7 +391,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							</div>
 						</div>
-				    <%
+				     <%
+				        sqlRst.absolute(12);
 						while(!sqlRst.isAfterLast()){
 					 %>
 						<div class="col-md-4">
@@ -360,7 +404,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            			<%
 					 sqlRst.next();			
 					 }
-					%>	
+					%>
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
 							<input type="button" data-toggle="modal" data-target="#addclinicBasic" data-backdrop="static" value="新增">
@@ -570,21 +614,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-12">
 						<p class="col-md-4 your-para" style="padding-top: 1%">新增名称</p>
 						<div class="col-md-8">
-						<input type="text" class="form-control" id="oldPass" placeholder="">
+						<input type="text" class="form-control" id="newfirstitem" placeholder="">
 						</div>
 						</div>
 					</form>
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addBasicItem()">保存</button>
+                    <button type="button" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addfirstBasicItem()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
 
              </div>
         </div>
     </div>
-    <!-- *************************** 更年期一日门诊-新增基本信息 ****************************** -->
+<!-- ***************************                   更年期一日门诊-新增基本信息                                                          ****************************** -->
     <div id="addclinicBasic" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
             <div class="modal-content">
