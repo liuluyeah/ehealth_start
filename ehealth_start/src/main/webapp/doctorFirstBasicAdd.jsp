@@ -1,4 +1,4 @@
-<!-- 医生个性化设置页面，更年期一日门诊新增基本信息--byliulu -->
+<!-- 医生个性化设置页面，首诊新增基本信息--byliulu -->
 <%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +20,7 @@ response.setContentType("text/html; charset=utf-8");
 		<c:catch var="error">
 		<c:set var="newitem" value="<%=newitem %>" />
 			<sql:update var="userlist" dataSource="${dataSour}" >
-			alter table clinic_assistant add column <%=newitem %> varchar(10) default '';	
+				alter table mypatient add column <%=newitem %> varchar(10) default '';
 			</sql:update>
 		</c:catch>
 		<c:out value="${error}"></c:out><br>

@@ -5,29 +5,6 @@
  response.setCharacterEncoding("UTF-8"); 
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
-<%
-	//变量声明
-	java.sql.Connection sqlCon1; //数据库连接对象
-	java.sql.Statement sqlStmt1; //SQL语句对象
-	java.sql.ResultSet sqlRst1; //结果集对象
-	java.lang.String strCon1;//数据库连接字符串
-	java.lang.String strSQL1;//SQL语句
-	//装载JDBC驱动程序
-	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	//设置数据库连接字符串
-	strCon1="jdbc:mysql://101.201.40.158:3306/ehealth";
-	//连接数据库
-	sqlCon1=java.sql.DriverManager.getConnection(strCon1,"root","123456");
-	//创建一个可以滚动的只读的SQL语句对象
-	sqlStmt1=sqlCon1.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
-	//准备SQL语句
-	strSQL1="select * from first_basic_add";
-	//执行SQL语句并获取结果集
-	sqlRst1=sqlStmt1.executeQuery(strSQL1);
-	//获取记录总数
-	sqlRst1.last();
-	int i;
-	%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,13 +32,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 			function addclinicBasicItem(){
-				$("#clinicbasiclast").append(
+			/*	$("#clinicbasiclast").append(
 						'<div class="col-md-4" >'+
 						'<p class="col-md-4 your-para" style="padding-top: 5%">'+$("#newclinicitem").val() +'</p>'+
 						'<div class="col-md-8" style="padding-top: 4%">'+
 						'<input type="text" class="form-control" id="identity" placeholder="">'+
 						'</div></div>'	+'<input style="display:none" type="text" class="form-control" id="newclinicitem" name="newitem" value=" '+$("#newclinicitem").val()+'">'							
-				);	
+				);*/
+				var newval=$("#newclinicitem").val();
+				var newdiv=$('#height').clone();
+				newdiv.find("p").text(newval);	
+				newdiv.append('<input style="display:none" type="text"  name="1"  value=" '+newval+'">');
+				$("#clinicbasiclast").append(newdiv);
 			}
 			var i=0;
 			function addfirstBasicItem(){
@@ -72,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				newdiv.append('<input style="display:none" type="text"  name="1"  value=" '+newval+'">');
 				//newdiv.find("input").val(newval);
 				//newdiv.find("input").attr("name",++i)
-				$("#firstnew").append(newdiv) 
+				$("#firstnew").append(newdiv);
 			}
 </script>
 
@@ -142,7 +124,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
 					<form method="post" action="doctorFirstBasicAdd.jsp">
-
+						<%
+							//变量声明
+							java.sql.Connection sqlCon1; //数据库连接对象
+							java.sql.Statement sqlStmt1; //SQL语句对象
+							java.sql.ResultSet sqlRst1; //结果集对象
+							java.lang.String strCon1;//数据库连接字符串
+							java.lang.String strSQL1;//SQL语句
+							//装载JDBC驱动程序
+							Class.forName("com.mysql.jdbc.Driver").newInstance();
+							//设置数据库连接字符串
+							strCon1="jdbc:mysql://101.201.40.158:3306/ehealth";
+							//连接数据库
+							sqlCon1=java.sql.DriverManager.getConnection(strCon1,"root","123456");
+							//创建一个可以滚动的只读的SQL语句对象
+							sqlStmt1=sqlCon1.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+							//准备SQL语句
+							strSQL1="show columns from mypatient";
+							//执行SQL语句并获取结果集
+							sqlRst1=sqlStmt1.executeQuery(strSQL1);
+							//获取记录总数
+							sqlRst1.last();
+							%>
 					<div id="firstnew">
 						<div class="col-md-4" id="height">
 						   <p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
@@ -183,6 +186,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 				 		</div>
+				 	<%
+				        sqlRst1.absolute(12);
+						while(!sqlRst1.isAfterLast()){
+					 %>
+						<div class="col-md-4">
+						   <p class="col-md-4 your-para" style="padding-top: 3%"><%=sqlRst1.getString(1)%></p>
+						   <div class="col-md-8">
+						   <input type="text" class="form-control" id="name" placeholder="">
+						   </div>
+						</div>
+           			<%
+					 sqlRst1.next();			
+					 }
+					%>
 						</div>
 						<br /><br /><br /><br />
 						<div class="col-md-12 send" style="margin-left: 1.5%">
@@ -355,7 +372,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					sqlRst.last();
 				%>
 					<form method="post" action="doctorClinicBasicAdd.jsp">
-						<div class="col-md-4">
+					 <div id="clinicbasiclast">
+						<div class="col-md-4" id="height">
 						<p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
@@ -382,16 +400,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
-						
-                        <div id="clinicbasiclast">
-							<div class="col-md-4" >
-							<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
-							<div class="col-md-8" style="padding-top: 4%">
-							<input type="text" class="form-control" id="identity" placeholder="">
-							</div>
-							</div>
+						                       
+						<div class="col-md-4" >
+						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
-				     <%
+						</div>
+						
+				    <%
 				        sqlRst.absolute(12);
 						while(!sqlRst.isAfterLast()){
 					 %>
@@ -405,6 +422,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 sqlRst.next();			
 					 }
 					%>
+						</div>
+
 						<div class="col-md-12 send" style="margin-left: 1.5%">
 						<br />
 							<input type="button" data-toggle="modal" data-target="#addclinicBasic" data-backdrop="static" value="新增">
@@ -600,8 +619,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-
-
+<!-- ***************************                   首诊-新增基本信息                                                          ****************************** -->
+<!-- ***************************                   首诊-新增基本信息                                                          ****************************** -->
     <div id="addBasic" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
             <div class="modal-content">
@@ -621,7 +640,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addfirstBasicItem()">保存</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addfirstBasicItem()">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
 
