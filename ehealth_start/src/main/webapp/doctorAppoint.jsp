@@ -233,7 +233,7 @@ $(function () {
 		    	    					  sb.append("星期五下午\t");
 		    	    				      break;
 		    	    				case "60":
-		    	    					  sb.append("星期六下午\t");
+		    	    					  sb.append("星期六上午\t");
 		    	    				      break;
 		    	    				case "61":
 		    	    					  sb.append("星期六下午\t");

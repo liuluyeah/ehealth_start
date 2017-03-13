@@ -85,51 +85,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="about-top about-top-right">
 				<h4></h4>
 					<div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title" style="font-size: 1.4em;"> <a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;"> 1. 诊疗信息 </a></h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body"> 
-                <!-- 连接数据库 -->
+		    	 <!-- 连接数据库 -->
 				<c:catch var="ex">
                 <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
                 </c:catch>
                 <c:if test="${ex != null}">
                                                     数据库连接失败，请联系管理员！
                 </c:if>
-                <!-- 数据读取 --><c:set var="idmenzhen" value="${param.id}" />
-                <sql:query var="userlist" dataSource="${dataSour}" >SELECT * FROM clinic_assistant where idmenzhen=?;
-                <sql:param value="${idmenzhen} " />
+                <!-- 数据读取 --><c:set var="id" value="${param.id}" /><c:set var="tel" value="${param.tel}" />
+                <sql:query var="userlist" dataSource="${dataSour}" >SELECT * FROM patient_detail where time=? && tel=?;
+                <sql:param value="${id} " /><sql:param value="${tel}"/>
                 </sql:query>
-					<c:forEach var="row" items="${userlist.rows}">
-					<form id="${row.idmenzhen}" >
+                <c:forEach var="row" items="${userlist.rows}"  end="0"> 	
+                
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title" style="font-size: 1.4em;"> <a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseOne" style="text-decoration: none;"> 1. 诊疗信息 </a></h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body"> 
+
+					<form  >
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">身高：</p>
-						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.height}"/></p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">血糖：</p>
+						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.sugar}"/></p>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">体重：</p>
-						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.weigtht}"/></p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">血脂：</p>
+						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.fat}"/></p>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血压：</p>
-						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.bloodpressure}"/></p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">BMI：</p>
+						<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.bmi}"/></p>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">腰围：</p>
-						<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.waist}"/></p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比：</p>
+						<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.waisthipratio}"/></p>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">臀围：</p>
-						<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.hip}"/></p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">上次用药：</p>
+						<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.medicine}"/></p>
 						</div>
 					</form>
-					</c:forEach>
+					
                 </div>
               </div>
             </div>
@@ -207,51 +209,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<textarea cols="" rows="4" value=" " onfocus="this.value='';"></textarea>
 						</div>
 						</div>
-                	<div class="col-md-12 " >
-						<p class="col-md-2 your-para">用药：</p>
-						<div class="col-md-8">
-							<form>
-								<select name="YYYY" onchange="YYYYDD(this.value)">
-    							<option value="">药品名称</option>
-    							<option value="">益母草颗粒</option>
-    							<option value="">感冒胶囊</option>
-    							<option value="">延更丹</option>
-  							</select>
-  							<select name="MM" onchange="MMDD(this.value)">
-    							<option value="">药品用量</option>
-    							<option value="">一次1粒</option>
-    							<option value="">一次2粒</option>
-    							<option value="">一次3粒</option>
-  							</select>
- 							<select name="DD">
- 								<option value="">用药频率</option>
-    							<option value="">一日一次</option>
-    							<option value="">一日两次</option>
-    							<option value="">一日三次</option>
-  							</select>
-						</form>
-									</div>
+	                	<div class="col-md-12 " >
+							<p class="col-md-2 your-para">用药：</p>
+							<div class="col-md-8">										
+								<form>
+									<select name="YYYY">
+	    							<option value=""><c:out value="${row.medicine}"/></option>
+	  							    </select>
+		  							<select name="MM" onchange="MMDD(this.value)">
+		    							<option value=""><c:out value="${row.num}"/></option>
+		  							</select>
+		 							<select name="DD">
+		 								<option value=""><c:out value="${row.fre}"/></option>
+		  							</select>
+								</form>								
 								</div>
-						<div class="col-md-12">
-						<p class="col-md-2 your-para" >备注：</p>
-						<div class="col-md-8" >
-						<textarea cols="50" rows="4" value=" " onfocus="this.value='';"></textarea>
-						</div>
-						</div>
-
-						<div class="col-md-12">
-						<p class="col-md-2 your-para">下次随访要求：</p>
-						<div class="col-md-8" >
-						<textarea cols="50" rows="4" value=" " onfocus="this.value='';"></textarea>
-						</div>
-						</div>
-						<br /><br />
-					   <div class="col-md-12 send" style="margin-left: 2%;">
+							</div>
+							<div class="col-md-12">
+							<p class="col-md-2 your-para" >备注：</p>
+							<div class="col-md-8" >
+							<textarea cols="50" rows="4"><c:out value="${row.remark}"/></textarea>
+							</div>
+							</div>			
+							<div class="col-md-12">
+							<p class="col-md-2 your-para">下次随访要求：</p>
+							<div class="col-md-8" >
+							<textarea cols="50" rows="4" ><c:out value="${row.demand}"/></textarea>
+							</div>
+							</div>
+							<br/><br/>
+					<!--   <div class="col-md-12 send" style="margin-left: 2%;">
 							<input type="submit" value="保存" >
-						</div>
+						</div>-->  
                 </div>
                 </div>
               </div>
+              </c:forEach>
                </div>
 					<div class="clearfix"></div>
 				</div>

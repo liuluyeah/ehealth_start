@@ -196,8 +196,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td><%=sqlRst.getString(3)%></td>
 						<td><%=sqlRst.getString(4)%></td>
 						<td><%=sqlRst.getString(11)%></td>
-			                 <td><a href="doctorHelperShow.jsp?id=<%=sqlRst.getString(1)%>" value="<%=sqlRst.getString(1)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
-			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#doctorHelperEdit" data-backdrop="static" ></i>
+			                 <td><a href="doctorHelperShow.jsp?id=<%=sqlRst.getString(3)%>&tel=<%=sqlRst.getString(13)%>" value="<%=sqlRst.getString(3)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(2)%>" data-backdrop="static" ></i>
 							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
 							  <!-- 进行分组 -->
 							  <div id="<%=sqlRst.getString(1)%>" class="modal fade" >							            
@@ -233,6 +233,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						             </div>
 						        </div>
                                </div>
+                                <div id="<%=sqlRst.getString(2)%>" class="modal fade" >
+								 <div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
+						            <div class="modal-content">
+						                <div class="modal-header">
+						                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						                    <h4 class="modal-title">维护诊疗计划</h4>
+						                </div>
+						                 <form  method="post" action="doctorHelperMedicineAddShortcut.jsp">	
+							                <div class="modal-body contact-grid" style="height:470px;">								               				                	
+							                	<input name="medicinetime" style="display:none" value="<%=sqlRst.getString(3)%>">
+							                	<input name="medicinetel" style="display:none" value="<%=sqlRst.getString(13)%>">							                
+												<input name="intpage" style="display:none" value="<%=intPage%>">	
+													<div class="col-md-12">
+													<p class="col-md-3 your-para" >用药</p>
+														<div class="col-md-9">
+															<select name="YYYY" >
+							    							<option value="药品名称" selected = "selected">药品名称</option>
+							    							<option value="益母草颗粒">益母草颗粒</option>
+							    							<option value="感冒胶囊">感冒胶囊</option>
+							    							<option value="延更丹">延更丹</option>
+							  							</select>
+							  							<select name="MM" >
+							    							<option value="药品用量" selected = "selected">药品用量</option>
+							    							<option value="一次1粒">一次1粒</option>
+							    							<option value="一次2粒">一次2粒</option>
+							    							<option value="一次3粒">一次3粒</option>
+							  							</select>
+							 							<select name="DD">
+							 								<option value="用药频率" selected = "selected">用药频率</option>
+							    							<option value="一日一次">一日一次</option>
+							    							<option value="一日两次">一日两次</option>
+							    							<option value="一日三次">一日三次</option>
+							  							</select>
+														</div>			
+													</div>						
+													<div class="col-md-12">
+															<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
+															<div class="col-md-9" style="padding-top: 1%" >
+															<textarea name="remark"></textarea>
+															</div>
+														</div>
+													<div class="col-md-12" >
+														<p class="col-md-3 your-para" style="padding-top: 2%">下次随访要求</p>
+														<div class="col-md-9" style="padding-top: 1%" >
+														<textarea name="demand"></textarea>
+														</div>
+													</div>																	
+							                </div>
+							                <div class="modal-footer">
+							                    <button type="submit" class="btn btn-success"  style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
+							                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							                </div>
+										</form>
+						             </div>
+						        </div>
+						    </div>
+  
                                </td>
 							</tr>
 							<%
