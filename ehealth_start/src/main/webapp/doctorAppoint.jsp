@@ -175,7 +175,8 @@ $(function () {
 		 <h3 class="tittle wel" style="font-size: 1.9em">日程管理</h3>
 				<div class="about-top about-top-right">
 					<% 
-				       int id=1; //获取医生id 
+				      // int id=1; //获取医生id 
+				       String userLogined=(String)session.getAttribute("userTel");
 				       String doctime="";
 				       String worktime="";
 				       try{
@@ -188,7 +189,7 @@ $(function () {
 				    		Class.forName(driverName).newInstance(); 
 				    	    Connection con=DriverManager.getConnection(connUrl);
 				    	    Statement sql=con.createStatement();
-				    	    ResultSet rs=sql.executeQuery("select docTime from user where id='"+ id +"'"); 
+				    	    ResultSet rs=sql.executeQuery("select docTime from user where tel='"+ userLogined +"'"); 
 				    	     //判断数据库里 是否有今日门诊记录
 				    	    if(rs.next()){ 
 				    	    	doctime=rs.getString(1);

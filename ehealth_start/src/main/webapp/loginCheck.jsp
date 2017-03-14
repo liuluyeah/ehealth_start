@@ -8,12 +8,13 @@
 <!DOCTYPE html >
 <html> 
 <head> 
-<title>验证用户登录信息</TITLE> 
+<title>check login jsp </TITLE> 
 </head> 
 <body>
 <% 
 String user = request.getParameter("user");
 String password=request.getParameter("pwd");
+session.setAttribute("userTel",user);
 try{
 	/** 连接数据库参数 **/ 
 	String driverName = "com.mysql.jdbc.Driver"; //驱动名称 
@@ -35,11 +36,11 @@ try{
      if("d".equals(d_p))
      response.sendRedirect("doctorIndex.jsp");
      if("p".equals(d_p))
-     response.sendRedirect("patientIndex.jsp");	 
+     response.sendRedirect("PatientIndex.jsp");	 
    }
   else{
     // response.sendRedirect("register.html");
-     out.print("<script>alert('密码错误或用户不存在！');window.location.href='login.jsp'</script>");
+     out.print("<script>alert('用户不存在！');window.location.href='login.jsp'</script>");
    }
    con.close();
 }
