@@ -44,8 +44,10 @@
 	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
 	//创建一个可以滚动的只读的SQL语句对象
 	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+    //获取医生id 
+    String userLogined=(String)session.getAttribute("userTel");
 	//准备SQL语句
-	strSQL="SELECT * FROM clinic_assistant order by idmenzhen desc";
+	strSQL="SELECT * FROM clinic_assistant where doctorId='"+ userLogined +"' order by idmenzhen desc";
 	//执行SQL语句并获取结果集
 	sqlRst=sqlStmt.executeQuery(strSQL);
 	//获取记录总数

@@ -186,8 +186,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 				 		</div>
+				 		<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+				 		</div>
 				 	<%
-				        sqlRst1.absolute(12);
+				        sqlRst1.absolute(13);
 						while(!sqlRst1.isAfterLast()){
 					 %>
 						<div class="col-md-4">
@@ -408,8 +414,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</div>
 						
+						<div class="col-md-4" >
+						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+						</div>
+						
 				    <%
-				        sqlRst.absolute(12);
+				        sqlRst.absolute(13);
 						while(!sqlRst.isAfterLast()){
 					 %>
 						<div class="col-md-4">
