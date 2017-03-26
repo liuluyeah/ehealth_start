@@ -175,7 +175,7 @@ $(function () {
 		 <h3 class="tittle wel" style="font-size: 1.9em">日程管理</h3>
 				<div class="about-top about-top-right">
 					<% 
-				      // int id=1; //获取医生id 
+				       //获取医生id 
 				       String userLogined=(String)session.getAttribute("userTel");
 				       String doctime="";
 				       String worktime="";

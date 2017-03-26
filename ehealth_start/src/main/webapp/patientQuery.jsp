@@ -64,10 +64,12 @@
 	sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
 	//创建一个可以滚动的只读的SQL语句对象
 	sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+    //获取医生id 
+    String userLogined=(String)session.getAttribute("userTel");
 	//准备SQL语句
-	strSQL="SELECT * FROM mypatient";
+	strSQL="SELECT * FROM mypatient where doctorId='"+ userLogined +"'";
 	if(fatrange!=null || sugarrange!=null || group!=null){
-		strSQL+=" where";
+		strSQL+=" &&";
 	}
     //血脂范围
 	if(fatrange.equals("大于90")){
