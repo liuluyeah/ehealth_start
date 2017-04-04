@@ -183,16 +183,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                </tr>
 			              </thead>
 			              <tbody>
-			              <%
+			           <%			            
 						if(intPageCount>0){
 						//将记录指针定位到待显示页的第一条记录上
 						sqlRst.absolute((intPage-1)*intPageSize+1);
 						//显示数据
 						i=0;
-						while(i<intPageSize&&!sqlRst.isAfterLast()){
+						while(i<intPageSize&&!sqlRst.isAfterLast()){	
+						
 					 %>
 						<tr>
-						<td><%=sqlRst.getString(1)%></td>
+						<td><%=i+(intPage-1)*intPageSize+1%></td>
 						<td><%=sqlRst.getString(2)%></td>
 						<td><%=sqlRst.getString(10)%></td>
 						<td><%=sqlRst.getString(3)%></td>
