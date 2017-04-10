@@ -105,29 +105,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			                <div class="panel-body"> 			
 								
 								<form id="${row.idmenzhen}" >
+			
 									<div class="col-md-4">
-									<p class="col-md-4 your-para" style="padding-top: 3%">身高：</p>
-									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.height}"/></p>
+									<p class="col-md-4 your-para" style="padding-top: 3%">BMI：</p>
+									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.bmi}"/></p>
 									</div>
 			
 									<div class="col-md-4">
-									<p class="col-md-4 your-para" style="padding-top: 3%">体重：</p>
-									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.weigtht}"/></p>
+									<p class="col-md-4 your-para" style="padding-top: 3%">血糖：</p>
+									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.sugar}"/></p>
 									</div>
 			
 									<div class="col-md-4">
-									<p class="col-md-4 your-para" style="padding-top: 3%">血压：</p>
-									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.bloodpressure}"/></p>
+									<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比：</p>
+									<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.waisthipratio}"/></p>
 									</div>
 			
 									<div class="col-md-4">
-									<p class="col-md-4 your-para" style="padding-top: 5%">腰围：</p>
-									<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.waist}"/></p>
+									<p class="col-md-4 your-para" style="padding-top: 5%">血脂：</p>
+									<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.fat}"/></p>
 									</div>
-			
+									
 									<div class="col-md-4">
-									<p class="col-md-4 your-para" style="padding-top: 5%">臀围：</p>
-									<p class="col-md-8 your-para" style="padding-top: 5%"><c:out value="${row.hip}"/></p>
+									<p class="col-md-4 your-para" style="padding-top: 3%">上次用药：</p>
+									<p class="col-md-8 your-para" style="padding-top: 3%"><c:out value="${row.medicine}"/></p>
 									</div>
 								</form>
 								
