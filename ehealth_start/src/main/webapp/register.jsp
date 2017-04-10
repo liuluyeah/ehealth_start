@@ -23,8 +23,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
-
-<script type="text/javascript" src="static/registerUser.js"></script>
 <!--/script-->
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -38,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--start-header-->
-			<div id="home" class="header two" style="margin-top:-2%">
+			<div id="home" class="header two" style="margin-top:-40px">
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
@@ -70,7 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
-					<!-- <form action="registerCheck.jsp" method="post"> -->
+					<form action="registerCheck.jsp" method="post">
+
 						<div class="col-md-6">
 						<p class="col-md-3 your-para" style="padding-top: 3%">手机号</p>
 						<div class="col-md-5">
@@ -81,14 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-6">
 						<p class="col-md-3 your-para" style="padding-top: 3%">密码</p>
 						<div class="col-md-5">
-						<input type="password" class="form-control" id="pwd" name="pwd" placeholder="">
-						</div>
-						</div>
-						<br /><br />
-						<div class="col-md-6">
-						<p class="col-md-3 your-para" style="padding-top: 3%">确认密码</p>
-						<div class="col-md-5">
-						<input type="password" class="form-control" id="pwdCheck" name="pwdCheck" placeholder="">
+						<input type="text" class="form-control" id="pwd" name="pwd" placeholder="">
 						</div>
 						</div>
 						<br /><br />
@@ -113,12 +105,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<br /><br />
 						<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 1%">
-			 			<a id="next1" data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
-								<input type="submit" onClick="saveOne()" value="下一步" >
-							</a>
+						<!--  <a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseTwo" style="text-decoration: none;">
+								<input type="submit" value="下一步" >
+							</a>-->	
+							<input type="submit" value="注册" >
 						</div>
 					
-					<!-- </form> -->
+					</form>
                 </div>
               </div>
             </div>
@@ -130,104 +123,117 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
 					<form>
 						<div class="col-md-5">
-						<input type="hidden" id="userId"/>
-						<input type="hidden" id="userRole"/>
 							<p class="col-md-4 your-para" style="padding-top: 3%">姓名</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="name" name="name" placeholder="">
+								<input type="text" class="form-control" id="name" placeholder="">
 							</div>
 						</div>
 
 						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">性别</p>
 							<div class="col-md-8" style="padding-top: 3%">
-								<input type="radio" name="sex" id="sex" value="男" checked>
+								<input type="radio" name="radio" id="sex" value="" checked>
 								<label style="color: #888;">男</label>
 								&nbsp
-								<input type="radio" name="sex" id="sex" value="女">
+								<input type="radio" name="radio" id="sex" value="">
 								<label style="color: #888;">女</label>
 							</div>
 						</div>
 						
 						<br/><br/>
-						<div class="col-md-5" style="padding-top: 0.5%">
-							<p class="col-md-4 your-para" style="padding-top: 3%">年龄</p>
-							<div class="col-md-8">
-								<input type="text" class="form-control" id="age" name="age" placeholder="" style="padding-top: 2%">
+						<div class="col-md-5">
+							<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
+							<div class="col-md-8" style="padding-top: 2%">
+								<select name="YYYY" onchange="YYYYDD(this.value)">
+									<option value="">年</option>
+									<option value="">1950</option>
+									<option value="">1951</option>
+								</select>
+								<select name="MM" onchange="MMDD(this.value)">
+									<option value="">月</option>
+									<option value="">1</option>
+									<option value="">2</option>
+								</select>
+								<select name="DD">
+									<option value="">日</option>
+									<option value="">10</option>
+									<option value="">11</option>
+								</select>
 							</div>
 						</div>
-						<div class="col-md-5" style="padding-top: 0.5%">
-							<p class="col-md-4 your-para" style="padding-top: 3%">出生日期</p>
-							<div class="col-md-8" >
-							<input type="date" name="birth" id="birth">
+
+						<div class="col-md-5">
+							<p class="col-md-4 your-para" style="padding-top: 3%">年龄</p>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="identity" placeholder="" style="padding-top: 2%">
 							</div>
 						</div>
 
 						<br/><br/>
-						<div class="col-md-5" style="padding-top: 1%">
+						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">身份证号</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="identity" name="identity" placeholder="">
+								<input type="text" class="form-control" id="identity" placeholder="">
 							</div>
 						</div>
 
-						<div class="col-md-5" style="padding-top: 1%">
+						<div class="col-md-5">
 							<p class="col-md-4 your-para" style="padding-top: 3%">医疗卡号</p>
 							<div class="col-md-8">
-								<input type="text" class="form-control" id="recordNumber" name="recordNumber" placeholder="">
+								<input type="text" class="form-control" id="recordNumber" placeholder="">
 							</div>
 						</div>
 
-						<div id="docTimeDiv" class="col-md-5" style="padding-top: 1%">
+						<div class="col-md-5">
 						<p class="col-md-4 your-para" style="padding-top: 6%">出诊时间</p>
 						<div class="col-md-8" style="padding-top: 5%">
 						<div>
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周一上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周一下午</label>
                       	</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周二上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周二下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周三上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周三下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周四上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周四下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周五上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周五下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周六上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周六下午</label>
 						</div>
 						<div style="padding-top: 1%">
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周日上午</label>
                       		&nbsp
-							<input type="checkbox" name="docTime" id="docTime">
+							<input type="checkbox" name="radio" id="r5" value="">
                       		<label style="color: #888;">周日下午</label>
 						</div>
 						</div>
@@ -235,9 +241,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <br /><br />
 					<div class="col-md-12 send" style="margin-left: 1.5%; padding-top: 2%">
-							<a id="next2" data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;">
-								<input type="submit" onClick="saveTwo()" value="保存" >
-							</a>
+					<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseOne"  style="text-decoration: none;"><input type="submit" value="上一步" ></a>&nbsp&nbsp
+							<a data-toggle="collapse" class="panel-toggle" data-parent="#accordion" href="#collapseThree"  style="text-decoration: none;"><input type="submit" value="下一步" ></a>
 						</div>
 					</form>
                 </div>
@@ -251,7 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
 					<p style="margin: auto;font-size: 23px; text-align: center; font-weight: bold;">恭喜你，完成注册！</p>
-					<a style="color: #20CBBE; text-decoration: none;"><p style="margin: auto;margin-top:20px; font-size: 15px;text-align: center">即将跳转到主页...</p></a>
+					<a onclick="patientindex()" style="color: #20CBBE; text-decoration: none;"><p style="margin: auto;margin-top:20px; font-size: 15px;text-align: center">准备跳转到主页...</p></a>
                <!-- href="patientIndex.html"  -->
                 </div>
                 </div>
@@ -279,5 +284,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									});
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
 </body>
 </html>
