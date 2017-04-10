@@ -25,6 +25,7 @@
 	int intPage;//待显示页码
 	java.lang.String strPage;
 	int i;
+	String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
 	//设置一页显示的记录数
 	intPageSize=3;
 	//取得待显示页码
@@ -47,7 +48,7 @@
     //获取医生id 
     String userLogined=(String)session.getAttribute("userTel");
 	//准备SQL语句
-	strSQL="SELECT * FROM clinic_assistant where doctorId='"+ userLogined +"' order by idmenzhen desc";
+	strSQL="SELECT * FROM clinic_assistant where doctorId='"+ userLogined +"' && time='"+ datetime +"'";
 	//执行SQL语句并获取结果集
 	sqlRst=sqlStmt.executeQuery(strSQL);
 	//获取记录总数
@@ -138,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="about-top send about-top-right">
 				<input type="button" name="" value="刷新" onclick="window.location.reload()">
 				    <% 
-				       String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+				       
 				       String title="";
 				       try{
 				    		/** 连接数据库参数 **/ 
@@ -156,15 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	     title="今日门诊情况：";
 				    	     %>
 				    	     				<h4 style="margin-top: 2%"><%=title %></h4>
-				<!-- 连接数据库 -->
-				<c:catch var="ex">
-                <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
-                </c:catch>
-                <c:if test="${ex != null}">
-                                                    数据库连接失败，请联系管理员！
-                </c:if>
-                <!-- 数据读取 -->
-                <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM clinic_assistant order by idmenzhen desc"/>
+
 						<table id="clinicTable" class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
               			<thead>
 			                <tr>
