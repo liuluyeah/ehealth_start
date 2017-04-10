@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		 <h3 class="tittle wel" style="font-size: 1.9em;margin-top:-40px">门诊助手</h3>
 				<div class="about-top send about-top-right">
-				<input type="button" name="" value="刷新" >
+				<input type="button" name="" value="刷新" onclick="window.location.reload()">
 				    <% 
 				       String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
 				       String title="";
