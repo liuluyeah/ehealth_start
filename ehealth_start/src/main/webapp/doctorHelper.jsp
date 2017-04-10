@@ -84,6 +84,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					event.preventDefault();
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
+				
+
 			});
 </script>
 </head>
@@ -150,17 +152,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				    	    Statement sql=con.createStatement();
 				    	    ResultSet rs=sql.executeQuery("select *from clinic_assistant where time='"+ datetime +"'"); 
 				    	     //判断数据库里 是否有今日门诊记录
-				    	    if(rs.next()){ 
+				    	    if(rs.next()){
 				    	     title="今日门诊情况：";
-				    	   }
-				    	  else{
-				    		  title="今日无门诊。";
-				    	   }
-				    	   con.close();
-				    	}
-				    	catch(SQLException e1){}
-   					 %>
-				<h4 style="margin-top: 2%"><%=title %></h4>
+				    	     %>
+				    	     				<h4 style="margin-top: 2%"><%=title %></h4>
 				<!-- 连接数据库 -->
 				<c:catch var="ex">
                 <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
@@ -170,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </c:if>
                 <!-- 数据读取 -->
                 <sql:query var="userlist" dataSource="${dataSour}" sql="SELECT * FROM clinic_assistant order by idmenzhen desc"/>
-						<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
+						<table id="clinicTable" class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
               			<thead>
 			                <tr>
 			                  <th>序号</th>
@@ -303,7 +298,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							%>				         			               
 			              </tbody>
 			            </table>
-							<div class="page_nation" style="text-align: center;">
+							<div id="clinicTabePage" class="page_nation" style="text-align: center;">
 							<nav>
 							 第<%=intPage%>页 共<%=intPageCount%>页  
 							<%if(intPage<intPageCount){%>
@@ -313,6 +308,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</nav>		
 							</div>
 					<div class="clearfix"></div>
+					<%
+				    	   }
+				    	  else{
+				    		  title="今日无门诊。";
+				    		%>
+				    		<h4 style="margin-top: 2%"><%=title %></h4>
+				    		<%
+				    	   }
+				    	   con.close();
+				    	}
+				    	catch(SQLException e1){}
+   					 %>
+
 				</div>
 			</div>	 
 	</div>
