@@ -249,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						while(i<intPageSize&&!sqlRst.isAfterLast()){
 					 %>
 						<tr>
-						<td><%=sqlRst.getString(1)%></td>
+						<td><%=i+(intPage-1)*intPageSize+1%></td>
 						<td><%=sqlRst.getString(2)%></td>
 						<td><%=sqlRst.getString(3)%></td>
 						<td><%=sqlRst.getString(4)%></td>
