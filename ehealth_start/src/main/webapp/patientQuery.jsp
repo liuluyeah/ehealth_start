@@ -222,7 +222,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="about second">
 		<div class="container" style="margin-top:-40px">
 		 <h3 class="tittle wel" style="font-size: 1.9em">我的病人</h3>
-        <div class="about-top">
+		 <%
+		 if(intRowCount==0){
+			 out.println("<script>window.alert('对不起，没有符合条件的记录！');window.history.go(-1);</script>"); 
+		 %>
+
+		 <%}else{
+			 %>
+			         <div class="about-top">
 				<table class="table table-striped table-hover " style="border: 1px solid #ddd; margin-top: 2%">
             			<thead>
 	                <tr>
@@ -335,7 +342,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<div class="clearfix"></div>
 		</div>
-	</div>	 
+	
+			 <%} %>
+</div>	 
 	</div>
 	  
   <!--footer-->
