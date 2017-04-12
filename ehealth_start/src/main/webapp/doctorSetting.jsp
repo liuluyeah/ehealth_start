@@ -148,21 +148,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							%>
 					<div id="firstnew">
 						<div class="col-md-4" id="height">
-						   <p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
+						   <p class="col-md-4 your-para" style="padding-top: 3%">BMI</p>
 						   <div class="col-md-8">
 						   <input type="text" class="form-control" id="name" placeholder="">
 						   </div>
 						</div>
 						
-						<div class="col-md-4">
+				<!-- 	<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
 						</div>
-						</div>
+						</div> -->	
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血压</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">血糖</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="age" placeholder="">
 						</div>
@@ -174,20 +174,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</div>
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">腰围</p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比</p>
 						<div class="col-md-8" style="padding-top: 4%">
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 
-						<div class="col-md-4">
+			<!--  		<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
-				 		</div>
+				 		</div>-->	
 				 		<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+				 		</div>
+				 	    
+				 	    <div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">电话</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
@@ -380,39 +387,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<form method="post" action="doctorClinicBasicAdd.jsp">
 					 <div id="clinicbasiclast">
 						<div class="col-md-4" id="height">
-						<p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">BMI</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">血糖</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血压</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">血脂</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="age" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">腰围</p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比</p>
 						<div class="col-md-8" style="padding-top: 4%">
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 						                       
-						<div class="col-md-4" >
+				<!--  		<div class="col-md-4" >
 						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
-						</div>
+						</div>-->
 						
 						<div class="col-md-4" >
 						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
@@ -420,7 +427,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 						</div>
-						
+												
+						<div class="col-md-4" >
+						<p class="col-md-4 your-para" style="padding-top: 5%">电话</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+						</div>
 				    <%
 				        sqlRst.absolute(13);
 						while(!sqlRst.isAfterLast()){
