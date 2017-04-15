@@ -183,15 +183,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<tr>
 						<td><%=i+(intPage-1)*intPageSize+1%></td>
 						<td><%=sqlRst.getString(2)%></td>
-						<td><%=sqlRst.getString(10)%></td>
+						<td><%=sqlRst.getString(9)%></td>
 						<td><%=sqlRst.getString(3)%></td>
 						<td><%=sqlRst.getString(4)%></td>
-						<td><%=sqlRst.getString(11)%></td>
-			                 <td><a href="doctorHelperShow.jsp?id=<%=sqlRst.getString(3)%>&tel=<%=sqlRst.getString(13)%>" value="<%=sqlRst.getString(3)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
+						<td><%=sqlRst.getString(10)%></td>
+			                 <td><a href="doctorHelperShow.jsp?id=<%=sqlRst.getString(3)%>&tel=<%=sqlRst.getString(12)%>" value="<%=sqlRst.getString(3)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(2)%>" data-backdrop="static" ></i>
-							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
+							  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=i+(intPage-1)*intPageSize+1%>" data-backdrop="static" ></i>
 							  <!-- 进行分组 -->
-							  <div id="<%=sqlRst.getString(1)%>" class="modal fade" >							            
+							  <div id="<%=i+(intPage-1)*intPageSize+1%>" class="modal fade" >							            
 								<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">								 	
 						            <div class="modal-content">
 						            <form  method="post" action="clinicGroupAdd.jsp">
@@ -234,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						                 <form  method="post" action="doctorHelperMedicineAddShortcut.jsp">	
 							                <div class="modal-body contact-grid" style="height:470px;">								               				                	
 							                	<input name="medicinetime" style="display:none" value="<%=sqlRst.getString(3)%>">
-							                	<input name="medicinetel" style="display:none" value="<%=sqlRst.getString(13)%>">							                
+							                	<input name="medicinetel" style="display:none" value="<%=sqlRst.getString(12)%>">							                
 												<input name="intpage" style="display:none" value="<%=intPage%>">	
 													<div class="col-md-12">
 													<p class="col-md-3 your-para" >用药</p>
@@ -301,6 +301,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</nav>		
 							</div>
 					<div class="clearfix"></div>
+					
 					<%
 				    	   }
 				    	  else{
@@ -319,7 +320,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	  
   <!--footer-->
-			<div class="footer text-center" style="padding-bottom: 0; text-align: center;">
+	  		<div class="footer text-center" style="padding-bottom: 0; text-align: center;">
 				<div class="container">
 					<div class="copy">
 		              <p style="color: black">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
