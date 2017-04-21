@@ -1,14 +1,15 @@
+<%-- 关于 --%>
 <%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%> 
-<%@ page contentType="text/html;charset=utf-8"%> 
-<% 
- request.setCharacterEncoding("UTF-8"); 
- response.setCharacterEncoding("UTF-8"); 
- response.setContentType("text/html; charset=UTF-8"); 
-%>  
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page import="java.util.*"%>  
+<%@ page import="java.text.*"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>E-Health</title>
+<title>关于</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Petsy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -36,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--start-header-->
-			<div id="home" class="header">
+			<div id="home" class="header two">
 					<div class="top-header">
 						<div class="container">
 							<div class="logo">
@@ -45,8 +46,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					     <div class="top-menu">
 							<span class="menu"> </span>
 								<ul class="cl-effect-16">
-								<li><a class="active" href="doctorIndex.jsp" data-hover="主页">主页</a></li>
-								<li><a  href="doctorAbout.jsp" data-hover="关于">关于</a></li>
+								<li><a href="doctorIndex.jsp" data-hover="主页">主页</a></li>
+								<li><a class="active"  href="doctorAbout.jsp" data-hover="关于">关于</a></li>
 								<li><a href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
 								<li><a href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
 								<li><a href="doctorAppoint.jsp" data-hover="日程管理">日程管理</a></li>
@@ -74,103 +75,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"> </div>
 					</div>
 				</div>
-				<div class="banner">
-				   <div class="container">
-						<div id="top" class="callbacks_container">
-						<ul class="rslides callbacks callbacks1" id="slider4">
-							<li id="callbacks1_s0" class="callbacks1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								<h3>E-Health</h3>
-								<h4>everything to keep you healthy!</h4>
-								</div>
-							</li>
-							<li id="callbacks1_s1" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								   <h3>Helping you get rid</h3>
-								  <h4>of your health problem!</h4>
-								</div>
-							</li>
-							<li id="callbacks1_s2" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 500ms ease-in-out;">
-								<div class="banner-info">
-								  <h3>Get to know</h3>
-								  <h4>everything about your appointment!</h4>
-								</div>	
-							</li>
-						</ul>
-						</div>
-						<!--banner-Slider-->
-						<script src="js/responsiveslides.min.js"></script>
-						 <script>
-						// You can also use "$(window).load(function() {"
-						$(function () {
-						  // Slideshow 4
-						  $("#slider4").responsiveSlides({
-						auto: true,
-						pager: true,
-						nav:false,
-						speed: 500,
-						namespace: "callbacks",
-						before: function () {
-						  $('.events').append("<li>before event fired.</li>");
-						},
-						after: function () {
-						  $('.events').append("<li>after event fired.</li>");
-						}
-						  });
-
-						});
-						  </script>
-				</div>
-				<div class="banner-bottom">
-			      <div class="container">
-			         <div class="banner-bot-grids" style="text-align: center;">
-
-				        <a href="doctorHelper.jsp" style="text-decoration: none;color: white">
-				        <div class="col-md-4 header-bottom-grid1">
-						  <div class="icon">
-					         <i class="glyphicon glyphicon-edit"> </i>
-					      </div>
-					      <div class="icon-text">
-						     <h4>门诊助手</h4>
-					        <p>点击进入门诊助手查看最新病人</p>
-					       </div>
-					        <div class="clearfix"> </div>
-					     </div></a>
-
-						 <a href="doctorPatient.jsp" style="text-decoration: none;color: white">
-						 <div class="col-md-4 header-bottom-grid2">
-							  <div class="icon">
-						        <i class="glyphicon glyphicon-th-list"> </i>
-						      </div>
-						     <div class=" icon-text">
-							     <h4>我的病人</h4>
-						          <p>点击进入查看所有病人记录</p>
-						     </div>
-						      <div class="clearfix"> </div>
-						 </div></a>
-
-					    <a href="doctorAppoint.jsp" style="text-decoration: none;color: white">
-					    <div class="col-md-4 header-bottom-grid3">
-						     <div class="icon">
-							    <i class="glyphicon glyphicon-time"> </i>
-							</div>
-							<div class="icon-text">
-								 <h4>日程管理</h4>
-							    <p>点击进入查看个人日程管理</p>
-							 </div>
-							  <div class="clearfix"> </div>
-						</div></a>
-
-					 </div>
-			      <div class="clearfix"> </div>
-		      </div>
-	       </div>
 	     </div>
      </div>
+		<!--start-about-->
+	<div class="about second">
+		<div class="container send">
+		 <h3 class="tittle wel" style="font-size: 1.9em">关于<a class="pull-right" style="font-size: 17px; padding-top: 1%; padding-right: 1.5%" href="doctorAboutAdd.html"><input type="button" name="" value="修改" ></a></h3>
+				<div class="about-top">
+					<div class="col-md-7 about-top-right send">
+						<h4>北京大学第一临床医学院</h4>
+						<p>北京大学第一医院（简称“北大医院”）位于北京老皇城内，是距离中南海最近的医院，是一所融医疗、教学、科研、预防为一体的大型综合性三级甲等医院。</p>&nbsp
+ 
+<p>北大医院创建于1915年，是我国最早创办的国立医院，也是国内首批建立的临床医学院之一。北大医院前身为民国教育部批准北京医科专门学校设立附属诊察所；1946年随北京医学院与北京大学合并，由此得名“北大医院”；此后经历院系调整，2000年北京大学与北京医科大学两校再次合并，医院随之更名为“北京大学第一医院”。</p>&nbsp
+					</div>
+					<div class="col-md-5 about-top-left">
+						<img src="images/hospitalIntro1.jpg" class="img-responsive" alt=""/>
+					</div>
 
+					<div class="clearfix"></div>
+				</div>
+			</div>	 
+	</div>
 
+	<div class="about second" style="padding-top: 0px">
+		<div class="container send">
+		 <h3 class="tittle wel" style="font-size: 1.9em">患者小贴士<a class="pull-right" style="font-size: 17px; padding-top: 1%; padding-right: 1.5%" href="doctorTipsAdd.html"><input type="button" name="" value="新增" ></a></h3>
+				<div class="about-top">
+					<div class="col-md-12 about-top-right">
+					<h4>乳腺癌的病因</h4>
+						<p>乳腺癌的病因尚未完全清楚，研究发现乳腺癌的发病存在一定的规律性，具有乳腺癌高危因素的女性容易患乳腺癌。所谓高危因素是指与乳腺癌发病有关的各种危险因素...<a href="doctorAboutShow.html"><span style="color: #20CBBE"> 查看全文</span></a></p>
+						<br />
+						<h4>什么是月经不调？</h4>
+						<p>月经失调也称月经不调，是妇科常见疾病，表现为月经周期或出血量的异常，可伴月经前、经期时的腹痛及全身症状。病因可能是器质性病变或是功能失常。<a href=""><span style="color: #20CBBE"> 查看全文</span></a></p>	
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>	 
+	</div>
+	  
   <!--footer-->
-			<div class="footerIndex text-center" style="background-color: #f8f8f8; padding-bottom: 0; text-align: center;">
+			<div class="footer text-center" style="padding-bottom: 0; text-align: center;">
 				<div class="container">
 					<div class="copy">
 		              <p style="color: black">Copyright &copy; 2016. School of Electronics Engineering and Computer Science, Peking University.</p>
@@ -187,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-	<div id="scanQRcode" class="modal fade" >
+		<div id="scanQRcode" class="modal fade" >
 		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
             <div class="modal-content">
                 <div class="modal-header">

@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="menu"> </span>
 								<ul class="cl-effect-16">
 								<li><a href="doctorIndex.jsp" data-hover="主页">主页</a></li>
-								<li><a  href="doctorAbout.html" data-hover="关于">关于</a></li>
+								<li><a  href="doctorAbout.jsp" data-hover="关于">关于</a></li>
 								<li><a href="doctorHelper.jsp" data-hover="门诊助手">门诊助手</a></li>
 								<li><a href="doctorPatient.jsp" data-hover="我的病人">我的病人</a></li>
 								<li><a href="doctorAppoint.jsp" data-hover="日程管理">日程管理</a></li>
