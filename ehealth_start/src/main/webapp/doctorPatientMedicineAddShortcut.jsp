@@ -12,11 +12,27 @@ response.setContentType("text/html; charset=utf-8");
       String medicine = request.getParameter("YYYY");//药品名称
       String num = request.getParameter("MM");//药品数量
       String fre = request.getParameter("DD");//药品频率
+      String commonlist= request.getParameter("commonlist");//药品名称
       String remark = request.getParameter("remark");//备注
-      String demand = request.getParameter("demand");//下次随访要求
+      //String demand = request.getParameter("demand");//下次随访要求
       String medicinetime = request.getParameter("medicinetime");
       String medicinetel = request.getParameter("medicinetel");
       String intpage = request.getParameter("intpage");
+      String[] sfmodel= request.getParameterValues("sfmodel");
+      String demand ="";
+      if(!sfmodel.equals("")){
+    	  StringBuffer sb = new StringBuffer();
+    	  for(int i = 0; i < sfmodel.length; i++){
+    	   sb.append(sfmodel[i]);
+    	  }
+    	  demand = sb.toString();
+    	  }
+    //  StringBuffer sb = new StringBuffer();
+    //  int i=0;
+    //  for(i=0; i < str.length; i++){
+    //   sb.append(str[i]);
+    //  }
+  //    String remark=str.toString();
     %>
 <html>
 <head>
@@ -25,12 +41,13 @@ response.setContentType("text/html; charset=utf-8");
 	<body>
 		<sql:setDataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth?useUnicode=true&characterEncoding=gbk" user="root" password="123456" />
 		<c:catch var="error">
-		<c:set var="medicine" value="<%=medicine%>"/><c:set var="num" value="<%=num%>"/><c:set var="fre" value="<%=fre%>"/>
+		<c:set var="medicine" value="<%=medicine%>"/><c:set var="num" value="<%=num%>"/><c:set var="fre" value="<%=fre%>"/><c:set var="commonlist" value="<%=commonlist%>"/>
 		<c:set var="remark" value="<%=remark%>"/><c:set var="demand" value="<%=demand%>"/>
 		<c:set var="time" value="<%=medicinetime%>" /><c:set var="tel" value="<%=medicinetel%>" />
 			<sql:update>
-			update patient_detail set medicine = ? , num=? , fre=? , remark=? , demand=? where time=? and tel=?
-			<sql:param value="${medicine}"/><sql:param value="${num}"/><sql:param value="${fre}"/><sql:param value="${remark}"/><sql:param value="${demand}"/>
+			update patient_detail set medicine = ? , num=? , fre=? , commonlist=? ,remark=? , demand=? where time=? and tel=?
+			<sql:param value="${medicine}"/><sql:param value="${num}"/><sql:param value="${fre}"/><sql:param value="${commonlist}"/>
+			<sql:param value="${remark}"/><sql:param value="${demand}"/>
 			<sql:param value="${time}" /><sql:param value="${tel}" />
 			</sql:update>
 			<sql:update>

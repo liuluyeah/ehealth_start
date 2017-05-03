@@ -209,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div>
 									</div>
 			                	<div class="col-md-12 " >
-									<p class="col-md-2 your-para">用药：</p>
+									<p class="col-md-2 your-para">选择用药：</p>
 									<div class="col-md-8">										
 										<form>
 											<select name="YYYY">
@@ -224,18 +224,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</form>								
 										</div>
 									</div>
-									<div class="col-md-12">
+									<!-- 常用药列表 -->
+								    <div class="col-md-12 " >
+									<p class="col-md-2 your-para">用药列表：</p>
+									<div class="col-md-8">										
+										<form>
+											<select name="commonlist">
+			    							<option value=""><c:out value="${row.commonlist}"/></option>
+			  							    </select>
+										</form>								
+										</div>
+									</div>
+																			                
+					                <div class="col-md-12" >
+									<p class="col-md-2 your-para" >随访模板：</p>
+									<div class="col-md-9" style="padding-top: 2%" >
+									<!--  <textarea name="demand"></textarea> -->
+                                                   <p><div style="width:238px"><input type="checkbox" name="category" value="肝、肾功能、血脂" />肝、肾功能、血脂 
+                                                      <div style="float:right"><input type="checkbox" name="category" value="激素" />激素</div>
+                                                      </div></p>   
+								 
+								      
+								    <p><div style="width:270px"><input type="checkbox" name="category" value="血Ca、尿Ca、VitD"/>血Ca、尿Ca、VitD
+								       <div style="float:right"><input type="checkbox" name="category" value="甲功五项"/>甲功五项</div>
+								       </div></p>    
+								    <p><div style="width:264px"><input type="checkbox" name="category" value="阴道彩超" />阴道彩超
+								       <div style="float:right"><input type="checkbox" name="category" value="乳腺B超" />乳腺B超</div>
+								       </div>
+								       </p>    
+								      
+								    <p><div style="width:280px"><input type="checkbox" name="category" value="甲状腺B超" />甲状腺B超
+								       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />颈功腺B超</div>
+								       </div>
+								       </p>  
+								   
+								    <p><div  style="width:302px"><input type="checkbox" name="category" value="颈功腺B超"/>双无能X线
+								       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />人体成分分析</div>
+								       </div>
+								       </p> 
+								  
+									</div>
+								    </div>		
+								    
+								    <div class="col-md-12">
 									<p class="col-md-2 your-para" >备注：</p>
 									<div class="col-md-8" >
 									<textarea cols="50" rows="4"><c:out value="${row.remark}"/></textarea>
 									</div>
-									</div>			
-									<div class="col-md-12">
+									</div>		
+									<!--  <div class="col-md-12">
 									<p class="col-md-2 your-para">下次随访要求：</p>
 									<div class="col-md-8" >
 									<textarea cols="50" rows="4" ><c:out value="${row.demand}"/></textarea>
 									</div>
-									</div>
+									</div>-->
 									<br/><br/>
 							   <!-- <div class="col-md-12 send" style="margin-left: 2%;">
 										<input type="submit" value="保存" >
