@@ -286,7 +286,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							                	<input name="medicinetel" style="display:none" value="<%=sqlRst.getString(11)%>">							                
 												<input name="intpage" style="display:none" value="<%=intPage%>">	
 													<div class="col-md-12">
-													<p class="col-md-3 your-para" >用药</p>
+													<p class="col-md-3 your-para" >选择用药</p>
 														<div class="col-md-9">
 															<select name="YYYY" >
 							    							<option value="药品名称" selected = "selected">药品名称</option>
@@ -307,19 +307,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							    							<option value="一日三次">一日三次</option>
 							  							</select>
 														</div>			
-													</div>						
+													</div>	
+													<div class="col-md-12">
+													<p class="col-md-3 your-para"  style="padding-top: 2%">常用药列表</p>
+														<div class="col-md-9" style="padding-top: 2%">
+															<select name="commonlist" >
+							    							<option value="药品名称" selected = "selected">常用药列表</option>
+							    							<option value="1莉芙敏1片Bid">1莉芙敏1片Bid</option>
+							    							<option value="2莉芙敏+利维爱0.5片Qod">2莉芙敏+利维爱0.5片Qod</option>
+							    							<option value="3莉芙敏+利维爱0.5片Qd">3莉芙敏+利维爱0.5片Qd</option>
+							    							<option value="4莉芙敏+利维爱1片Qd">4莉芙敏+利维爱1片Qd</option>
+							    							<option value="5利维爱A0.5Qod  B0.5Qd  C 1片Qd">5利维爱A0.5Qod  B0.5Qd  C 1片Qd</option>
+							    							<option value="6补佳乐+地屈0.5片Qd">6补佳乐+地屈0.5片Qd</option>
+							    							<option value="7补佳乐+地屈1片Qd，B补佳乐0.5Qd+地屈1片Qd">7补佳乐+地屈1片Qd，B补佳乐0.5Qd+地屈1片Qd</option>
+							    							<option value="8芬吗通2/10 Qd PO ">8芬吗通2/10 Qd PO </option>
+							    							<option value="9克龄蒙 1#Q">9克龄蒙 1#Q</option>
+							  							    </select>
+														</div>			
+													</div>	
+										            <div class="col-md-12" >
+														<p class="col-md-3 your-para" style="padding-top: 2%">随访模板</p>
+														<div class="col-md-9" style="padding-top: 1%" >
+														<!--  <textarea name="demand"></textarea> -->
+                                                        <p><div style="width:238px"><input type="checkbox" name="category" value="肝、肾功能、血脂" />肝、肾功能、血脂 
+                                                           <div style="float:right"><input type="checkbox" name="category" value="激素" />激素</div>
+                                                           </div></p>   
+													 
+													      
+													    <p><div style="width:270px"><input type="checkbox" name="category" value="血Ca、尿Ca、VitD"/>血Ca、尿Ca、VitD
+													       <div style="float:right"><input type="checkbox" name="category" value="甲功五项"/>甲功五项</div>
+													       </div></p>    
+													    <p><div style="width:264px"><input type="checkbox" name="category" value="阴道彩超" />阴道彩超
+													       <div style="float:right"><input type="checkbox" name="category" value="乳腺B超" />乳腺B超</div>
+													       </div>
+													       </p>    
+													      
+													    <p><div style="width:280px"><input type="checkbox" name="category" value="甲状腺B超" />甲状腺B超
+													       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />颈功腺B超</div>
+													       </div>
+													       </p>  
+													   
+													    <p><div  style="width:302px"><input type="checkbox" name="category" value="颈功腺B超"/>双无能X线
+													       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />人体成分分析</div>
+													       </div>
+													       </p> 
+													  
+														</div>
+													</div>				
 													<div class="col-md-12">
 															<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
 															<div class="col-md-9" style="padding-top: 1%" >
 															<textarea name="remark"></textarea>
 															</div>
 														</div>
-													<div class="col-md-12" >
-														<p class="col-md-3 your-para" style="padding-top: 2%">下次随访要求</p>
-														<div class="col-md-9" style="padding-top: 1%" >
-														<textarea name="demand"></textarea>
-														</div>
-													</div>																	
+																	
 							                </div>
 							                <div class="modal-footer">
 							                    <button type="submit" class="btn btn-success"  style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
