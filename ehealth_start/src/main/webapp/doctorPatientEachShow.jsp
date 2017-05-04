@@ -235,14 +235,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</form>								
 										</div>
 									</div>
-																			                
+						     	   <c:set var="totalCount" value="${row.demand}"></c:set>
+                                               
 					                <div class="col-md-12" >
 									<p class="col-md-2 your-para" >随访模板：</p>
-									<div class="col-md-9" style="padding-top: 2%" >
+									<div class="col-md-9" style="padding-top: -2%" >
+								  <% 
+                                   String totalCount=(String)pageContext.getAttribute("totalCount");
+                                   //String teamName1 = new String(request.getParameter("teamName") .getBytes("ISO8859-1"), "UTF-8");
+                                       if(totalCount.contains("1")){
+                                   %> 
+                                 <p><input type="checkbox" name="category" value="1" checked="true" />肝、肾功能、血脂 </p>
+								<%
+								 } if(totalCount.contains("2")){ 
+								%> <p><input type="checkbox" name="category" value="2" checked="true" />激素</p>
+								 <% 
+								 } if(totalCount.contains("3")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />血Ca、尿Ca、VitD</p>
+								 <% 
+								 }if(totalCount.contains("4")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />甲功五项</p>
+								 <% 
+								 }if(totalCount.contains("5")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />阴道彩超</p>
+								 <% 
+								 }if(totalCount.contains("6")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />乳腺B超</p>
+								 <% 
+								 }if(totalCount.contains("7")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />甲状腺B超</p>
+								 <% 
+								 }if(totalCount.contains("8")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />颈功腺B超</p>
+								 <% 
+								 }if(totalCount.contains("9")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />双无能X线</p>
+								 <% 
+								 }if(totalCount.contains("0")){ 
+								%> <p><input type="checkbox" name="category"  checked="true" />人体成分分析</p>
+								 <% 
+								 }
+								%> 														   
 									<!--  <textarea name="demand"></textarea> -->
-                                                   <p><div style="width:238px"><input type="checkbox" name="category" value="肝、肾功能、血脂" />肝、肾功能、血脂 
-                                                      <div style="float:right"><input type="checkbox" name="category" value="激素" />激素</div>
-                                                      </div></p>   
+                                <!--     <p><div style="width:238px"><input type="checkbox" name="category" value="1" />肝、肾功能、血脂 
+                                       <div style="float:right"><input type="checkbox" name="category" value="2" />激素</div>
+                                       </div></p>   
 								 
 								      
 								    <p><div style="width:270px"><input type="checkbox" name="category" value="血Ca、尿Ca、VitD"/>血Ca、尿Ca、VitD
@@ -262,7 +299,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />人体成分分析</div>
 								       </div>
 								       </p> 
-								  
+								  -->
 									</div>
 								    </div>		
 								    

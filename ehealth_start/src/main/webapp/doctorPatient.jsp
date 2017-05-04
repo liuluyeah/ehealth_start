@@ -337,18 +337,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													    <p><div style="width:270px"><input type="checkbox" name="sfmodel" value="3"/>血Ca、尿Ca、VitD
 													       <div style="float:right"><input type="checkbox" name="sfmodel" value="4"/>甲功五项</div>
 													       </div></p>    
-													    <p><div style="width:264px"><input type="checkbox" name="sfmodel" value="阴道彩超" />阴道彩超
-													       <div style="float:right"><input type="checkbox" name="sfmodel" value="乳腺B超" />乳腺B超</div>
+													    <p><div style="width:264px"><input type="checkbox" name="sfmodel" value="5" />阴道彩超
+													       <div style="float:right"><input type="checkbox" name="sfmodel" value="6" />乳腺B超</div>
 													       </div>
 													       </p>    
 													      
-													    <p><div style="width:280px"><input type="checkbox" name="sfmodel" value="甲状腺B超" />甲状腺B超
-													       <div style="float:right"><input type="checkbox" name="sfmodel" value="颈功腺B超" />颈功腺B超</div>
+													    <p><div style="width:280px"><input type="checkbox" name="sfmodel" value="7" />甲状腺B超
+													       <div style="float:right"><input type="checkbox" name="sfmodel" value="8" />颈功腺B超</div>
 													       </div>
 													       </p>  
 													   
-													    <p><div  style="width:302px"><input type="checkbox" name="sfmodel" value="颈功腺B超"/>双无能X线
-													       <div style="float:right"><input type="checkbox" name="sfmodel" value="颈功腺B超" />人体成分分析</div>
+													    <p><div  style="width:302px"><input type="checkbox" name="sfmodel" value="9"/>双无能X线
+													       <div style="float:right"><input type="checkbox" name="sfmodel" value="0" />人体成分分析</div>
 													       </div>
 													       </p> 
 													  

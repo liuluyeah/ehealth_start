@@ -222,9 +222,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td><%=sqlRst.getString(7)%></td>
 			                  <td>
 			                  <a href="doctorPatientEachShow.jsp?id=<%=sqlRst.getString(2)%>&tel=<%=sqlRst.getString(11)%>" value="<%=sqlRst.getString(2)%>"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></a>
-			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
+			      <!--        <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>        --> 
 			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
-			                  <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
+			             <!--   <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
 								<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
 						            <div class="modal-content">
 						                <div class="modal-header">
@@ -282,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						             </div>
 						        </div>
 						    </div>
-  
+                     -->
 			                  </td>
 			                </tr>
 			                <tr>
