@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%> 
 <%@ page contentType="text/html;charset=utf-8"%> 
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">  
 <% 
  request.setCharacterEncoding("UTF-8"); 
  response.setCharacterEncoding("UTF-8"); 
@@ -15,7 +16,7 @@
 <link rel="stylesheet" href="css/loginMy.css"/>
 
 <style>
-html,body{width:100%;height: 100%;margin: 0}
+html,body{width:100%;height: 100%;margin: 0;padding:0}
 </style>
 
 </head>

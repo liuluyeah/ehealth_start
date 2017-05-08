@@ -10,6 +10,7 @@
  response.setContentType("text/html; charset=UTF-8"); 
 %> 
 <!DOCTYPE HTML>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">  
 <html>
 <head>
 <title>我的病人</title>
@@ -92,7 +93,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		                <c:if test="${ex != null}">
 		                                                    数据库连接失败，请联系管理员！
 		                </c:if>
-		                <!-- 数据读取 --><c:set var="id" value="${param.id}"/><c:set var="tel" value="${param.tel}" />
+		                <!-- 数据读取 -->
+		                <c:set var="id" value="${param.id}"/><c:set var="tel" value="${param.tel}" />
 		                <sql:query var="userlist" dataSource="${dataSour}" >SELECT * FROM patient_detail where time=? && tel=?;
 		                <sql:param value="${id}"/><sql:param value="${tel}"/>
 		                </sql:query>

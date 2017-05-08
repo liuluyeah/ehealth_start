@@ -393,3 +393,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </body>
 </html>
+<%
+//关闭结果集
+sqlRst.close();
+//关闭SQL语句对象
+sqlStmt.close();
+//关闭数据库
+sqlCon.close();
+%> 

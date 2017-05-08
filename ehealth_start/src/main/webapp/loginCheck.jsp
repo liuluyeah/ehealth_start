@@ -40,7 +40,7 @@ try{
    }
   else{
     // response.sendRedirect("register.html");
-     out.print("<script>alert('用户不存在！');window.location.href='login.jsp'</script>");
+     out.print("<script>alert('用户不存在，请仔细检查您的账号密码！');window.location.href='login.jsp'</script>");
    }
    con.close();
 }
