@@ -234,13 +234,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td><%=sqlRst.getString(10)%></td>
 						<td>
 			                  <a href="doctorPatientEach.jsp?name=<%=sqlRst.getString(2)%>&divide=<%=sqlRst.getString(9)%>&tell=<%=sqlRst.getString(11)%>">
-			                  <form style="display:inline" action="doctorPatientEach.jsp" method="post"><input name="tell" style="display:none" value="<%=sqlRst.getString(11)%>">
-			                  <input style="display:none" type="submit"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i></form></a>
+			                   <form style="display:inline" action="doctorPatientEach.jsp" method="post"><input name="tell" style="display:none" value="<%=sqlRst.getString(11)%>">
+			                     <input style="display:none" type="submit"><i class="glyphicon glyphicon-search templatemo-social-icon" title="查看" ></i>
+			                   </form>
+			                  </a>
 			                  <i class="glyphicon glyphicon-pencil templatemo-social-icon" title="维护诊疗计划" data-toggle="modal" data-target="#<%=sqlRst.getString(2)%>" data-backdrop="static" ></i>
 			                  <i class="glyphicon glyphicon-th-list templatemo-social-icon" title="分组" data-toggle="modal" data-target="#<%=sqlRst.getString(1)%>" data-backdrop="static" ></i>
-			                  <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>
-			                     <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
-									<div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
+			             <!--      <i class="glyphicon glyphicon-share-alt templatemo-social-icon" title="导出" data-toggle="modal" data-target="#" data-backdrop="static" ></i>  --> 
+<!--******************************************病人分组 *****************************************************************-->	
+<!--******************************************病人分组 *****************************************************************-->					                     
+			                    <div id="<%=sqlRst.getString(1)%>" class="modal fade" >
+									  <div class="modal-dialog" style="margin-top: 10%;width:450px;height: 100%">
 							            <div class="modal-content">
 							            <form  method="post" action="doctorPatientGroupAdd.jsp">
 						                <input name="groupid" style="display:none" value="<%=sqlRst.getString(1)%>"  >
@@ -249,22 +253,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							                    <h4 class="modal-title">病人分组</h4>
 							                </div>
+											<%
+												//变量声明
+												java.sql.Connection sqlCon1; //数据库连接对象
+												java.sql.Statement sqlStmt1; //SQL语句对象
+												java.sql.ResultSet sqlRst1; //结果集对象
+												java.lang.String strCon1;//数据库连接字符串
+												java.lang.String strSQL1;//SQL语句
+												//装载JDBC驱动程序
+												Class.forName("com.mysql.jdbc.Driver").newInstance();
+												//设置数据库连接字符串
+												strCon1="jdbc:mysql://101.201.40.158:3306/ehealth";
+												//连接数据库
+												sqlCon1=java.sql.DriverManager.getConnection(strCon1,"root","123456");
+												//创建一个可以滚动的只读的SQL语句对象
+												sqlStmt1=sqlCon1.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+												//准备SQL语句
+												strSQL1="select *from patient_divide";
+												//执行SQL语句并获取结果集
+												sqlRst1=sqlStmt1.executeQuery(strSQL1);
+												//获取记录总数
+												sqlRst1.last();
+												%>
 							                <div class="modal-body contact-grid" style="padding-left: 5%"> 
-											<input type="checkbox" name="radio" id="r5" value="月经组">
-							                <label style="color: #888;">月经组</label>
-							                    &nbsp&nbsp
-							                    &nbsp&nbsp
-											<input type="checkbox" name="radio" id="r5" value="卵巢组">
-							                <label style="color: #888;">卵巢组</label>
-							                    &nbsp&nbsp
-							                 	&nbsp&nbsp
-							                <input type="checkbox" name="radio" id="r5" value="更年组">
-							                <label style="color: #888;">更年组</label>
-							                    &nbsp&nbsp
-							                    &nbsp&nbsp
-											<input type="checkbox" name="radio" id="r5" value="乳腺组">
-							                <label style="color: #888;">乳腺组</label>
+                                              <!--   <input type="checkbox" name="radio" id="r5" value="卵巢组">
+								                <label style="color: #888;">月经组</label>
+								                    &nbsp&nbsp
+								                 	&nbsp&nbsp				           			                           
+												<input type="checkbox" name="radio" id="r5" value="卵巢组">
+								                <label style="color: #888;">卵巢组</label>
+								                    &nbsp&nbsp
+								                 	&nbsp&nbsp
+								                <input type="checkbox" name="radio" id="r5" value="更年组">
+								                <label style="color: #888;">更年组</label>
+								                    &nbsp&nbsp
+								                    &nbsp&nbsp
+												<input type="checkbox" name="radio" id="r5" value="乳腺组">
+								                <label style="color: #888;">乳腺组</label>
+								                    &nbsp&nbsp
+								                    &nbsp&nbsp --> 
+											<%
+										        sqlRst1.absolute(1);
+												while(!sqlRst1.isAfterLast()){
+											 %>
+												<input type="checkbox" name="radio" id="r5" value="<%=sqlRst1.getString(2)%>">
+												<label style="color: #888;"><%=sqlRst1.getString(2)%></label>   
+
+						           			<%
+											 sqlRst1.next();			
+											 }
+											%>
 							                </div>
+
 							                <div class="modal-footer">
 							                    <button type="submit" class="btn btn-success" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
 							                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -273,7 +313,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							             </div>
 							        </div>
 							    </div>
-		                		 <div id="<%=sqlRst.getString(2)%>" class="modal fade" >
+
+
+<!--******************************************维护诊疗计划*****************************************************************-->	
+<!--******************************************维护诊疗计划*****************************************************************-->									    
+		               <div id="<%=sqlRst.getString(2)%>" class="modal fade" >
 								 <div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
 						            <div class="modal-content">
 						                <div class="modal-header">

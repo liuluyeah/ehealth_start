@@ -56,6 +56,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				//newdiv.find("input").attr("name",++i)
 				$("#firstnew").append(newdiv);
 			}
+			function addGroupItem(){
+				var newval=$("#groupName").val();
+				$('#newGroupName').append('<p class="col-md-2 your-para" style="padding:3px 0px" value=" '+newval+'">'+newval+'</p>');
+				$('#newGroupName').append('<input style="display:none" type="text"  name="groupname1"  value=" '+newval+'">');
+			}
 </script>
 
 </head>
@@ -111,6 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  <li role="presentation" class=""><a href="#next" role="tab" id="profile-tab" data-toggle="tab" aria-controls="next" aria-expanded="false">复诊</a></li>
 			  <li role="presentation" class=""><a href="#long" role="tab" id="profile-tab" data-toggle="tab" aria-controls="long" aria-expanded="false">更年期一日门诊</a></li>
 			  <li role="presentation" class=""><a href="#medicine" role="tab" id="profile-tab" data-toggle="tab" aria-controls="medicine" aria-expanded="false">药品管理</a></li>
+			  <li role="presentation" class=""><a href="#group" role="tab" id="profile-tab" data-toggle="tab" aria-controls="group" aria-expanded="false">组别管理</a></li>
 			</ul>
 			<br />
 			<div id="myTabContent" class="tab-content">
@@ -154,13 +160,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						   </div>
 						</div>
 						
-				<!-- 	<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
-						<div class="col-md-8">
-						<input type="text" class="form-control" id="name" placeholder="">
-						</div>
-						</div> -->	
-
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 3%">血糖</p>
 						<div class="col-md-8">
@@ -180,12 +179,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						</div>
 
-			<!--  		<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
-						<div class="col-md-8" style="padding-top: 4%">
-						<input type="text" class="form-control" id="identity" placeholder="">
-						</div>
-				 		</div>-->	
 				 		<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
 						<div class="col-md-8" style="padding-top: 4%">
@@ -364,19 +357,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body"> 
                <%
 					//变量声明
-					java.sql.Connection sqlCon; //数据库连接对象
 					java.sql.Statement sqlStmt; //SQL语句对象
 					java.sql.ResultSet sqlRst; //结果集对象
 					java.lang.String strCon;//数据库连接字符串
 					java.lang.String strSQL;//SQL语句
-					//装载JDBC驱动程序
-					Class.forName("com.mysql.jdbc.Driver").newInstance();
-					//设置数据库连接字符串
-					strCon="jdbc:mysql://101.201.40.158:3306/ehealth";
-					//连接数据库
-					sqlCon=java.sql.DriverManager.getConnection(strCon,"root","123456");
+
 					//创建一个可以滚动的只读的SQL语句对象
-					sqlStmt=sqlCon.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+					sqlStmt=sqlCon1.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
 					//准备SQL语句
 					strSQL="show columns from clinic_assistant";
 					//执行SQL语句并获取结果集
@@ -413,13 +400,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
-						                       
-				<!--  		<div class="col-md-4" >
-						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
-						<div class="col-md-8" style="padding-top: 4%">
-						<input type="text" class="form-control" id="identity" placeholder="">
-						</div>
-						</div>-->
+
 						
 						<div class="col-md-4" >
 						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
@@ -549,7 +530,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 
 			 
 			 
-			 
+<!--******************************************药品管理 *****************************************************************-->	 
 			  <div role="tabpanel" class="tab-pane fade" id="medicine" aria-labelledby="medicine-tab">
 				<div class="panel-group" id="infoMedicine">
            <div class="panel panel-default">
@@ -596,6 +577,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           
                </div>
 			  </div>
+<!--******************************************组别管理 *****************************************************************-->	
+<!--******************************************组别管理 *****************************************************************-->				
+			  <div role="tabpanel" class="tab-pane fade" id="group" aria-labelledby="medicine-tab">
+				<div class="panel-group" id="infoMedicine">
+           <div class="panel panel-default">
+              	<div class="panel-heading">
+                	<h4 class="panel-title" style="font-size: 1.4em; ">  <a data-toggle="collapse" class="panel-toggle" data-parent="#infoMedicine" href="#collapseFive" style="text-decoration: none;"> 组别管理 </a> </h4>
+              	</div>
+              <div id="collapseFive" class="panel-collapse collapse in">
+                <div class="panel-body contact-grid"> 
+                <form method="post" action="groupAdd.jsp">
+                    <%
+							//变量声明
+							java.sql.ResultSet sqlRstG; //结果集对象
+							java.lang.String strConG;//数据库连接字符串
+							java.lang.String strSQLG;//SQL语句
+
+							//准备SQL语句
+							strSQLG="select *from patient_divide";
+							//执行SQL语句并获取结果集
+							sqlRstG=sqlStmt1.executeQuery(strSQLG);
+							//获取记录总数
+							sqlRstG.last();
+							%>
+                	<div class="col-md-12" id="newGroupName" >
+					<!--  	<p class="col-md-2 your-para" style="padding:3px 0px">月经组</p>
+						<p class="col-md-2 your-para" style="padding:3px 0px">更年组</p>
+						<p class="col-md-2 your-para" style="padding:3px 0px">卵巢组</p>
+                     -->
+					<%
+				        sqlRstG.absolute(1);
+						while(!sqlRstG.isAfterLast()){
+					 %>
+                    <p class="col-md-2 your-para" style="padding:3px 0px"><%=sqlRstG.getString(2)%></p>
+           			<%
+					 sqlRstG.next();			
+					 }
+					%>
+					</div>
+					<br /><br />
+				    <div class="col-md-12 send" style="margin-left: 2%;">
+						<input type="button" data-toggle="modal" data-target="#addGroup" data-backdrop="static" value="新增">
+						&nbsp&nbsp<input type="submit" value="保存" >
+					</div>
+				</form>
+                </div>
+                </div>
+              </div>
+          
+               </div>
+			  </div>
+			
+			
 			</div>
 		   </div>
 
@@ -820,6 +854,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
+    
+    <div id="addGroup" class="modal fade" >
+		<div class="modal-dialog" style="margin-top: 10%;width:400px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新增组别</h4>
+                </div>
+                <div class="modal-body" style="height: 60px">
+                	<form>
+						<div class="col-md-12" style="padding-top: 1%">
+						<p class="col-md-4 your-para" >组别名称</p>
+						<div class="col-md-8">
+						<input type="text" class="form-control" id="groupName" placeholder="">
+						</div>
+						</div>
+					</form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" style="background-color: #20CBBE; border-color: #20CBBE" onclick="addGroupItem()">保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+             </div>
+        </div>
+    </div>
 
 </body>
 </html>
+<%
+//关闭结果集
+sqlRst1.close();
+//关闭SQL语句对象
+sqlStmt1.close();
+//关闭数据库
+sqlCon1.close();
+%> 
