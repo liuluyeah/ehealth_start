@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 			function addGroupItem(){
 				var newval=$("#groupName").val();
-				$('#newGroupName').append('<p class="col-md-2 your-para" style="padding:3px 0px" value=" '+newval+'">'+newval+'</p>');
+				$('#newGroupName').append(' <div style="float:left"><p class="col-md-2 your-para" style="padding:3px 0px" value=" '+newval+'">'+newval+'</p></div>');
 				$('#newGroupName').append('<input style="display:none" type="text"  name="groupname1"  value=" '+newval+'">');
 			}
 </script>
@@ -610,7 +610,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				        sqlRstG.absolute(1);
 						while(!sqlRstG.isAfterLast()){
 					 %>
-                    <p class="col-md-2 your-para" style="padding:3px 0px"><%=sqlRstG.getString(2)%></p>
+                  <div style="float:left">  <p class="col-md-2 your-para" style="padding:3px 0px"><%=sqlRstG.getString(2)%></p></div>
            			<%
 					 sqlRstG.next();			
 					 }

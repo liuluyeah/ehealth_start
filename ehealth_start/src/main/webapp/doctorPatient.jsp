@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">  
 <% 
  request.setCharacterEncoding("UTF-8"); 
  response.setCharacterEncoding("UTF-8"); 
@@ -136,10 +137,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="selectbox" style="height:50px">
 		 <div class="selemediv"> <div class="selemenu" id="patientGroup"><span style="font-weight: bold;">请选择组别</span></div>
 			<DIV class="citylist group">
-				<span>月经组</span>
-				<span>卵巢组</span>
+											<%
+												//变量声明
+												java.sql.Connection sqlConG; //数据库连接对象
+												java.sql.Statement sqlStmtG; //SQL语句对象
+												java.sql.ResultSet sqlRstG; //结果集对象
+												java.lang.String strConG;//数据库连接字符串
+												java.lang.String strSQLG;//SQL语句
+												//装载JDBC驱动程序
+												Class.forName("com.mysql.jdbc.Driver").newInstance();
+												//设置数据库连接字符串
+												strConG="jdbc:mysql://101.201.40.158:3306/ehealth";
+												//连接数据库
+												sqlConG=java.sql.DriverManager.getConnection(strConG,"root","123456");
+												//创建一个可以滚动的只读的SQL语句对象
+												sqlStmtG=sqlConG.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,java.sql.ResultSet.CONCUR_READ_ONLY);
+												//准备SQL语句
+												strSQLG="select *from patient_divide";
+												//执行SQL语句并获取结果集
+												sqlRstG=sqlStmtG.executeQuery(strSQLG);
+												//获取记录总数
+												sqlRstG.last();
+												%>
+											<%
+										        sqlRstG.absolute(1);
+												while(!sqlRstG.isAfterLast()){
+											 %>
+				<span><%=sqlRstG.getString(2)%></span>
+                                             <%
+											 sqlRstG.next();			
+											 }
+											%>
+			<!--<span>卵巢组</span>
 				<span>更年组</span>
-				<span>乳腺组</span>
+				<span>乳腺组</span>-->	
 			</div>
 		</div>
 		<div class="selemediv">
@@ -275,29 +306,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												//获取记录总数
 												sqlRst1.last();
 												%>
-							                <div class="modal-body contact-grid" style="padding-left: 5%"> 
-                                              <!--   <input type="checkbox" name="radio" id="r5" value="卵巢组">
-								                <label style="color: #888;">月经组</label>
-								                    &nbsp&nbsp
-								                 	&nbsp&nbsp				           			                           
-												<input type="checkbox" name="radio" id="r5" value="卵巢组">
-								                <label style="color: #888;">卵巢组</label>
-								                    &nbsp&nbsp
-								                 	&nbsp&nbsp
-								                <input type="checkbox" name="radio" id="r5" value="更年组">
-								                <label style="color: #888;">更年组</label>
-								                    &nbsp&nbsp
-								                    &nbsp&nbsp
-												<input type="checkbox" name="radio" id="r5" value="乳腺组">
-								                <label style="color: #888;">乳腺组</label>
-								                    &nbsp&nbsp
-								                    &nbsp&nbsp --> 
+							                <div class="modal-body contact-grid" style="padding-left: 5%;width:450px;"> 
 											<%
 										        sqlRst1.absolute(1);
 												while(!sqlRst1.isAfterLast()){
 											 %>
+												<div>
 												<input type="checkbox" name="radio" id="r5" value="<%=sqlRst1.getString(2)%>">
 												<label style="color: #888;"><%=sqlRst1.getString(2)%></label>   
+												</div>
 
 						           			<%
 											 sqlRst1.next();			
