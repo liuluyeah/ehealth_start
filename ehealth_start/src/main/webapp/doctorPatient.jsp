@@ -62,6 +62,7 @@
 <title>我的病人</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="keywords" content="Petsy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -72,10 +73,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' />	
 <script src="js/jquery.min.js"> </script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/birthday.js"> </script>
 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <!--/script-->
+
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -83,6 +86,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
 			});
+			//随访日期
+			$(function () {
+				$.ms_DatePicker({
+			            YearSelector: ".sel_year",
+			            MonthSelector: ".sel_month",
+			            DaySelector: ".sel_day"
+			    });
+				$.ms_DatePicker();
+			}); 
 </script>
 
 </head>
@@ -234,8 +246,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	                  <th>姓名</th>
 	                  <th>类型</th>
 					  <th>创建时间</th>
-	                  <th>血糖</th>
-	                  <th>血脂</th>
+	                  <th>血糖mmol/l</th>
+	                  <th>血脂mmol/l</th>
 					  <th>BMI</th>
 					  <th>腰臀比</th>
 					  <th>组别</th>
@@ -342,7 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						                    <h4 class="modal-title">维护诊疗计划</h4>
 						                </div>
 						                 <form  method="post" action="doctorPatientMedicineAddShortcut.jsp">	
-							                <div class="modal-body contact-grid" style="height:470px;">								               				                	
+							                <div class="modal-body contact-grid" style="height:500px;">								               				                	
 							                	<input name="medicinetime" style="display:none" value="<%=sqlRst.getString(4)%>">
 							                	<input name="medicinetel" style="display:none" value="<%=sqlRst.getString(11)%>">							                
 												<input name="intpage" style="display:none" value="<%=intPage%>">	
@@ -414,16 +426,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													       </p> 
 													  
 														</div>
-													</div>				
+													</div>			
+													
+													<div class="col-md-12">
+													<p class="col-md-3 your-para" style="padding-top: 2%">下次随访时间</p>
+													<div class="col-md-9" style="padding-top: 2%" >
+											        <select class="sel_year" name="sel_year"></select>年
+											        <select class="sel_month" name="sel_month"></select>月
+											        <select class="sel_day" name="sel_day"></select>日
+												    </div>	
+												    
 													<div class="col-md-12">
 															<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
 															<div class="col-md-9" style="padding-top: 2%" >
 															<textarea name="remark" ></textarea>
 															</div>
-														</div>
+												    </div>
+												    
+
 																	
 							                </div>
-							                <div class="modal-footer">
+							                <div style="text-align:right;" >
 							                    <button type="submit" class="btn btn-success"  style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
 							                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 							                </div>
@@ -496,63 +519,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
         </div>
     </div>
-    <!--  <div id="doctorPatientEdit" class="modal fade" >
-		<div class="modal-dialog" style="margin-top: 10%;width:600px;height: 100%">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">维护诊疗计划</h4>
-                </div>
-                <div class="modal-body contact-grid" style="height:470px;">
-                	<form>
-						<div class="col-md-12">
-						<p class="col-md-3 your-para" >用药</p>
-							<div class="col-md-9">
-								<select name="YYYY" onchange="YYYYDD(this.value)">
-    							<option value="">药品名称</option>
-    							<option value="">益母草颗粒</option>
-    							<option value="">感冒胶囊</option>
-    							<option value="">延更丹</option>
-  							</select>
-  							<select name="MM" onchange="MMDD(this.value)">
-    							<option value="">药品用量</option>
-    							<option value="">一次1粒</option>
-    							<option value="">一次2粒</option>
-    							<option value="">一次3粒</option>
-  							</select>
- 							<select name="DD">
- 								<option value="">用药频率</option>
-    							<option value="">一日一次</option>
-    							<option value="">一日两次</option>
-    							<option value="">一日三次</option>
-  							</select>
-							</div>			
-						</div>
-
-						<div class="col-md-12">
-								<p class="col-md-3 your-para" style="padding-top: 2%" >备注</p>
-								<div class="col-md-9" style="padding-top: 1%" >
-								<textarea  value=" "  onfocus="this.value='';" ></textarea>
-								</div>
-							</div>
-						<div class="col-md-12" >
-							<p class="col-md-3 your-para" style="padding-top: 2%">下次随访要求</p>
-							<div class="col-md-9" style="padding-top: 1%" >
-							<textarea  value=" "  onfocus="this.value='';" ></textarea>
-							</div>
-						</div>
-
-					</form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="deleteNSgroup()" style="background-color: #20CBBE; border-color: #20CBBE">保存</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                </div>
-
-             </div>
-        </div>
-    </div>
-    -->
     <script type="text/javascript">
      $(document).ready(function() {
     	  $('input[type=checkbox]').click(function() {

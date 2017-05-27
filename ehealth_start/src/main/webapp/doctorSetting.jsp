@@ -40,18 +40,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						'</div></div>'	+'<input style="display:none" type="text" class="form-control" id="newclinicitem" name="newitem" value=" '+$("#newclinicitem").val()+'">'							
 				);*/
 				var newval=$("#newclinicitem").val();
-				var newdiv=$('#height').clone();
+				var newdiv=$('#clinicFat').clone();
 				newdiv.find("p").text(newval);	
-				newdiv.append('<input style="display:none" type="text"  name="1"  value=" '+newval+'">');
+				newdiv.append('<input style="display:none" type="text"  name="clinicItem"  value=" '+newval+'">');
 				$("#clinicbasiclast").append(newdiv);
 			}
 			var i=0;
 			function addfirstBasicItem(){
 				var newval=$("#newfirstitem").val();
-				var newdiv=$('#height').clone();
+				var newdiv=$('#firstHeight').clone();
 				newdiv.find("p").text(newval);	
 				++i;
-				newdiv.append('<input style="display:none" type="text"  name="1"  value=" '+newval+'">');
+				newdiv.append('<input style="display:none" type="text"  name="firstHeight"  value=" '+newval+'">');
 				//newdiv.find("input").val(newval);
 				//newdiv.find("input").attr("name",++i)
 				$("#firstnew").append(newdiv);
@@ -129,8 +129,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body"> 
-					<form method="post" action="doctorFirstBasicAdd.jsp">
-						<%
+                		<%
 							//变量声明
 							java.sql.Connection sqlCon1; //数据库连接对象
 							java.sql.Statement sqlStmt1; //SQL语句对象
@@ -152,39 +151,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							//获取记录总数
 							sqlRst1.last();
 							%>
+					<form method="post" action="doctorFirstBasicAdd.jsp">
+
 					<div id="firstnew">
-						<div class="col-md-4" id="height">
-						   <p class="col-md-4 your-para" style="padding-top: 3%">BMI</p>
+				    	<div class="col-md-4" id="firstHeight">
+						   <p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
 						   <div class="col-md-8">
 						   <input type="text" class="form-control" id="name" placeholder="">
 						   </div>
 						</div>
 						
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血糖</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="age" placeholder="">
 						</div>
 						</div>
+						
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">腰围</p>
+						<div class="col-md-8" style="padding-top: 4%">
+							<input type="text" class="form-control" id="name" placeholder="">
+						</div>
+						</div>
+						
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
+						<div class="col-md-8" style="padding-top: 4%">
+							<input type="text" class="form-control" id="name" placeholder="">
+						</div>
+						</div>
+						
 						<div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">血脂</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 						</div>
+						
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比</p>
-						<div class="col-md-8" style="padding-top: 4%">
-							<input type="text" class="form-control" id="name" placeholder="">
-						</div>
-						</div>
-
-				 		<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">血糖</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
-				 		</div>
+						</div>
 				 	    
 				 	    <div class="col-md-4">
 						<p class="col-md-4 your-para" style="padding-top: 5%">电话</p>
@@ -192,14 +202,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 				 		</div>
+				 		
+                        <div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">医生电话</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+				 		</div>
 				 	<%
-				        sqlRst1.absolute(13);
+				        sqlRst1.absolute(17);
 						while(!sqlRst1.isAfterLast()){
 					 %>
 						<div class="col-md-4">
 						   <p class="col-md-4 your-para" style="padding-top: 3%"><%=sqlRst1.getString(1)%></p>
 						   <div class="col-md-8">
-						   <input type="text" class="form-control" id="name" placeholder="">
+						   <input type="text" class="form-control" placeholder="">
 						   </div>
 						</div>
            			<%
@@ -373,37 +390,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				%>
 					<form method="post" action="doctorClinicBasicAdd.jsp">
 					 <div id="clinicbasiclast">
-						<div class="col-md-4" id="height">
-						<p class="col-md-4 your-para" style="padding-top: 3%">BMI</p>
+				    	<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 3%">身高</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血糖</p>
+						<p class="col-md-4 your-para" style="padding-top: 3%">体重</p>
 						<div class="col-md-8">
 						<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
 
 						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 3%">血脂</p>
-						<div class="col-md-8">
-						<input type="text" class="form-control" id="age" placeholder="">
-						</div>
-						</div>
-
-						<div class="col-md-4">
-						<p class="col-md-4 your-para" style="padding-top: 5%">腰臀比</p>
+						<p class="col-md-4 your-para" style="padding-top: 5%">腰围</p>
 						<div class="col-md-8" style="padding-top: 4%">
 							<input type="text" class="form-control" id="name" placeholder="">
 						</div>
 						</div>
-
 						
-						<div class="col-md-4" >
-						<p class="col-md-4 your-para" style="padding-top: 5%">医生ID</p>
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">臀围</p>
+						<div class="col-md-8" style="padding-top: 4%">
+							<input type="text" class="form-control" id="name" placeholder="">
+						</div>
+						</div>
+                        
+						<div class="col-md-4" id="clinicFat">
+						<p class="col-md-4 your-para" style="padding-top: 5%">血脂</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+						</div>
+						
+						<div class="col-md-4">
+						<p class="col-md-4 your-para" style="padding-top: 5%">血糖</p>
 						<div class="col-md-8" style="padding-top: 4%">
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
@@ -415,20 +438,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="text" class="form-control" id="identity" placeholder="">
 						</div>
 						</div>
+						
+						<div class="col-md-4" >
+						<p class="col-md-4 your-para" style="padding-top: 5%">医生电话</p>
+						<div class="col-md-8" style="padding-top: 4%">
+						<input type="text" class="form-control" id="identity" placeholder="">
+						</div>
+						</div>
+						
+
 				    <%
-				        sqlRst.absolute(13);
+				        sqlRst.absolute(18);
 						while(!sqlRst.isAfterLast()){
 					 %>
 						<div class="col-md-4">
 						   <p class="col-md-4 your-para" style="padding-top: 3%"><%=sqlRst.getString(1)%></p>
 						   <div class="col-md-8">
-						   <input type="text" class="form-control" id="name" placeholder="">
+						   <input type="text" class="form-control" placeholder="">
 						   </div>
 						</div>
            			<%
 					 sqlRst.next();			
 					 }
 					%>
+
 						</div>
 
 						<div class="col-md-12 send" style="margin-left: 1.5%">
@@ -616,7 +649,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 }
 					%>
 					</div>
-					<br /><br />
+					<br /><br /><br /><br />
 				    <div class="col-md-12 send" style="margin-left: 2%;">
 						<input type="button" data-toggle="modal" data-target="#addGroup" data-backdrop="static" value="新增">
 						&nbsp&nbsp<input type="submit" value="保存" >

@@ -237,8 +237,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	                  <th>姓名</th>
 	                  <th>类型</th>
 					  <th>创建时间</th>
-	                  <th>血糖</th>
-	                  <th>血脂</th>
+	                  <th>血糖mmol/l</th>
+	                  <th>血脂mmol/l</th>
 					  <th>BMI</th>
 					  <th>腰臀比</th>
 					  <th>组别</th>

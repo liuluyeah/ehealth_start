@@ -13,7 +13,7 @@ response.setContentType("text/html; charset=utf-8");
     %>
 <html>
 <head>
-<title>往数据库插入数据</title>
+<title>设置页面新增组别</title>
 </head>
 	<body>
 		<sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth?useUnicode=true&characterEncoding=gbk" user="root" password="123456" />

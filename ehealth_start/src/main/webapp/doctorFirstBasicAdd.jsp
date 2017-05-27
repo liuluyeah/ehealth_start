@@ -9,7 +9,7 @@ response.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=utf-8"); 
 %>
     <% 
-      String newitem = request.getParameter("1");
+      String newitem = request.getParameter("firstHeight");
     %>
 <html>
 <head>
@@ -19,9 +19,11 @@ response.setContentType("text/html; charset=utf-8");
 		<sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth?useUnicode=true&characterEncoding=gbk" user="root" password="123456" />
 		<c:catch var="error">
 		<c:set var="newitem" value="<%=newitem %>" />
+		<c:if test="${newitem !='' and newitem!=null}">
 			<sql:update var="userlist" dataSource="${dataSour}" >
 				alter table mypatient add column <%=newitem %> varchar(10) default '';
 			</sql:update>
+		</c:if>
 		</c:catch>
 		<c:out value="${error}"></c:out><br>
 		<c:redirect url="/doctorSetting.jsp">

@@ -276,34 +276,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								 }if(totalCount.contains("0")){ 
 								%> <p><input type="checkbox" name="category"  checked="true" />人体成分分析</p>
 								 <% 
+								 }if(totalCount.contains("a")){ 
+										%> <p>当前没有选择随访模板</p>
+								 <% 
 								 }
-								%> 														   
-									<!--  <textarea name="demand"></textarea> -->
-                                <!--     <p><div style="width:238px"><input type="checkbox" name="category" value="1" />肝、肾功能、血脂 
-                                       <div style="float:right"><input type="checkbox" name="category" value="2" />激素</div>
-                                       </div></p>   
-								 
-								      
-								    <p><div style="width:270px"><input type="checkbox" name="category" value="血Ca、尿Ca、VitD"/>血Ca、尿Ca、VitD
-								       <div style="float:right"><input type="checkbox" name="category" value="甲功五项"/>甲功五项</div>
-								       </div></p>    
-								    <p><div style="width:264px"><input type="checkbox" name="category" value="阴道彩超" />阴道彩超
-								       <div style="float:right"><input type="checkbox" name="category" value="乳腺B超" />乳腺B超</div>
-								       </div>
-								       </p>    
-								      
-								    <p><div style="width:280px"><input type="checkbox" name="category" value="甲状腺B超" />甲状腺B超
-								       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />颈功腺B超</div>
-								       </div>
-								       </p>  
-								   
-								    <p><div  style="width:302px"><input type="checkbox" name="category" value="颈功腺B超"/>双无能X线
-								       <div style="float:right"><input type="checkbox" name="category" value="颈功腺B超" />人体成分分析</div>
-								       </div>
-								       </p> 
-								  -->
+								%> 																		   
 									</div>
 								    </div>		
+								    
+								    <div class="col-md-12 " >
+									<p class="col-md-2 your-para">下次随访时间：</p>
+						<!-- 连接数据库 -->
+						<c:catch var="ex">
+		                <sql:setDataSource var="dataSour" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://101.201.40.158:3306/ehealth" user="root" password="123456"/>
+		                </c:catch>
+		                <c:if test="${ex != null}">
+		                                                    数据库连接失败，请联系管理员！
+		                </c:if>
+		                <!-- 数据读取 -->
+		                <c:set var="tel" value="${param.tel}" />
+		                <sql:query var="userlist" dataSource="${dataSour}" >SELECT * FROM doctor_appoint where tel=?;
+		                <sql:param value="${tel}"/>
+		                </sql:query>
+									<div class="col-md-8">	
+										
+										  <c:forEach   var="appoint"   items="${userlist.rows}">   
+										  <c:out   value="${appoint.appointitem}"/>   
+										  </c:forEach> 
+			    								  							   						
+										</div>
+									</div>
 								    
 								    <div class="col-md-12">
 									<p class="col-md-2 your-para" >备注：</p>
